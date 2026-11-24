@@ -145,8 +145,4 @@ npx expo start
 | **Supplier** | `organic.farms` | `password123` |
 | **Service Provider** | `sunita.maid` | `password123` |
 
----
 
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE).
