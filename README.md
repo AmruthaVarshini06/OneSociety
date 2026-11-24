@@ -1,6 +1,6 @@
 # OneSociety
 
-A mobile app for apartment societies — built with React Native (Expo), Node.js, Express, and Supabase PostgreSQL.
+A mobile app for apartment societies — built with React Native (Expo) and Node.js.
 
 ---
 
@@ -8,7 +8,7 @@ A mobile app for apartment societies — built with React Native (Expo), Node.js
 
 - Node.js >= 20
 - npm >= 10
-- Supabase PostgreSQL database (connection string and keys configured in `apps/server/.env`)
+- Supabase PostgreSQL database (connection string and keys in `apps/server/.env`)
 - Expo Go app on your phone (for mobile development)
 
 ---
@@ -23,38 +23,21 @@ apps/
 
 ---
 
-## Modules
-
-1. **Group Buying**: Bulk purchasing with volume tiers, escrow payment protection, and gate pickup passes.
-2. **Share & Rent**: Peer-to-peer neighborhood item lending with automated escrow security deposits.
-3. **ServiceHub**: Directory of verified domestic helpers and skilled residents with schedule conflict checks.
-4. **Smart Complaints**: Facility maintenance ticketing with duplicate issue clustering and vendor tracking.
-5. **Society Help & Gate**: QR-based gate security, visitor passes, resident presence alerts, and financial ledgers.
-
----
-
 ## Quick Start
 
 ### 1. Install dependencies
 
 ```bash
-npm install
+npm install          # root dev tools (ESLint, Prettier)
 cd apps/server && npm install
 cd apps/mobile && npm install
 ```
 
 ### 2. Configure environment variables
 
-Copy the example configuration files and fill in your values (never commit active credentials):
-
 ```bash
 cp apps/server/.env.example apps/server/.env
-# Configure your Supabase URL, keys, DATABASE_URL, and JWT secrets in apps/server/.env
-```
-
-For the mobile client:
-```bash
-# Set EXPO_PUBLIC_API_URL and EXPO_PUBLIC_SOCKET_URL in apps/mobile/.env
+# Edit apps/server/.env with your Supabase URL, keys, DATABASE_URL, JWT secrets, etc.
 ```
 
 ### 3. Run the backend
@@ -82,9 +65,18 @@ npm run seed
 
 ---
 
+## Running Tests
+
+```bash
+cd apps/server
+npm test
+```
+
+---
+
 ## Environment Variables
 
-Refer to `apps/server/.env.example` for the full template. Key variables:
+See `apps/server/.env.example` for the full list. Required variables:
 
 | Variable | Description |
 |---|---|
@@ -93,24 +85,12 @@ Refer to `apps/server/.env.example` for the full template. Key variables:
 | `SUPABASE_KEY` | Supabase service role key |
 | `JWT_ACCESS_SECRET` | Secret for signing access tokens |
 | `JWT_REFRESH_SECRET` | Secret for signing refresh tokens |
-| `CLOUDINARY_*` | Cloudinary storage credentials |
+| `CLOUDINARY_*` | Cloudinary credentials |
 | `FIREBASE_*` | Firebase Admin SDK credentials |
-| `FCM_ENABLED` | Toggle for push notification delivery |
+| `FCM_ENABLED` | Set `true` to send real push notifications |
 
 ---
 
-## Demo Accounts
+## Module Build Status
 
-| Role | Username | Password |
-|---|---|---|
-| Resident | `suresh.kumar` | `password123` |
-| President | `ramesh.naidu` | `password123` |
-| Security Guard | `guard.gate1` | `password123` |
-| Supplier | `organic.farms` | `password123` |
-| Service Provider | `sunita.maid` | `password123` |
-
----
-
-## License
-
-This project is licensed under the MIT License.
+See `CLAUDE.md` → Progress section.
