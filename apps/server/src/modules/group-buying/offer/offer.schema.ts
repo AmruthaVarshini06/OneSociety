@@ -3,10 +3,9 @@ import { validateTiers } from '../pricing/pricing';
 
 const priceTierSchema = z.object({
   minQuantity: z.number().int().positive(),
-  pricePerUnit: z.number().int().positive(), // paise
+  pricePerUnit: z.number().int().positive(),
 });
 
-// ── Supplier submits / updates offer ─────────────────────────────────────
 export const submitOfferSchema = z
   .object({
     tiers: z.array(priceTierSchema).min(1, 'At least one tier required'),
@@ -22,9 +21,8 @@ export const submitOfferSchema = z
 
 export type SubmitOfferInput = z.infer<typeof submitOfferSchema>;
 
-// ── President selects winning offer ──────────────────────────────────────
 export const selectOfferSchema = z.object({
-  note: z.string().max(300).optional(), // optional note to society
+  note: z.string().max(300).optional(),
 });
 
 export type SelectOfferInput = z.infer<typeof selectOfferSchema>;

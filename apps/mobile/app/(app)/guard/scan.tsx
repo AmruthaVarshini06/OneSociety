@@ -20,7 +20,6 @@ export default function GuardScanScreen() {
   const [scanResult, setScanResult] = useState<any | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
 
-  // Pop-up form states
   const [direction, setDirection] = useState<'ENTRY' | 'EXIT'>('ENTRY');
   const [count, setCount] = useState(1);
   const [guardNotes, setGuardNotes] = useState('');
@@ -41,7 +40,6 @@ export default function GuardScanScreen() {
       const data = res.data;
       setScanResult(data);
 
-      // Pre-select direction smartly
       setDirection(data.suggestedDirection || 'ENTRY');
       setCount(1);
       setGuardNotes('');
@@ -84,7 +82,6 @@ export default function GuardScanScreen() {
       }
     }
 
-    // Nobody at home check
     if (
       direction === 'ENTRY' &&
       scanResult.pass.passType === 'VISITOR' &&
@@ -122,7 +119,7 @@ export default function GuardScanScreen() {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      {/* Search Header */}
+      {}
       <View style={styles.card}>
         <Text style={styles.cardTitle}>Manual Pass Entry / Camera Scan</Text>
         <Text style={styles.cardSubtitle}>
@@ -150,7 +147,7 @@ export default function GuardScanScreen() {
           </TouchableOpacity>
         </View>
 
-        {/* Quick Demo Passes */}
+        {}
         <Text style={styles.quickLabel}>Demo Quick Test Passes:</Text>
         <View style={styles.quickWrap}>
           {[
@@ -173,7 +170,7 @@ export default function GuardScanScreen() {
         </View>
       </View>
 
-      {/* Confirmation Banner */}
+      {}
       {confirmationSummary ? (
         <View style={styles.successBox}>
           <MaterialCommunityIcons name="check-circle" size={22} color="#16A34A" />
@@ -181,7 +178,7 @@ export default function GuardScanScreen() {
         </View>
       ) : null}
 
-      {/* Verification Pop-Up Modal */}
+      {}
       <Modal visible={modalVisible} transparent animationType="slide">
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
@@ -194,7 +191,7 @@ export default function GuardScanScreen() {
                   </TouchableOpacity>
                 </View>
 
-                {/* Pass Details Card */}
+                {}
                 <View style={styles.passDetailsCard}>
                   <View style={styles.passHeaderRow}>
                     <View style={styles.avatar}>
@@ -230,7 +227,7 @@ export default function GuardScanScreen() {
                     </View>
                   </View>
 
-                  {/* Provider ServiceHub Schedule Info */}
+                  {}
                   {scanResult.serviceHubDetails ? (
                     <View style={styles.providerInfoBox}>
                       <Text style={styles.providerInfoTitle}>
@@ -246,7 +243,7 @@ export default function GuardScanScreen() {
                     </View>
                   ) : null}
 
-                  {/* Presence Alert for Visitors */}
+                  {}
                   {scanResult.flatPresence && !scanResult.flatPresence.isAtHome ? (
                     <View style={styles.redAlertBox}>
                       <MaterialCommunityIcons name="alert-octagon" size={22} color="#DC2626" />
@@ -260,7 +257,7 @@ export default function GuardScanScreen() {
                     </View>
                   ) : null}
 
-                  {/* Stats Counter */}
+                  {}
                   <View style={styles.statsRow}>
                     <View style={styles.statBox}>
                       <Text style={styles.statNum}>{scanResult.pass.peopleEnteredTotal}</Text>
@@ -279,7 +276,7 @@ export default function GuardScanScreen() {
                   </View>
                 </View>
 
-                {/* Direction Selector */}
+                {}
                 <Text style={styles.sectionHeader}>Select Direction</Text>
                 <View style={styles.directionToggle}>
                   <TouchableOpacity
@@ -333,7 +330,7 @@ export default function GuardScanScreen() {
                   </TouchableOpacity>
                 </View>
 
-                {/* Number Counter */}
+                {}
                 <Text style={styles.sectionHeader}>How many people?</Text>
                 <View style={styles.counterRow}>
                   <TouchableOpacity
@@ -354,7 +351,7 @@ export default function GuardScanScreen() {
                   </Text>
                 ) : null}
 
-                {/* Guard Notes */}
+                {}
                 <TextInput
                   style={styles.notesInput}
                   placeholder="Guard notes / vehicle number (optional)..."
@@ -362,7 +359,7 @@ export default function GuardScanScreen() {
                   onChangeText={setGuardNotes}
                 />
 
-                {/* Action Buttons */}
+                {}
                 <TouchableOpacity
                   style={[
                     styles.confirmBtn,

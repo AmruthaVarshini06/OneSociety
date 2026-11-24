@@ -6,10 +6,10 @@ This guide is designed for defending the OneSociety project in front of technica
 
 ## 1. Top 10 Technical Questions & Answers
 
-### Q1: Why did you choose MongoDB over a relational database like PostgreSQL?
+### Q1: Why did you choose PostgreSQL with Supabase for OneSociety?
 **Answer:**
-Apartment societies operate on semi-structured, highly dynamic data across diverse domains (IoT-like gate event streams, varied rental item attributes, nested progress updates on maintenance repairs, and multi-tier pricing objects). MongoDB's document model fits this perfectly without requiring 30+ normalized join tables.  
-*Critical addition:* Whenever relational integrity or financial multi-document consistency is needed (e.g. escrow holds, dues payments, and ledger entries), we execute them inside **MongoDB Multi-Document ACID Transactions** backed by a replica set.
+Apartment societies require strict relational integrity, ACID transactional consistency, and double-entry ledger security across distinct entities (societies, blocks, flats, users, commitments, escrow balances, and gate passes). PostgreSQL hosted on Supabase provides robust relational constraints, foreign keys, row-level consistency, and native JSONB flexibility for semi-structured data (such as schedule slots and tier arrays) without compromising relational reliability.  
+*Critical addition:* All financial operations (escrow holds, dues payments, and ledger entries) are executed inside **PostgreSQL ACID Transactions** ensuring complete atomicity and rollback safety.
 
 ---
 
@@ -83,7 +83,7 @@ Rather than forcing a paid third-party payment gateway that charges 2% transacti
 
 ### Q10: How do you handle database maintenance and automated cleanup?
 **Answer:**
-We integrate **Agenda** (MongoDB-backed scheduled job runner) to run background maintenance without needing a separate Redis instance:
+We integrate automated background schedulers to run maintenance tasks reliably:
 - Auto-expires unaccepted visitor passes at 23:59.
 - Auto-closes group buying payment windows.
 - Marks unverified complaints and sends reminders.

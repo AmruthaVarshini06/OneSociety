@@ -30,7 +30,7 @@ async function verifyGroupOrders() {
       category: 'FRUITS',
       unit: 'Dozen',
       targetQuantity: 50,
-      pricePerUnitPaise: 65000, // ₹650 per dozen
+      pricePerUnitPaise: 65000,
       demandCloseAt: closeDate,
       expectedDeliveryDate: deliveryDate,
     });
@@ -78,7 +78,7 @@ async function verifyGroupOrders() {
     .post(`/api/v1/group-buying/orders/${orderId}/offers`)
     .set('Authorization', `Bearer ${supplierToken}`)
     .send({
-      pricePerUnitPaise: 58000, // Discounted wholesale ₹580/dozen
+      pricePerUnitPaise: 58000,
       estimatedDeliveryDate: deliveryDate,
       notes: 'Farm fresh harvest packed in padded crates.',
     });

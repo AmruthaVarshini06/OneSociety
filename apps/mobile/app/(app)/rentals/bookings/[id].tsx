@@ -84,7 +84,6 @@ export default function BookingDetailScreen() {
   const user = useAuthStore((s) => s.user);
   const queryClient = useQueryClient();
 
-  // Dialog states
   const [photoDialogVisible, setPhotoDialogVisible] = useState(false);
   const [photoCaption, setPhotoCaption] = useState('');
   const [returnPhotoDialogVisible, setReturnPhotoDialogVisible] = useState(false);
@@ -92,7 +91,6 @@ export default function BookingDetailScreen() {
   const [extensionDialogVisible, setExtensionDialogVisible] = useState(false);
   const [extensionUnits, setExtensionUnits] = useState('1');
 
-  // Dispute states
   const [disputeDialogVisible, setDisputeDialogVisible] = useState(false);
   const [disputeCategory, setDisputeCategory] = useState<DisputeCategory>('DAMAGE');
   const [disputeAmount, setDisputeAmount] = useState('');
@@ -100,7 +98,6 @@ export default function BookingDetailScreen() {
   const [contestDialogVisible, setContestDialogVisible] = useState(false);
   const [contestNote, setContestNote] = useState('');
 
-  // Rating states
   const [ratingDialogVisible, setRatingDialogVisible] = useState(false);
   const [ratingStars, setRatingStars] = useState(5);
   const [ratingComment, setRatingComment] = useState('');
@@ -123,7 +120,6 @@ export default function BookingDetailScreen() {
     enabled: !!id && (booking?.status === 'RETURNED' || booking?.status === 'SETTLED'),
   });
 
-  // Countdown timer for IN_USE
   const [timeLeft, setTimeLeft] = useState<{
     hours: number;
     minutes: number;
@@ -199,7 +195,6 @@ export default function BookingDetailScreen() {
     },
   });
 
-  // Phase 4: Pickup Photos Mutation
   const uploadPhotosMutation = useMutation({
     mutationFn: (photos: Array<{ url: string; caption?: string }>) =>
       uploadPickupPhotos(id!, photos),
@@ -214,7 +209,6 @@ export default function BookingDetailScreen() {
     },
   });
 
-  // Phase 4: Confirm Handover Mutation
   const confirmHandoverMutation = useMutation({
     mutationFn: () => confirmHandover(id!),
     onSuccess: () => {
@@ -226,7 +220,6 @@ export default function BookingDetailScreen() {
     },
   });
 
-  // Phase 4: Extension Mutations
   const requestExtensionMutation = useMutation({
     mutationFn: (units: number) => requestExtension(id!, units),
     onSuccess: () => {
@@ -258,7 +251,6 @@ export default function BookingDetailScreen() {
     },
   });
 
-  // Phase 5: Return Photos Mutation
   const uploadReturnPhotosMutation = useMutation({
     mutationFn: (photos: Array<{ url: string; caption?: string }>) =>
       uploadReturnPhotos(id!, photos),
@@ -273,7 +265,6 @@ export default function BookingDetailScreen() {
     },
   });
 
-  // Phase 5: Confirm Return Mutation (Good or Issue)
   const confirmReturnMutation = useMutation({
     mutationFn: ({ condition, notes }: { condition: 'GOOD' | 'ISSUE'; notes?: string }) =>
       confirmReturn(id!, condition, notes),
@@ -292,7 +283,6 @@ export default function BookingDetailScreen() {
     },
   });
 
-  // Phase 5: Pay Overtime Mutation
   const payOvertimeMutation = useMutation({
     mutationFn: (method: 'DIRECT_PAYMENT' | 'DEDUCT_FROM_DEPOSIT') =>
       payOvertime(id!, method),
@@ -305,7 +295,6 @@ export default function BookingDetailScreen() {
     },
   });
 
-  // Phase 5: Renter Confirm Satisfaction Mutation
   const renterConfirmMutation = useMutation({
     mutationFn: () => renterConfirmReturn(id!),
     onSuccess: () => {
@@ -317,7 +306,6 @@ export default function BookingDetailScreen() {
     },
   });
 
-  // Phase 6: Settle Escrow Mutation
   const settleMutation = useMutation({
     mutationFn: () => settleBooking(id!),
     onSuccess: () => {
@@ -329,7 +317,6 @@ export default function BookingDetailScreen() {
     },
   });
 
-  // Phase 6: Dispute Mutations
   const createDisputeMutation = useMutation({
     mutationFn: () =>
       createDispute(id!, {
@@ -376,7 +363,6 @@ export default function BookingDetailScreen() {
     },
   });
 
-  // Phase 6: Submit Rating Mutation
   const submitRatingMutation = useMutation({
     mutationFn: () =>
       submitRating(id!, {
@@ -418,11 +404,9 @@ export default function BookingDetailScreen() {
   const hasMinPickupPhotos = renterPhotos.length >= 2;
   const hasMinReturnPhotos = ownerReturnPhotos.length >= 2;
 
-  // Extension calculation preview
   const parsedUnits = parseInt(extensionUnits, 10) || 1;
   const extExtraPaise = booking.ratePerUnitPaise * parsedUnits;
 
-  // Check if current user already submitted a rating
   const myRating = ratings.find(
     (r) => (typeof r.raterId === 'object' ? r.raterId._id : r.raterId) === user?.userId,
   );
@@ -430,7 +414,7 @@ export default function BookingDetailScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
       <ScrollView contentContainerStyle={styles.scroll}>
-        {/* Status Header */}
+        {}
         <Card style={styles.card} mode="elevated">
           <Card.Content>
             <View style={styles.headerRow}>
@@ -452,7 +436,7 @@ export default function BookingDetailScreen() {
 
             <Divider style={{ marginVertical: 10 }} />
 
-            {/* Parties */}
+            {}
             <View style={styles.partiesRow}>
               <View style={styles.party}>
                 <Text variant="labelSmall" style={styles.partyLabel}>RENTER</Text>
@@ -477,7 +461,7 @@ export default function BookingDetailScreen() {
           </Card.Content>
         </Card>
 
-        {/* SETTLEMENT RECEIPT (Phase 6: when SETTLED) */}
+        {}
         {booking.status === 'SETTLED' && (
           <Card style={[styles.card, { backgroundColor: '#E8F5E9', borderColor: '#81C784', borderWidth: 1 }]} mode="elevated">
             <Card.Content style={{ gap: 6 }}>
@@ -511,7 +495,7 @@ export default function BookingDetailScreen() {
           </Card>
         )}
 
-        {/* READY FOR SETTLEMENT CARD (Phase 6: when RETURNED) */}
+        {}
         {booking.status === 'RETURNED' && (
           <Card style={[styles.card, { backgroundColor: '#F1F8E9', borderColor: '#A5D6A7', borderWidth: 1 }]} mode="elevated">
             <Card.Content>
@@ -543,7 +527,7 @@ export default function BookingDetailScreen() {
           </Card>
         )}
 
-        {/* DISPUTE CARD (Phase 6: when IN_DISPUTE) */}
+        {}
         {booking.status === 'IN_DISPUTE' && dispute && (
           <Card style={[styles.card, { backgroundColor: '#FFEBEE', borderColor: '#EF9A9A', borderWidth: 1 }]} mode="elevated">
             <Card.Content style={{ gap: 8 }}>
@@ -582,7 +566,7 @@ export default function BookingDetailScreen() {
                 </Text>
               )}
 
-              {/* Renter Actions on Open Dispute */}
+              {}
               {isRenter && dispute.status === 'OPEN' && (
                 <View style={{ gap: 8, marginTop: 6 }}>
                   <Text variant="bodySmall" style={{ fontWeight: '600', color: '#B71C1C' }}>
@@ -622,7 +606,7 @@ export default function BookingDetailScreen() {
                 </View>
               )}
 
-              {/* Escalate button if open */}
+              {}
               {dispute.status === 'OPEN' && (
                 <Button
                   mode="text"
@@ -638,14 +622,14 @@ export default function BookingDetailScreen() {
           </Card>
         )}
 
-        {/* ACTIVE COUNTDOWN TIMER (for IN_USE status) */}
+        {}
         {booking.status === 'IN_USE' && (
           <Card
             style={[
               styles.card,
               timeLeft.isOverdue
                 ? styles.overdueCard
-                : timeLeft.totalSeconds < 900 // 15 mins
+                : timeLeft.totalSeconds < 900
                 ? styles.warningCard
                 : styles.activeTimerCard,
             ]}
@@ -737,7 +721,7 @@ export default function BookingDetailScreen() {
           </Card>
         )}
 
-        {/* TIME-BASED FINAL CHARGE CARD (Phase 5) */}
+        {}
         {(booking.finalRentalChargePaise !== undefined ||
           booking.status === 'RETURNED' ||
           booking.status === 'SETTLED' ||
@@ -776,7 +760,7 @@ export default function BookingDetailScreen() {
                 </Text>
               </View>
 
-              {/* Early Return Refund Highlight */}
+              {}
               {(booking.earlyRefundPaise || 0) > 0 && (
                 <View style={styles.earlyRefundBanner}>
                   <Text variant="bodySmall" style={{ color: '#1B5E20', fontWeight: '700' }}>
@@ -785,7 +769,7 @@ export default function BookingDetailScreen() {
                 </View>
               )}
 
-              {/* Late Return Overtime Highlight */}
+              {}
               {(booking.overtimeChargePaise || 0) > 0 && (
                 <View style={styles.overtimeBanner}>
                   <Text variant="bodySmall" style={{ color: '#B71C1C', fontWeight: '700' }}>
@@ -803,7 +787,7 @@ export default function BookingDetailScreen() {
                 </View>
               )}
 
-              {/* Renter Overtime Payment Controls */}
+              {}
               {isRenter && (booking.overtimeChargePaise || 0) > 0 && !booking.overtimePaid && (
                 <View style={{ gap: 8, marginTop: 8 }}>
                   <Text variant="bodySmall" style={{ fontWeight: '600' }}>
@@ -834,7 +818,7 @@ export default function BookingDetailScreen() {
           </Card>
         )}
 
-        {/* SIDE-BY-SIDE CONDITION COMPARISON (Phase 5) */}
+        {}
         {((booking.pickupPhotos && booking.pickupPhotos.length > 0) ||
           (booking.returnPhotos && booking.returnPhotos.length > 0)) && (
           <Card style={styles.card} mode="outlined">
@@ -847,7 +831,7 @@ export default function BookingDetailScreen() {
               </Text>
 
               <View style={styles.comparisonGrid}>
-                {/* Pickup Side */}
+                {}
                 <View style={styles.compColumn}>
                   <Text variant="labelSmall" style={styles.compLabel}>PICKUP CONDITION</Text>
                   {booking.pickupPhotos && booking.pickupPhotos.length > 0 ? (
@@ -868,7 +852,7 @@ export default function BookingDetailScreen() {
                   )}
                 </View>
 
-                {/* Return Side */}
+                {}
                 <View style={styles.compColumn}>
                   <Text variant="labelSmall" style={styles.compLabel}>RETURN CONDITION</Text>
                   {booking.returnPhotos && booking.returnPhotos.length > 0 ? (
@@ -890,7 +874,7 @@ export default function BookingDetailScreen() {
                 </View>
               </View>
 
-              {/* Owner Return Photo Upload Button */}
+              {}
               {isOwner && (booking.status === 'IN_USE' || booking.status === 'RETURN_PENDING') && (
                 <Button
                   mode="contained-tonal"
@@ -907,7 +891,7 @@ export default function BookingDetailScreen() {
           </Card>
         )}
 
-        {/* OWNER RETURN CONFIRMATION CONTROLS (Phase 5) */}
+        {}
         {isOwner && (booking.status === 'IN_USE' || booking.status === 'RETURN_PENDING') && (
           <Card style={[styles.card, { backgroundColor: '#EDE7F6' }]} mode="outlined">
             <Card.Content>
@@ -948,7 +932,7 @@ export default function BookingDetailScreen() {
           </Card>
         )}
 
-        {/* RENTER CONFIRM SATISFACTION (Phase 5) */}
+        {}
         {isRenter && booking.status === 'RETURNED' && !booking.renterSatisfactionConfirmed && (
           <Card style={[styles.card, { backgroundColor: '#E8F5E9' }]} mode="outlined">
             <Card.Content>
@@ -971,7 +955,7 @@ export default function BookingDetailScreen() {
           </Card>
         )}
 
-        {/* RATINGS & REVIEWS SECTION (Phase 6) */}
+        {}
         {(booking.status === 'RETURNED' || booking.status === 'SETTLED') && (
           <Card style={styles.card} mode="outlined">
             <Card.Content style={{ gap: 8 }}>
@@ -1018,7 +1002,7 @@ export default function BookingDetailScreen() {
           </Card>
         )}
 
-        {/* EXTENSION FLOW (IN_USE) */}
+        {}
         {booking.status === 'IN_USE' && (
           <Card style={styles.card} mode="outlined">
             <Card.Content>
@@ -1026,7 +1010,7 @@ export default function BookingDetailScreen() {
                 Need More Time? (Extension)
               </Text>
 
-              {/* Case 1: No extension or declined */}
+              {}
               {(!booking.extension ||
                 booking.extension.status === 'NONE' ||
                 booking.extension.status === 'DECLINED') && (
@@ -1051,7 +1035,7 @@ export default function BookingDetailScreen() {
                 </View>
               )}
 
-              {/* Case 2: Extension PENDING */}
+              {}
               {booking.extension?.status === 'PENDING' && (
                 <View style={styles.extPendingBox}>
                   <Text variant="bodyMedium" style={{ fontWeight: '700', color: '#E65100' }}>
@@ -1062,7 +1046,7 @@ export default function BookingDetailScreen() {
                     Additional cost: ₹{(booking.extension.additionalChargePaise / 100).toFixed(0)}
                   </Text>
 
-                  {/* Owner actions */}
+                  {}
                   {isOwner ? (
                     <View style={styles.actionRow}>
                       <Button
@@ -1092,7 +1076,7 @@ export default function BookingDetailScreen() {
                 </View>
               )}
 
-              {/* Case 3: Extension APPROVED, awaiting renter payment */}
+              {}
               {booking.extension?.status === 'APPROVED' && (
                 <View style={styles.extApprovedBox}>
                   <Text variant="bodyMedium" style={{ fontWeight: '700', color: '#1B5E20' }}>
@@ -1118,7 +1102,7 @@ export default function BookingDetailScreen() {
                 </View>
               )}
 
-              {/* Case 4: Extension PAID */}
+              {}
               {booking.extension?.status === 'PAID' && (
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
                   <Chip icon="check-decagram" compact style={{ backgroundColor: '#E8F5E9' }}>
@@ -1135,7 +1119,7 @@ export default function BookingDetailScreen() {
           </Card>
         )}
 
-        {/* OWNER HANDOVER CONFIRMATION (PICKUP_PENDING) */}
+        {}
         {isOwner && booking.status === 'PICKUP_PENDING' && (
           <Card style={[styles.card, { backgroundColor: '#E8F5E9' }]} mode="outlined">
             <Card.Content>
@@ -1170,7 +1154,7 @@ export default function BookingDetailScreen() {
           </Card>
         )}
 
-        {/* Timeline Schedule */}
+        {}
         <Card style={styles.card} mode="outlined">
           <Card.Content style={{ gap: 8 }}>
             <Text variant="titleSmall" style={styles.sectionTitle}>Booking Schedule</Text>
@@ -1207,7 +1191,7 @@ export default function BookingDetailScreen() {
           </Card.Content>
         </Card>
 
-        {/* Charge Breakdown */}
+        {}
         <Card style={styles.card} mode="outlined">
           <Card.Content>
             <Text variant="titleSmall" style={styles.sectionTitle}>Payment Breakdown</Text>
@@ -1249,7 +1233,7 @@ export default function BookingDetailScreen() {
           </Card.Content>
         </Card>
 
-        {/* Owner: respond to REQUESTED */}
+        {}
         {isOwner && booking.status === 'REQUESTED' && (
           <Card style={[styles.card, { backgroundColor: '#E8EAF6' }]} mode="outlined">
             <Card.Content>
@@ -1289,7 +1273,7 @@ export default function BookingDetailScreen() {
           </Card>
         )}
 
-        {/* Renter: pay after ACCEPTED */}
+        {}
         {isRenter && booking.status === 'ACCEPTED' && (
           <Card style={[styles.card, { backgroundColor: '#E8F5E9' }]} mode="outlined">
             <Card.Content>
@@ -1321,7 +1305,7 @@ export default function BookingDetailScreen() {
           </Card>
         )}
 
-        {/* Cancel option (pre-payment only) */}
+        {}
         {(booking.status === 'REQUESTED' || booking.status === 'ACCEPTED') && (isRenter || isOwner) && (
           <Button
             mode="text"
@@ -1344,7 +1328,7 @@ export default function BookingDetailScreen() {
         )}
       </ScrollView>
 
-      {/* Snap/Upload Pickup Photo Proof Dialog */}
+      {}
       <Portal>
         <Dialog visible={photoDialogVisible} onDismiss={() => setPhotoDialogVisible(false)}>
           <Dialog.Title>Take Pickup Condition Photo</Dialog.Title>
@@ -1382,7 +1366,7 @@ export default function BookingDetailScreen() {
         </Dialog>
       </Portal>
 
-      {/* Snap/Upload Return Photo Proof Dialog (Phase 5) */}
+      {}
       <Portal>
         <Dialog visible={returnPhotoDialogVisible} onDismiss={() => setReturnPhotoDialogVisible(false)}>
           <Dialog.Title>Take Return Condition Photo</Dialog.Title>
@@ -1420,7 +1404,7 @@ export default function BookingDetailScreen() {
         </Dialog>
       </Portal>
 
-      {/* Raise Issue / File Dispute Dialog (Phase 6) */}
+      {}
       <Portal>
         <Dialog visible={disputeDialogVisible} onDismiss={() => setDisputeDialogVisible(false)}>
           <Dialog.Title>Raise Damage Issue / Claim</Dialog.Title>
@@ -1461,7 +1445,7 @@ export default function BookingDetailScreen() {
         </Dialog>
       </Portal>
 
-      {/* Contest Dispute Dialog (Phase 6) */}
+      {}
       <Portal>
         <Dialog visible={contestDialogVisible} onDismiss={() => setContestDialogVisible(false)}>
           <Dialog.Title>Contest Damage Claim</Dialog.Title>
@@ -1496,7 +1480,7 @@ export default function BookingDetailScreen() {
         </Dialog>
       </Portal>
 
-      {/* Submit Star Rating Dialog (Phase 6) */}
+      {}
       <Portal>
         <Dialog visible={ratingDialogVisible} onDismiss={() => setRatingDialogVisible(false)}>
           <Dialog.Title>Rate Rental Experience</Dialog.Title>
@@ -1535,7 +1519,7 @@ export default function BookingDetailScreen() {
         </Dialog>
       </Portal>
 
-      {/* Request Extension Dialog */}
+      {}
       <Portal>
         <Dialog visible={extensionDialogVisible} onDismiss={() => setExtensionDialogVisible(false)}>
           <Dialog.Title>Request Extension</Dialog.Title>
@@ -1601,7 +1585,6 @@ const styles = StyleSheet.create({
   chargeAmt: { fontWeight: '700' },
   actionRow: { flexDirection: 'row', gap: 10, marginTop: 8 },
 
-  // Timer styles
   activeTimerCard: { backgroundColor: '#E8F5E9', borderWidth: 1, borderColor: '#A5D6A7' },
   warningCard: { backgroundColor: '#FFF3E0', borderWidth: 1, borderColor: '#FFCC80' },
   overdueCard: { backgroundColor: '#FFEBEE', borderWidth: 1, borderColor: '#EF9A9A' },
@@ -1620,7 +1603,6 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
 
-  // Final Charge Banners
   earlyRefundBanner: {
     backgroundColor: '#C8E6C9',
     padding: 8,
@@ -1634,7 +1616,6 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
 
-  // Side-by-side comparison
   comparisonGrid: {
     flexDirection: 'row',
     gap: 12,
@@ -1671,7 +1652,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 
-  // Ratings
   ratingRow: {
     backgroundColor: '#FAFAFA',
     padding: 10,
@@ -1680,7 +1660,6 @@ const styles = StyleSheet.create({
     borderColor: '#EEEEEE',
   },
 
-  // Extension styles
   extPendingBox: {
     backgroundColor: '#FFF8E1',
     padding: 10,

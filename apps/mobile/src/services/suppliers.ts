@@ -24,8 +24,6 @@ export interface ListSuppliersResponse {
   limit: number;
 }
 
-// ── President API ─────────────────────────────────────────────────────────
-
 export interface CreateSupplierPayload {
   username: string;
   tempPassword: string;
@@ -68,8 +66,6 @@ export async function verifySupplier(
   });
   return res.data;
 }
-
-// ── Supplier self API ─────────────────────────────────────────────────────
 
 export async function getMyProfile(): Promise<{ supplier: Supplier }> {
   const res = await apiClient.get('/api/v1/group-buying/suppliers/me');

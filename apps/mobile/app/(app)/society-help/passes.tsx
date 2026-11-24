@@ -28,7 +28,6 @@ export default function PassesScreen() {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
 
-  // Create Visitor Pass Modal
   const [createModalVisible, setCreateModalVisible] = useState(false);
   const [visitorName, setVisitorName] = useState('');
   const [visitorPhone, setVisitorPhone] = useState('');
@@ -37,17 +36,14 @@ export default function PassesScreen() {
   const [validDays, setValidDays] = useState(1);
   const [creating, setCreating] = useState(false);
 
-  // Share Modal
   const [sharePass, setSharePass] = useState<QrPassDto | null>(null);
 
   const loadData = async () => {
     try {
       const [famRes, listRes] = await Promise.all([getMyFamilyPass(), listMyPasses()]);
       setFamilyPass(famRes.data);
-      // Exclude family pass from the visitor list
       setMyPasses((listRes.data || []).filter((p) => p.passType !== 'FAMILY'));
     } catch {
-      // ignore
     } finally {
       setLoading(false);
       setRefreshing(false);
@@ -83,7 +79,6 @@ export default function PassesScreen() {
       setPurpose('');
       setExpectedPeople(1);
 
-      // Open share dialog for newly created pass
       setSharePass(res.data);
       loadData();
     } catch (err: any) {
@@ -132,7 +127,7 @@ export default function PassesScreen() {
         />
       }
     >
-      {/* 1. FAMILY QR PASS CARD */}
+      {}
       {familyPass ? (
         <View style={styles.familyCard}>
           <View style={styles.familyHeader}>
@@ -151,7 +146,7 @@ export default function PassesScreen() {
             sublabel="Scan at society gate when entering or leaving"
           />
 
-          {/* Counts */}
+          {}
           <View style={styles.counterRow}>
             <View style={styles.countItem}>
               <Text style={styles.countNum}>{familyPass.peopleEnteredTotal}</Text>
@@ -171,7 +166,7 @@ export default function PassesScreen() {
         </View>
       ) : null}
 
-      {/* 2. VISITOR PASSES SECTION */}
+      {}
       <View style={styles.sectionHeaderRow}>
         <Text style={styles.sectionTitle}>Visitor Passes</Text>
         <TouchableOpacity
@@ -222,7 +217,7 @@ export default function PassesScreen() {
                 </View>
               </View>
 
-              {/* In/Out Tracking */}
+              {}
               <View style={styles.trackingRow}>
                 <Text style={styles.trackText}>
                   Entered: <Text style={styles.bold}>{p.peopleEnteredTotal}</Text> • Exited:{' '}
@@ -236,7 +231,7 @@ export default function PassesScreen() {
                 </Text>
               </View>
 
-              {/* Action Buttons */}
+              {}
               <View style={styles.passActions}>
                 <TouchableOpacity
                   style={styles.shareBtn}
@@ -266,7 +261,7 @@ export default function PassesScreen() {
         </View>
       )}
 
-      {/* CREATE VISITOR PASS MODAL */}
+      {}
       <Modal visible={createModalVisible} transparent animationType="slide">
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
@@ -361,7 +356,7 @@ export default function PassesScreen() {
         </View>
       </Modal>
 
-      {/* SHARE PASS LINK MODAL */}
+      {}
       <Modal visible={!!sharePass} transparent animationType="fade">
         <View style={styles.modalOverlay}>
           <View style={[styles.modalContent, { alignItems: 'center' }]}>

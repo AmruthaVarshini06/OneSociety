@@ -47,7 +47,6 @@ function mapChat(row: any): ServiceChatDocument {
 async function getRequestById(requestId: string): Promise<any> {
   const res = await query('SELECT * FROM service_requests WHERE id = $1', [requestId]);
   if (!res.rows[0]) {
-    // If not in service_requests, check service_agreements as fallback
     const agreeRes = await query('SELECT * FROM service_agreements WHERE id = $1', [requestId]);
     if (agreeRes.rows[0]) {
       const a = agreeRes.rows[0];
@@ -127,7 +126,6 @@ export async function sendPriceOffer(
   if (!request) throw Object.assign(new Error('Request not found'), { statusCode: 404 });
   const senderRole = assertRequestAccess(request, senderId);
 
-  // Invalidate previous pending offers
   await query(
     `UPDATE service_chats 
      SET price_offer = jsonb_set(price_offer, '{status}', '"DECLINED"')

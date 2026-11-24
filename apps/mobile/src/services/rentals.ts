@@ -1,8 +1,8 @@
 import apiClient from '../api/client';
 
 export interface PriceRange {
-  min: number; // paise
-  max: number; // paise
+  min: number;
+  max: number;
 }
 
 export type ItemCondition = 'LIKE_NEW' | 'GOOD' | 'FAIR' | 'HEAVILY_USED';
@@ -100,16 +100,12 @@ export interface ListRentalItemsResponse {
   totalPages: number;
 }
 
-// ── Catalog ─────────────────────────────────────────────────────────────
-
 export async function getCatalog(): Promise<RentalCatalogCategory[]> {
   const res = await apiClient.get<{ success: boolean; data: RentalCatalogCategory[] }>(
     '/api/v1/rentals/items/catalog',
   );
   return res.data.data;
 }
-
-// ── AI Price Verification ────────────────────────────────────────────────
 
 export async function verifyPrice(payload: VerifyPricePayload): Promise<AiPriceVerification> {
   const res = await apiClient.post<{ success: boolean; data: AiPriceVerification }>(
@@ -118,8 +114,6 @@ export async function verifyPrice(payload: VerifyPricePayload): Promise<AiPriceV
   );
   return res.data.data;
 }
-
-// ── Rental Items ────────────────────────────────────────────────────────
 
 export async function createRentalItem(payload: CreateRentalItemPayload): Promise<RentalItem> {
   const res = await apiClient.post<{ success: boolean; data: RentalItem }>(
@@ -186,8 +180,6 @@ export async function escalateRentalItem(id: string, reason: string): Promise<Re
   );
   return res.data.data;
 }
-
-// ── President Reviews ────────────────────────────────────────────────────
 
 export async function listPendingReviews(): Promise<RentalItem[]> {
   const res = await apiClient.get<{ success: boolean; data: RentalItem[] }>(

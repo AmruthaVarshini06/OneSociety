@@ -161,7 +161,7 @@ export default function SeekerPaymentsScreen() {
         );
       })}
 
-      {/* Payment Mode Dialog */}
+      {}
       <Portal>
         <Dialog visible={payDialogVisible} onDismiss={() => setPayDialogVisible(false)}>
           <Dialog.Title>Make Service Payment</Dialog.Title>

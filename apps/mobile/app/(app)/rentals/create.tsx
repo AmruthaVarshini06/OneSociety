@@ -47,7 +47,6 @@ export default function CreateRentalItemScreen() {
   const [safeDeposit, setSafeDeposit] = useState('');
   const [usageRules, setUsageRules] = useState('Return clean; Indoor use only');
 
-  // Verification state
   const [isVerifying, setIsVerifying] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [verification, setVerification] = useState<AiPriceVerification | null>(null);
@@ -185,7 +184,7 @@ export default function CreateRentalItemScreen() {
           </Banner>
         )}
 
-        {/* Basic Details */}
+        {}
         <Card style={styles.card} mode="outlined">
           <Card.Content style={styles.cardContent}>
             <Text variant="titleMedium" style={styles.sectionHeader}>
@@ -239,7 +238,7 @@ export default function CreateRentalItemScreen() {
           </Card.Content>
         </Card>
 
-        {/* Condition & Pickup */}
+        {}
         <Card style={styles.card} mode="outlined">
           <Card.Content style={styles.cardContent}>
             <Text variant="titleMedium" style={styles.sectionHeader}>
@@ -296,7 +295,7 @@ export default function CreateRentalItemScreen() {
           </Card.Content>
         </Card>
 
-        {/* Pricing & AI Verification */}
+        {}
         <Card style={styles.card} mode="outlined">
           <Card.Content style={styles.cardContent}>
             <Text variant="titleMedium" style={styles.sectionHeader}>
@@ -350,7 +349,7 @@ export default function CreateRentalItemScreen() {
               Verify Price with AI
             </Button>
 
-            {/* AI Verdict Card */}
+            {}
             {verification && (
               <View
                 style={[
@@ -406,7 +405,7 @@ export default function CreateRentalItemScreen() {
           </Card.Content>
         </Card>
 
-        {/* Action Button */}
+        {}
         <Button
           mode="contained"
           icon="upload"

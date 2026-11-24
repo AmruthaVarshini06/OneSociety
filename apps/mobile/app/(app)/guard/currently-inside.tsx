@@ -36,7 +36,6 @@ export default function CurrentlyInsideScreen() {
       setTotalInsideManual(res.data.totalInsideManual || 0);
       setTotalInsidePasses(res.data.totalInsidePasses || 0);
     } catch {
-      // ignore
     } finally {
       setLoading(false);
       setRefreshing(false);
@@ -66,7 +65,7 @@ export default function CurrentlyInsideScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Headcount Summary Header */}
+      {}
       <View style={styles.headerCard}>
         <View style={styles.headcountBadge}>
           <Text style={styles.headcountNum}>{grandTotal}</Text>
@@ -84,7 +83,7 @@ export default function CurrentlyInsideScreen() {
         </View>
       </View>
 
-      {/* Tabs */}
+      {}
       <View style={styles.tabRow}>
         {(['ALL', 'MANUAL', 'PASSES'] as const).map((tab) => (
           <TouchableOpacity
@@ -171,7 +170,7 @@ export default function CurrentlyInsideScreen() {
                     ) : null}
                   </View>
 
-                  {/* 1-Tap Exit Button */}
+                  {}
                   <TouchableOpacity
                     style={styles.exitBtn}
                     onPress={() => handle1TapExit(m._id, m.visitorName)}

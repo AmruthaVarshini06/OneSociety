@@ -35,7 +35,6 @@ export default function PresidentIssueActionScreen() {
   const [issue, setIssue] = useState<any>(null);
   const [activeTab, setActiveTab] = useState<'contact' | 'wip' | 'solve' | 'cost' | 'admin'>('contact');
 
-  // Vendor Contact State
   const [suggestedVendors, setSuggestedVendors] = useState<any[]>([]);
   const [vendorType, setVendorType] = useState<'SERVICE_HUB' | 'LOCAL'>('SERVICE_HUB');
   const [selectedVendorId, setSelectedVendorId] = useState<string>('');
@@ -48,19 +47,16 @@ export default function PresidentIssueActionScreen() {
   const [allowAdditionalVendor, setAllowAdditionalVendor] = useState(false);
   const [clashWarning, setClashWarning] = useState<string | null>(null);
 
-  // WIP State
   const [wipNote, setWipNote] = useState('Technician arrived on site with spare parts. Disassembled panel.');
   const [wipPhotos, setWipPhotos] = useState<string[]>([
     'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=500',
   ]);
 
-  // Solved State
   const [solvedPhotos, setSolvedPhotos] = useState<string[]>([
     'https://images.unsplash.com/photo-1541888946425-d0fbb186c5f8?w=500',
   ]);
   const [solvedNote, setSolvedNote] = useState('Wiring and breaker replaced. Tested under load, all working.');
 
-  // Cost & Payment State
   const [serviceChargeRs, setServiceChargeRs] = useState('1200');
   const [partsChargeRs, setPartsChargeRs] = useState('650');
   const [otherChargeRs, setOtherChargeRs] = useState('0');
@@ -68,7 +64,6 @@ export default function PresidentIssueActionScreen() {
   const [paymentRef, setPaymentRef] = useState('UPI-REF-984321');
   const [costWarning, setCostWarning] = useState<string | null>(null);
 
-  // Admin Override & Scope State
   const [overrideLevel, setOverrideLevel] = useState<'CRITICAL' | 'HIGH' | 'MEDIUM' | 'LOW'>('HIGH');
   const [overrideScore, setOverrideScore] = useState('75');
   const [overrideReason, setOverrideReason] = useState('');
@@ -82,7 +77,6 @@ export default function PresidentIssueActionScreen() {
       const data = res.data;
       setIssue(data);
 
-      // Pre-fill vendor if already assigned
       if (data.assignedVendors?.length > 0) {
         const v = data.assignedVendors[0];
         setVendorName(v.vendorName || '');
@@ -90,7 +84,6 @@ export default function PresidentIssueActionScreen() {
         setVendorTrade(v.trade || '');
       }
 
-      // Fetch suggested vendors
       const vRes = await getSuggestedVendors(data.category);
       setSuggestedVendors(vRes.data.vendors || []);
       if (vRes.data.vendors?.length > 0) {
@@ -112,7 +105,6 @@ export default function PresidentIssueActionScreen() {
     fetchDetails();
   }, [fetchDetails]);
 
-  // Check schedule clash when vendor and visit date change
   const runClashCheck = async (phone: string, date: string) => {
     if (!phone || !date) return;
     try {
@@ -237,7 +229,6 @@ export default function PresidentIssueActionScreen() {
 
     setSaving(true);
     try {
-      // 1. Record Cost
       const costRes = await recordCost(id as string, {
         breakdown: [
           { itemType: 'VENDOR_SERVICE', description: 'Vendor service / labor charges', amountPaise: servicePaise },
@@ -251,7 +242,6 @@ export default function PresidentIssueActionScreen() {
         setCostWarning(costRes.data.warningMessage);
       }
 
-      // 2. Record Payment
       await recordPayment(id as string, {
         paidToVendor: vendorName || 'Vendor',
         amountPaise: totalPaise,
@@ -328,7 +318,7 @@ export default function PresidentIssueActionScreen() {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      {/* Issue Summary */}
+      {}
       <Card style={styles.summaryCard} mode="contained">
         <Card.Content>
           <View style={styles.summaryHeader}>
@@ -341,7 +331,7 @@ export default function PresidentIssueActionScreen() {
         </Card.Content>
       </Card>
 
-      {/* Tabs */}
+      {}
       <SegmentedButtons
         value={activeTab}
         onValueChange={v => setActiveTab(v as any)}
@@ -355,7 +345,7 @@ export default function PresidentIssueActionScreen() {
         style={styles.segButtons}
       />
 
-      {/* Tab 1: Contact Vendor */}
+      {}
       {activeTab === 'contact' && (
         <Card style={styles.formCard} mode="elevated">
           <Card.Content>
@@ -364,7 +354,7 @@ export default function PresidentIssueActionScreen() {
               Selecting a vendor and marking CONTACTED removes this issue from your &quot;Needs Action&quot; list.
             </Text>
 
-            {/* Suggested Vendors Picker */}
+            {}
             <Text style={styles.fieldLabel}>Suggested Vendors ({issue.category})</Text>
             <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.vendorScroll}>
               {suggestedVendors.map((v, i) => (
@@ -443,7 +433,7 @@ export default function PresidentIssueActionScreen() {
               style={styles.input}
             />
 
-            {/* Clash Alert */}
+            {}
             {clashWarning && (
               <Card style={styles.warningCard} mode="contained">
                 <Card.Content>
@@ -452,7 +442,7 @@ export default function PresidentIssueActionScreen() {
               </Card>
             )}
 
-            {/* Additional Vendor Toggle */}
+            {}
             {issue.assignedVendors?.length > 0 && (
               <View style={styles.switchRow}>
                 <Text style={styles.switchLabel}>Explicitly add another vendor to this job</Text>
@@ -473,7 +463,7 @@ export default function PresidentIssueActionScreen() {
         </Card>
       )}
 
-      {/* Tab 2: Work In Progress */}
+      {}
       {activeTab === 'wip' && (
         <Card style={styles.formCard} mode="elevated">
           <Card.Content>
@@ -505,7 +495,7 @@ export default function PresidentIssueActionScreen() {
         </Card>
       )}
 
-      {/* Tab 3: Solved */}
+      {}
       {activeTab === 'solve' && (
         <Card style={styles.formCard} mode="elevated">
           <Card.Content>
@@ -540,7 +530,7 @@ export default function PresidentIssueActionScreen() {
         </Card>
       )}
 
-      {/* Tab 4: Cost & Payment */}
+      {}
       {activeTab === 'cost' && (
         <Card style={styles.formCard} mode="elevated">
           <Card.Content>
@@ -617,10 +607,10 @@ export default function PresidentIssueActionScreen() {
         </Card>
       )}
 
-      {/* Tab 5: Admin Tools */}
+      {}
       {activeTab === 'admin' && (
         <View>
-          {/* Priority Override */}
+          {}
           <Card style={styles.formCard} mode="elevated">
             <Card.Content>
               <Text style={styles.formTitle}>⚡ Override AI Priority</Text>
@@ -666,7 +656,7 @@ export default function PresidentIssueActionScreen() {
             </Card.Content>
           </Card>
 
-          {/* Mark Out of Scope */}
+          {}
           <Card style={[styles.formCard, { marginTop: 12 }]} mode="elevated">
             <Card.Content>
               <Text style={styles.formTitle}>🚫 Mark Out of Society Scope</Text>

@@ -36,7 +36,6 @@ async function createEntry(
     throw new Error('amountPaise must be a non-negative integer (paise)');
   }
 
-  // Idempotency: if entry already exists, return it
   const existing = await query('SELECT * FROM escrow_entries WHERE idempotency_key = $1', [idempotencyKey]);
   if (existing.rows[0]) {
     const row = existing.rows[0];
@@ -103,11 +102,6 @@ export async function deduct(params: EscrowParams) {
   return createEntry('DEDUCT', params);
 }
 
-/**
- * Compute the escrow balance for an owner (optionally scoped to a referenceId).
- * Balance = sum(HOLD) - sum(RELEASE + REFUND + DEDUCT)
- * All amounts in paise (integer).
- */
 export async function getBalance(
   ownerId: string | any,
   referenceId?: string | any,

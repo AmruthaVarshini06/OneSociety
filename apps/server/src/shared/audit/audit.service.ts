@@ -1,7 +1,3 @@
-/**
- * Write an audit log entry.
- * Fire-and-forget — does NOT throw. Logs to stdout/stderr.
- */
 export function log(
   actorId: string | any,
   societyId: string | any,

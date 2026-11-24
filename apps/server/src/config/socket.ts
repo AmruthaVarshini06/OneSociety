@@ -18,7 +18,6 @@ export function initSocket(httpServer: HttpServer): SocketIOServer {
     },
   });
 
-  // Auth middleware
   io.use((socket, next) => {
     const token = socket.handshake.auth?.token as string | undefined;
     if (!token) {
@@ -44,7 +43,6 @@ export function initSocket(httpServer: HttpServer): SocketIOServer {
   io.on('connection', (socket) => {
     const { userId, societyId } = socket.data as { userId: string; societyId: string };
 
-    // Join rooms
     socket.join(`society:${societyId}`);
     socket.join(`user:${userId}`);
 

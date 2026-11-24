@@ -1,6 +1,6 @@
 -- ========================================================
 -- OneSociety Supabase PostgreSQL Schema
--- Migration from MongoDB to Supabase
+-- Schema for Supabase PostgreSQL
 -- ========================================================
 
 -- Enable UUID extension
@@ -62,6 +62,7 @@ CREATE TABLE IF NOT EXISTS notifications (
     body TEXT NOT NULL,
     type VARCHAR(50) NOT NULL,
     reference_id UUID,
+    data JSONB DEFAULT '{}',
     is_read BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );

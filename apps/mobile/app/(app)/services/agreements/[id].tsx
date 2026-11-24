@@ -101,7 +101,7 @@ export default function ServiceAgreementScreen() {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      {/* Header Banner */}
+      {}
       <Card style={styles.statusCard} mode="elevated">
         <Card.Content>
           <View style={styles.statusRow}>
@@ -116,7 +116,7 @@ export default function ServiceAgreementScreen() {
         </Card.Content>
       </Card>
 
-      {/* Pending Revision Alert */}
+      {}
       {pendingRevision && pendingRevision.status === 'PENDING' && (
         <Card style={styles.revisionCard} mode="elevated">
           <Card.Content style={{ gap: 6 }}>
@@ -159,7 +159,7 @@ export default function ServiceAgreementScreen() {
         </Card>
       )}
 
-      {/* Terms Box */}
+      {}
       <Card style={styles.card} mode="elevated">
         <Card.Title title="Locked Terms" />
         <Card.Content style={{ gap: 10 }}>
@@ -217,7 +217,7 @@ export default function ServiceAgreementScreen() {
         </Card.Content>
       </Card>
 
-      {/* Actions */}
+      {}
       <View style={{ gap: 10, marginTop: 4 }}>
         <Button
           mode="contained"
@@ -250,7 +250,7 @@ export default function ServiceAgreementScreen() {
         )}
       </View>
 
-      {/* Propose Revision Dialog */}
+      {}
       <Portal>
         <Dialog visible={revisionVisible} onDismiss={() => setRevisionVisible(false)}>
           <Dialog.Title>Propose Price Revision</Dialog.Title>
@@ -287,7 +287,7 @@ export default function ServiceAgreementScreen() {
           </Dialog.Actions>
         </Dialog>
 
-        {/* Terminate Dialog */}
+        {}
         <Dialog visible={terminateVisible} onDismiss={() => setTerminateVisible(false)}>
           <Dialog.Title>Terminate Agreement</Dialog.Title>
           <Dialog.Content style={{ gap: 10 }}>

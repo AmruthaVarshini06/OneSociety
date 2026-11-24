@@ -85,7 +85,7 @@ export default function ServiceRequestDetailScreen() {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      {/* Status Banner */}
+      {}
       <Card style={[styles.card, { backgroundColor: color.bg }]} mode="contained">
         <Card.Content style={styles.statusContent}>
           <Text variant="labelLarge" style={{ color: color.text, fontWeight: '700' }}>
@@ -104,7 +104,7 @@ export default function ServiceRequestDetailScreen() {
         </Card.Content>
       </Card>
 
-      {/* Phone numbers privacy reveal */}
+      {}
       {request.phoneNumbersRevealed ? (
         <Card style={[styles.card, styles.phoneCard]} mode="elevated">
           <Card.Content>
@@ -127,7 +127,7 @@ export default function ServiceRequestDetailScreen() {
         </Card>
       )}
 
-      {/* Service details */}
+      {}
       <Card style={styles.card} mode="elevated">
         <Card.Title title="Service Details" />
         <Card.Content style={{ gap: 8 }}>
@@ -178,9 +178,9 @@ export default function ServiceRequestDetailScreen() {
         </Card.Content>
       </Card>
 
-      {/* Action Buttons */}
+      {}
       <View style={styles.actionWrap}>
-        {/* Provider actions when REQUESTED */}
+        {}
         {isProvider && request.status === 'REQUESTED' && (
           <View style={{ gap: 10 }}>
             <Button
@@ -207,7 +207,7 @@ export default function ServiceRequestDetailScreen() {
           </View>
         )}
 
-        {/* Chat button for UNDER_DISCUSSION and onwards */}
+        {}
         {['UNDER_DISCUSSION', 'AGREED', 'ACTIVE'].includes(request.status) && (
           <Button
             mode="contained"
@@ -219,7 +219,7 @@ export default function ServiceRequestDetailScreen() {
           </Button>
         )}
 
-        {/* Agreement link */}
+        {}
         {request.agreedAgreementId && (
           <Button
             mode="outlined"
@@ -233,7 +233,7 @@ export default function ServiceRequestDetailScreen() {
           </Button>
         )}
 
-        {/* Seeker Cancel button */}
+        {}
         {isSeeker && ['REQUESTED', 'UNDER_DISCUSSION'].includes(request.status) && (
           <Button
             mode="text"

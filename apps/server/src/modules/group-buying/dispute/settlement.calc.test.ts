@@ -27,7 +27,7 @@ describe('Settlement and Rating Calculations', () => {
       ];
       const issues = [
         { commitmentId: 'c1', refundAmountPaise: 10000, status: 'RESOLVED_REFUND' },
-        { commitmentId: 'c2', refundAmountPaise: 5000, status: 'OPEN' }, // open issue, not resolved refund
+        { commitmentId: 'c2', refundAmountPaise: 5000, status: 'OPEN' },
       ];
 
       const result = calculateOrderSettlement(commitments, issues);

@@ -29,7 +29,6 @@ export default function EventsIndexScreen() {
       const res = await getEventsDashboard();
       setEvents(res.data);
     } catch {
-      // ignore
     } finally {
       setLoading(false);
       setRefreshing(false);
@@ -51,7 +50,7 @@ export default function EventsIndexScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Tab Navigation */}
+      {}
       <View style={styles.tabBar}>
         {(['TODAY', 'UPCOMING', 'PAST'] as const).map((tab) => (
           <TouchableOpacity
@@ -103,7 +102,7 @@ export default function EventsIndexScreen() {
               <Text style={styles.eventTitle}>{ev.title}</Text>
               <Text style={styles.eventType}>{ev.eventType}</Text>
 
-              {/* Stats */}
+              {}
               <View style={styles.statsRow}>
                 <View style={styles.statItem}>
                   <MaterialCommunityIcons name="account-group" size={16} color="#1E3A8A" />
@@ -119,7 +118,7 @@ export default function EventsIndexScreen() {
                 ) : null}
               </View>
 
-              {/* Sound / Quiet Hours Badges */}
+              {}
               {ev.hasLoudSound ? (
                 <View style={styles.soundBadge}>
                   <MaterialCommunityIcons name="volume-high" size={16} color="#B45309" />
@@ -138,7 +137,7 @@ export default function EventsIndexScreen() {
                 </View>
               ) : null}
 
-              {/* Over-Estimate Warning Alert */}
+              {}
               {ev.isOverEstimateAlertSent ? (
                 <View style={styles.overEstBadge}>
                   <MaterialCommunityIcons name="alert-circle" size={16} color="#C2410C" />
@@ -148,7 +147,7 @@ export default function EventsIndexScreen() {
                 </View>
               ) : null}
 
-              {/* President Official Note */}
+              {}
               {ev.presidentNotes ? (
                 <View style={styles.presBox}>
                   <Text style={styles.presTitle}>President Note:</Text>
@@ -156,7 +155,7 @@ export default function EventsIndexScreen() {
                 </View>
               ) : null}
 
-              {/* Guest Pass Share Button */}
+              {}
               {ev.guestPassCode ? (
                 <TouchableOpacity
                   style={styles.sharePassBtn}
@@ -183,7 +182,7 @@ export default function EventsIndexScreen() {
         )}
       </ScrollView>
 
-      {/* Floating Add Event Button */}
+      {}
       <TouchableOpacity
         style={styles.fab}
         onPress={() => router.push('/(app)/society-help/events/new')}

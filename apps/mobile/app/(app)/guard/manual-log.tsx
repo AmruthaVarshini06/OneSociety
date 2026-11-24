@@ -26,14 +26,12 @@ export default function GuardManualLogScreen() {
   const [acceptedParcelAtGate, setAcceptedParcelAtGate] = useState(false);
   const [notes, setNotes] = useState('');
 
-  // Flat presence checking
   const [checkingPresence, setCheckingPresence] = useState(false);
   const [flatStatus, setFlatStatus] = useState<'PRESENT' | 'NOT_PRESENT' | null>(null);
   const [presenceAlert, setPresenceAlert] = useState<string | null>(null);
 
   const [saving, setSaving] = useState(false);
 
-  // Check presence when flatCode changes (debounced or on blur)
   const checkFlat = async (val: string) => {
     const code = val.trim().toUpperCase();
     if (!code) {
@@ -50,7 +48,7 @@ export default function GuardManualLogScreen() {
         if (item.status === 'NOT_PRESENT') {
           setPresenceAlert(`⚠️ NOBODY AT HOME in Flat ${code} since ${item.lastUpdated || 'recently'}`);
           if (visitorType === 'DELIVERY') {
-            setAcceptedParcelAtGate(true); // suggest gate drop
+            setAcceptedParcelAtGate(true);
           }
         } else {
           setPresenceAlert(null);
@@ -60,7 +58,6 @@ export default function GuardManualLogScreen() {
         setPresenceAlert(null);
       }
     } catch {
-      // ignore
     } finally {
       setCheckingPresence(false);
     }
@@ -76,7 +73,6 @@ export default function GuardManualLogScreen() {
       return;
     }
 
-    // Check nobody at home rule
     if (flatStatus === 'NOT_PRESENT') {
       if (visitorType === 'VISITOR') {
         Alert.alert(
@@ -132,7 +128,7 @@ export default function GuardManualLogScreen() {
         Manual entry for visitors and delivery agents. Current in-time auto-stamped.
       </Text>
 
-      {/* Visitor / Delivery Toggle */}
+      {}
       <View style={styles.toggleRow}>
         <TouchableOpacity
           style={[styles.toggleBtn, visitorType === 'VISITOR' && styles.toggleBtnActive]}
@@ -179,7 +175,7 @@ export default function GuardManualLogScreen() {
         </TouchableOpacity>
       </View>
 
-      {/* Delivery Companies Quick Selector */}
+      {}
       {visitorType === 'DELIVERY' ? (
         <View style={styles.formGroup}>
           <Text style={styles.label}>Delivery Company</Text>
@@ -209,7 +205,7 @@ export default function GuardManualLogScreen() {
         </View>
       ) : null}
 
-      {/* Visitor Name */}
+      {}
       <View style={styles.formGroup}>
         <Text style={styles.label}>
           {visitorType === 'DELIVERY' ? 'Delivery Agent Name *' : 'Visitor Name *'}
@@ -222,7 +218,7 @@ export default function GuardManualLogScreen() {
         />
       </View>
 
-      {/* Flat Code + Presence Check */}
+      {}
       <View style={styles.formGroup}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
           <Text style={styles.label}>Visiting Flat Number *</Text>
@@ -253,7 +249,7 @@ export default function GuardManualLogScreen() {
         />
       </View>
 
-      {/* Presence Alert Warning */}
+      {}
       {presenceAlert ? (
         <View style={styles.presenceBox}>
           <MaterialCommunityIcons name="alert-octagon" size={24} color="#DC2626" />
@@ -268,7 +264,7 @@ export default function GuardManualLogScreen() {
         </View>
       ) : null}
 
-      {/* Accepted Parcel at Gate Toggle for Delivery */}
+      {}
       {visitorType === 'DELIVERY' ? (
         <TouchableOpacity
           style={[
@@ -291,7 +287,7 @@ export default function GuardManualLogScreen() {
         </TouchableOpacity>
       ) : null}
 
-      {/* Phone & Vehicle Number */}
+      {}
       <View style={styles.row}>
         <View style={[styles.formGroup, { flex: 1 }]}>
           <Text style={styles.label}>Phone (Optional)</Text>
@@ -315,7 +311,7 @@ export default function GuardManualLogScreen() {
         </View>
       </View>
 
-      {/* Purpose for Visitor */}
+      {}
       {visitorType === 'VISITOR' ? (
         <View style={styles.formGroup}>
           <Text style={styles.label}>Purpose of Visit</Text>
@@ -328,7 +324,7 @@ export default function GuardManualLogScreen() {
         </View>
       ) : null}
 
-      {/* Number of People */}
+      {}
       <View style={styles.formGroup}>
         <Text style={styles.label}>Number of People</Text>
         <View style={styles.counterRow}>
@@ -348,7 +344,7 @@ export default function GuardManualLogScreen() {
         </View>
       </View>
 
-      {/* Notes */}
+      {}
       <View style={styles.formGroup}>
         <Text style={styles.label}>Guard Notes (Optional)</Text>
         <TextInput
@@ -359,7 +355,7 @@ export default function GuardManualLogScreen() {
         />
       </View>
 
-      {/* Submit Button */}
+      {}
       <TouchableOpacity
         style={[
           styles.submitBtn,

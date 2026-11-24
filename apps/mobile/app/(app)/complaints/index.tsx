@@ -109,7 +109,7 @@ export default function ComplaintsFeedScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Emergency Notice Banner */}
+      {}
       {emergencyVisible && (
         <Banner
           visible={emergencyVisible}
@@ -128,7 +128,7 @@ export default function ComplaintsFeedScreen() {
         </Banner>
       )}
 
-      {/* President Shortcut Card */}
+      {}
       {isPresident && (
         <Card style={styles.presidentCard} mode="contained" onPress={() => router.push('/(app)/complaints/admin' as any)}>
           <Card.Content style={styles.presidentContent}>
@@ -143,7 +143,7 @@ export default function ComplaintsFeedScreen() {
         </Card>
       )}
 
-      {/* Search & Filters */}
+      {}
       <View style={styles.filterSection}>
         <Searchbar
           placeholder="Search issues, lifts, water..."
@@ -152,7 +152,7 @@ export default function ComplaintsFeedScreen() {
           style={styles.searchbar}
         />
 
-        {/* Quick Filter Chips */}
+        {}
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.chipScroll}>
           <Chip
             selected={myComplaintsOnly}
@@ -208,7 +208,7 @@ export default function ComplaintsFeedScreen() {
         </ScrollView>
       </View>
 
-      {/* List */}
+      {}
       <ScrollView
         contentContainerStyle={styles.listContent}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
@@ -294,7 +294,7 @@ export default function ComplaintsFeedScreen() {
         )}
       </ScrollView>
 
-      {/* Floating Action Button */}
+      {}
       <FAB
         icon="plus"
         label="Report Issue"

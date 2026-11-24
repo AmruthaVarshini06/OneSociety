@@ -30,7 +30,6 @@ export async function upsertDemand(
 ): Promise<{ item: any; totalDemandedQuantity: number }> {
   const order = await assertDemandOpen(orderId, societyId);
 
-  // Upsert into demand_items
   const insertRes = await query(
     `INSERT INTO demand_items (group_order_id, flat_id, user_id, quantity)
      VALUES ($1, $2, $3, $4)
@@ -41,14 +40,12 @@ export async function upsertDemand(
   );
   const item = insertRes.rows[0];
 
-  // Recalculate total quantity
   const totalRes = await query(
     `SELECT COALESCE(SUM(quantity), 0) as total FROM demand_items WHERE group_order_id = $1`,
     [orderId]
   );
   const newTotal = Number(totalRes.rows[0]?.total || 0);
 
-  // Update group order
   await query('UPDATE group_orders SET total_demanded_quantity = $1 WHERE id = $2', [newTotal, orderId]);
 
   emitDemandUpdate(societyId, orderId, newTotal, order.minimum_quantity || 1);

@@ -169,7 +169,7 @@ export default function SupplierIssuesScreen() {
         )}
       </ScrollView>
 
-      {/* Response Confirmation Modal */}
+      {}
       <Portal>
         <Modal
           visible={modalVisible}

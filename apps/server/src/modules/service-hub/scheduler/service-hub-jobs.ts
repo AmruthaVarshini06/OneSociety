@@ -4,7 +4,6 @@ import { sendNotification } from '../../../shared/notifications/notification.ser
 import { markOverdue } from '../payments/service-payment.service';
 
 export function registerServiceHubJobs(): void {
-  // ── Expire stale requests (every hour) ─────────────────────────────
   agenda.define('sh-expire-stale-requests', async () => {
     try {
       const res = await query(
@@ -27,7 +26,6 @@ export function registerServiceHubJobs(): void {
     }
   });
 
-  // ── Schedule reminders (every hour) ────────────────────────────────
   agenda.define('sh-schedule-reminders', async () => {
     try {
       const tomorrowVisits = await query(
@@ -48,7 +46,6 @@ export function registerServiceHubJobs(): void {
     }
   });
 
-  // ── Auto-close completed one-time visits ───────────────────────────
   agenda.define('sh-auto-complete-one-time', async () => {
     try {
       await query(
@@ -61,7 +58,6 @@ export function registerServiceHubJobs(): void {
     }
   });
 
-  // ── Process overdue payments ───────────────────────────────────────
   agenda.define('sh-process-overdue-payments', async () => {
     try {
       const overdue = await query(

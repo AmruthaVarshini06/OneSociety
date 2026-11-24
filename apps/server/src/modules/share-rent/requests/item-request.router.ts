@@ -5,11 +5,9 @@ import * as itemRequestController from './item-request.controller';
 
 const router = Router();
 
-// All routes require authenticated resident (or president)
 const auth = [authenticate, requireRole('resident', 'president')];
 const residentOnly = [authenticate, requireRole('resident')];
 
-// Request lifecycle
 router.post('/', ...residentOnly, itemRequestController.createRequest);
 router.get('/', ...auth, itemRequestController.listRequests);
 router.get('/mine', ...residentOnly, itemRequestController.getMyRequests);
@@ -17,7 +15,6 @@ router.get('/:id', ...auth, itemRequestController.getRequestById);
 router.post('/:id/dismiss', ...residentOnly, itemRequestController.dismissRequest);
 router.post('/:id/cancel', ...residentOnly, itemRequestController.cancelRequest);
 
-// Offer lifecycle
 router.post('/:id/offers', ...residentOnly, itemRequestController.makeOffer);
 router.post('/:id/offers/:offerId/accept', ...residentOnly, itemRequestController.acceptOffer);
 router.delete('/:id/offers/:offerId', ...residentOnly, itemRequestController.withdrawOffer);

@@ -155,7 +155,7 @@ export default function VerificationQueueScreen() {
         );
       })}
 
-      {/* Reject Dialog */}
+      {}
       <Portal>
         <Dialog visible={rejectDialogVisible} onDismiss={() => setRejectDialogVisible(false)}>
           <Dialog.Title>Reject Provider Application</Dialog.Title>

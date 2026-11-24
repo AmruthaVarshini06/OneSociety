@@ -1,11 +1,6 @@
 import type { Request, Response, NextFunction, RequestHandler } from 'express';
 import { ROLES, type Role } from '../shared/auth/roles';
 
-/**
- * Role-check middleware factory.
- * Must be used AFTER authenticate() (req.user is already set).
- * Returns a single middleware — not an array — for clean route definitions.
- */
 export function requireRole(...roles: Role[]): RequestHandler {
   return (req: Request, res: Response, next: NextFunction): void => {
     if (!req.user) {
@@ -26,6 +21,5 @@ export function requireRole(...roles: Role[]): RequestHandler {
   };
 }
 
-// Satisfy TS — ROLES is used in import chains; re-export for convenience
 export { ROLES };
 

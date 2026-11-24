@@ -18,7 +18,6 @@ import { errorHandler } from './middleware/errorHandler';
 
 const app = express();
 
-// Security & parsing
 app.use(helmet());
 app.use(
   cors({
@@ -29,7 +28,6 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
-// Block external providers from non-service routes
 app.use((req: Request, res: Response, next: NextFunction) => {
   const user = req.user;
   if (
@@ -45,12 +43,10 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-// Health check
 app.get('/health', (_req, res) => {
   res.json({ status: 'ok', timestamp: new Date() });
 });
 
-// API routes
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/society', societyRouter);
 app.use('/api/v1/notifications', notificationRouter);
@@ -62,7 +58,6 @@ app.use('/api/v1/services', serviceHubRouter);
 app.use('/api/v1/complaints', complaintsRouter);
 app.use('/api/v1/society-help', societyHelpRouter);
 
-// Global error handler (must be last)
 app.use(errorHandler);
 
 export default app;

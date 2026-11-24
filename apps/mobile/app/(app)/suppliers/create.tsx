@@ -126,7 +126,7 @@ export default function CreateSupplierScreen() {
           Creates a login for the supplier. They will receive credentials via WhatsApp.
         </Text>
 
-        {/* Login credentials */}
+        {}
         <Text variant="titleSmall" style={styles.section}>Login Credentials</Text>
         <TextInput
           label="Username *"
@@ -154,7 +154,7 @@ export default function CreateSupplierScreen() {
           {errors.tempPassword}
         </HelperText>
 
-        {/* Business details */}
+        {}
         <Text variant="titleSmall" style={styles.section}>Business Details</Text>
         <TextInput
           label="Business Name *"
@@ -194,7 +194,7 @@ export default function CreateSupplierScreen() {
           {errors.contactPhone}
         </HelperText>
 
-        {/* Optional */}
+        {}
         <Text variant="titleSmall" style={styles.section}>Optional</Text>
         <TextInput
           label="GSTIN (optional)"

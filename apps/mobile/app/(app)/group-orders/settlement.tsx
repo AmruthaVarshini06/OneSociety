@@ -58,7 +58,6 @@ export default function PresidentSettlementScreen() {
   const summary = commitmentsData;
   const issues = issuesData?.issues ?? [];
 
-  // President ruling mutation
   const resolveMutation = useMutation({
     mutationFn: () =>
       presidentResolveIssue(id, activeIssue!._id, {
@@ -76,7 +75,6 @@ export default function PresidentSettlementScreen() {
     },
   });
 
-  // Final Settlement mutation
   const settleMutation = useMutation({
     mutationFn: () => settleOrderEscrow(id),
     onSuccess: (data) => {
@@ -120,7 +118,7 @@ export default function PresidentSettlementScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scroll}>
-        {/* Settlement Summary Card */}
+        {}
         <Card style={styles.card}>
           <Card.Content>
             <View style={styles.row}>
@@ -190,7 +188,7 @@ export default function PresidentSettlementScreen() {
           </Card.Content>
         </Card>
 
-        {/* Dispute Resolution Section */}
+        {}
         <Text variant="titleMedium" style={styles.sectionHeader}>
           Disputes & Issues ({issues.length})
         </Text>
@@ -243,7 +241,7 @@ export default function PresidentSettlementScreen() {
         )}
       </ScrollView>
 
-      {/* Presidential Ruling Modal */}
+      {}
       <Portal>
         <Modal
           visible={modalVisible}

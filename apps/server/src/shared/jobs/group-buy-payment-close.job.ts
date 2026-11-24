@@ -1,10 +1,6 @@
 import type { Job } from '../../config/agenda';
 import { closePaymentWindow } from '../../modules/group-buying/commitment/commitment.service';
 
-/**
- * Closes the payment window for a group order when the deadline arrives.
- * Transitions status: PAYMENT_WINDOW → DELIVERY_PENDING (or FAILED if min not met).
- */
 export async function groupBuyPaymentCloseJob(job: Job): Promise<void> {
   const { groupOrderId, societyId } = job.attrs.data as { groupOrderId: string; societyId: string };
   if (!groupOrderId || !societyId) {

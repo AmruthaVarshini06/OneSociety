@@ -24,10 +24,10 @@ describe('AI Price Verifier & Prohibited Items Engine', () => {
         category: 'drill',
         ageYears: 1,
         condition: 'GOOD',
-        estimatedPurchasePricePaise: 400000, // ₹4,000
-        chargeHourlyPaise: 4000, // ₹40 / hr
-        chargeDailyPaise: 20000, // ₹200 / day
-        safeDepositPaise: 150000, // ₹1,500
+        estimatedPurchasePricePaise: 400000,
+        chargeHourlyPaise: 4000,
+        chargeDailyPaise: 20000,
+        safeDepositPaise: 150000,
       });
 
       expect(result.verdict).toBe('FAIR');
@@ -42,9 +42,9 @@ describe('AI Price Verifier & Prohibited Items Engine', () => {
         category: 'ladder',
         ageYears: 2,
         condition: 'FAIR',
-        estimatedPurchasePricePaise: 300000, // ₹3,000
-        chargeDailyPaise: 15000, // ₹150 / day
-        safeDepositPaise: 500000, // ₹5,000 (exceeds ₹3,000 value!)
+        estimatedPurchasePricePaise: 300000,
+        chargeDailyPaise: 15000,
+        safeDepositPaise: 500000,
       });
 
       expect(result.verdict).toBe('TOO_HIGH');
@@ -57,8 +57,8 @@ describe('AI Price Verifier & Prohibited Items Engine', () => {
         category: 'extension board',
         ageYears: 0,
         condition: 'LIKE_NEW',
-        estimatedPurchasePricePaise: 100000, // ₹1,000
-        chargeDailyPaise: 35000, // ₹350 / day (> 35% of buying price!)
+        estimatedPurchasePricePaise: 100000,
+        chargeDailyPaise: 35000,
         safeDepositPaise: 40000,
       });
 
@@ -72,8 +72,8 @@ describe('AI Price Verifier & Prohibited Items Engine', () => {
         category: 'camping gear',
         ageYears: 1,
         condition: 'GOOD',
-        estimatedPurchasePricePaise: 1000000, // ₹10,000
-        chargeDailyPaise: 2000, // ₹20 / day (< 0.8% of value!)
+        estimatedPurchasePricePaise: 1000000,
+        chargeDailyPaise: 2000,
         safeDepositPaise: 200000,
       });
 

@@ -1,7 +1,5 @@
 import { z } from 'zod';
 
-// ── GST number format: 15-char GSTIN ──────────────────────────────────────
-// Format: 2-digit state code + 10-char PAN + 1-digit entity + Z + 1 checksum
 const GST_REGEX = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
 
 export const gstNumberSchema = z
@@ -9,7 +7,6 @@ export const gstNumberSchema = z
   .toUpperCase()
   .regex(GST_REGEX, 'Invalid GSTIN format (expected 15-character GSTIN)');
 
-// ── Create supplier (president-only) ─────────────────────────────────────
 export const createSupplierSchema = z.object({
   username: z
     .string()
@@ -28,7 +25,6 @@ export const createSupplierSchema = z.object({
 
 export type CreateSupplierInput = z.infer<typeof createSupplierSchema>;
 
-// ── Supplier updates own profile ──────────────────────────────────────────
 export const updateSupplierProfileSchema = z.object({
   businessName: z.string().min(2).max(100).optional(),
   contactName: z.string().min(2).max(60).optional(),
@@ -42,7 +38,6 @@ export const updateSupplierProfileSchema = z.object({
 
 export type UpdateSupplierProfileInput = z.infer<typeof updateSupplierProfileSchema>;
 
-// ── President verify (approve / reject) ──────────────────────────────────
 export const verifySupplierSchema = z
   .object({
     action: z.enum(['approve', 'reject']),
@@ -55,7 +50,6 @@ export const verifySupplierSchema = z
 
 export type VerifySupplierInput = z.infer<typeof verifySupplierSchema>;
 
-// ── List query ────────────────────────────────────────────────────────────
 export const listSuppliersQuerySchema = z.object({
   status: z
     .enum(['PENDING_REVIEW', 'GST_VERIFIED', 'APPROVED', 'REJECTED'])

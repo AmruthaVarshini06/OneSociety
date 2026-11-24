@@ -8,7 +8,6 @@ import { getMyProviderPass, type QrPassDto } from '../../../src/services/society
 import { QrCodeDisplay } from '../../../src/components/QrCodeDisplay';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-// Handles both provider_internal and provider_external roles
 export default function ProviderHomeScreen() {
   const user = useAuthStore((s) => s.user);
   const isInternal = user?.role === 'provider_internal';
@@ -24,7 +23,6 @@ export default function ProviderHomeScreen() {
       setProviderPass(res.data);
       setPassModalVisible(true);
     } catch {
-      // ignore
     } finally {
       setLoadingPass(false);
     }
@@ -81,7 +79,7 @@ export default function ProviderHomeScreen() {
           </Card.Actions>
         </Card>
 
-        {/* Gate Pass Modal */}
+        {}
         <Modal visible={passModalVisible} transparent animationType="slide">
           <View style={styles.modalBg}>
             <View style={styles.modalBox}>

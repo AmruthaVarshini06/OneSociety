@@ -19,7 +19,6 @@ export async function triggerEmergencyAlert(params: {
 
   const alert = insertRes.rows[0];
 
-  // Notify Guards and President
   const respondersRes = await query(
     `SELECT id, username, role FROM users WHERE society_id = $1 AND role IN ('guard', 'president')`,
     [params.societyId]
@@ -45,7 +44,6 @@ export async function triggerEmergencyAlert(params: {
     );
   }
 
-  // Real-time broadcast
   if (io) {
     io.to(`society:${params.societyId}`).emit('emergency:triggered', {
       alertId: alert.id,
@@ -94,7 +92,6 @@ export async function acknowledgeEmergencyAlert(params: {
 
   const updated = updateRes.rows[0];
 
-  // Notify resident
   await sendNotification(
     updated.resident_id,
     '🛡️ Guard is on the way!',

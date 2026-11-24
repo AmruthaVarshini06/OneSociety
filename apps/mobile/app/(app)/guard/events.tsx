@@ -23,7 +23,6 @@ export default function GuardEventsScreen() {
       setTodayEvents(res.data.today || []);
       setUpcomingEvents(res.data.upcoming || []);
     } catch {
-      // ignore
     } finally {
       setLoading(false);
       setRefreshing(false);
@@ -55,7 +54,7 @@ export default function GuardEventsScreen() {
         Anticipate visitor influx, parking demand, and sound volume limits.
       </Text>
 
-      {/* TODAY'S EVENTS (HIGHLIGHTED) */}
+      {}
       <View style={styles.sectionHeaderRow}>
         <MaterialCommunityIcons name="calendar-today" size={18} color="#1E3A8A" />
         <Text style={styles.sectionTitle}>Today's Active Events ({todayEvents.length})</Text>
@@ -78,7 +77,7 @@ export default function GuardEventsScreen() {
             <Text style={styles.eventTitle}>{ev.title}</Text>
             <Text style={styles.eventType}>{ev.eventType}</Text>
 
-            {/* Metrics Row */}
+            {}
             <View style={styles.metricsRow}>
               <View style={styles.metricItem}>
                 <MaterialCommunityIcons name="account-group" size={16} color="#1E3A8A" />
@@ -92,7 +91,7 @@ export default function GuardEventsScreen() {
               </View>
             </View>
 
-            {/* Sound & Quiet Hours Warning */}
+            {}
             {ev.hasLoudSound ? (
               <View style={styles.soundWarning}>
                 <MaterialCommunityIcons name="volume-high" size={16} color="#B45309" />
@@ -125,7 +124,7 @@ export default function GuardEventsScreen() {
         </View>
       )}
 
-      {/* UPCOMING EVENTS */}
+      {}
       <View style={[styles.sectionHeaderRow, { marginTop: 24 }]}>
         <MaterialCommunityIcons name="calendar-clock" size={18} color="#475569" />
         <Text style={[styles.sectionTitle, { color: '#475569' }]}>

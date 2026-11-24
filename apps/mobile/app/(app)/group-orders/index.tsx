@@ -85,7 +85,7 @@ function OrderCard({ order }: { order: GroupOrder }) {
           </Chip>
         </View>
 
-        {/* Progress bar: demand vs minimum */}
+        {}
         <View style={styles.progressSection}>
           <View style={styles.progressLabelRow}>
             <Text variant="bodySmall" style={styles.progressLabel}>
@@ -121,7 +121,7 @@ export default function GroupOrdersListScreen() {
     queryKey: ['group-orders', activeFilter],
     queryFn: () =>
       listGroupOrders(activeFilter !== 'ALL' ? { status: activeFilter } : undefined),
-    refetchInterval: 30_000, // soft-poll every 30s as fallback for socket
+    refetchInterval: 30_000,
   });
 
   const renderEmpty = () => {
@@ -135,7 +135,7 @@ export default function GroupOrdersListScreen() {
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
-      {/* Filter chips */}
+      {}
       <FlatList
         horizontal
         data={STATUS_FILTERS}
@@ -154,7 +154,7 @@ export default function GroupOrdersListScreen() {
         )}
       />
 
-      {/* President CTA */}
+      {}
       {role === 'president' && (
         <View style={styles.addRow}>
           <Button

@@ -30,7 +30,6 @@ export default function IssueDetailsScreen() {
   const [refreshing, setRefreshing] = useState(false);
   const [issue, setIssue] = useState<any>(null);
 
-  // Reopen Dialog
   const [reopenVisible, setReopenVisible] = useState(false);
   const [reopenReason, setReopenReason] = useState('');
   const [reopenPhotos, setReopenPhotos] = useState<string[]>([
@@ -125,7 +124,7 @@ export default function IssueDetailsScreen() {
       contentContainerStyle={styles.content}
       refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
     >
-      {/* Header Card */}
+      {}
       <Card style={styles.headerCard} mode="elevated">
         <Card.Content>
           <View style={styles.headerRow}>
@@ -167,7 +166,7 @@ export default function IssueDetailsScreen() {
         </Card.Content>
       </Card>
 
-      {/* President Action Shortcut */}
+      {}
       {isPresident && (
         <Card
           style={styles.presidentActionCard}
@@ -189,7 +188,7 @@ export default function IssueDetailsScreen() {
         </Card>
       )}
 
-      {/* Photos Section */}
+      {}
       <Card style={styles.sectionCard} mode="contained">
         <Card.Content>
           <Text style={styles.sectionTitle}>📸 Evidence & Photos</Text>
@@ -207,7 +206,7 @@ export default function IssueDetailsScreen() {
         </Card.Content>
       </Card>
 
-      {/* Assigned Vendor */}
+      {}
       {issue.assignedVendors && issue.assignedVendors.length > 0 && (
         <Card style={styles.sectionCard} mode="contained">
           <Card.Content>
@@ -229,12 +228,12 @@ export default function IssueDetailsScreen() {
         </Card>
       )}
 
-      {/* Timeline Section */}
+      {}
       <Card style={styles.sectionCard} mode="contained">
         <Card.Content>
           <Text style={styles.sectionTitle}>⏳ Progress Timeline</Text>
 
-          {/* First Reported */}
+          {}
           <View style={styles.timelineItem}>
             <Text style={styles.timelineDot}>🟢</Text>
             <View style={styles.timelineBody}>
@@ -244,7 +243,7 @@ export default function IssueDetailsScreen() {
             </View>
           </View>
 
-          {/* Contacted */}
+          {}
           {issue.assignedVendors && issue.assignedVendors.length > 0 && (
             <View style={styles.timelineItem}>
               <Text style={styles.timelineDot}>🔵</Text>
@@ -258,7 +257,7 @@ export default function IssueDetailsScreen() {
             </View>
           )}
 
-          {/* Progress Updates */}
+          {}
           {issue.progressUpdates?.map((u: any, idx: number) => (
             <View key={idx} style={styles.timelineItem}>
               <Text style={styles.timelineDot}>🟠</Text>
@@ -270,7 +269,7 @@ export default function IssueDetailsScreen() {
             </View>
           ))}
 
-          {/* Solved */}
+          {}
           {issue.solvedAt && (
             <View style={styles.timelineItem}>
               <Text style={styles.timelineDot}>✅</Text>
@@ -282,7 +281,7 @@ export default function IssueDetailsScreen() {
             </View>
           )}
 
-          {/* Reopen History */}
+          {}
           {issue.reopenHistory?.map((r: any, idx: number) => (
             <View key={idx} style={styles.timelineItem}>
               <Text style={styles.timelineDot}>🔴</Text>
@@ -296,7 +295,7 @@ export default function IssueDetailsScreen() {
         </Card.Content>
       </Card>
 
-      {/* Cost & Payment Breakdown (Transparent to all residents) */}
+      {}
       {issue.costs?.totalAmountPaise > 0 && (
         <Card style={styles.costCard} mode="contained">
           <Card.Content>
@@ -329,7 +328,7 @@ export default function IssueDetailsScreen() {
         </Card>
       )}
 
-      {/* Resident Action Buttons */}
+      {}
       <View style={styles.actionsSection}>
         {canReopen && (
           <View style={styles.reopenButtonGroup}>
@@ -362,7 +361,7 @@ export default function IssueDetailsScreen() {
         </Button>
       </View>
 
-      {/* Reopen Dialog */}
+      {}
       <Portal>
         <Dialog visible={reopenVisible} onDismiss={() => setReopenVisible(false)}>
           <Dialog.Title>Reopen Issue</Dialog.Title>

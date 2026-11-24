@@ -33,9 +33,6 @@ function signRefreshToken(payload: { userId: string }): string {
   });
 }
 
-// ---------------------------------------------------------------------------
-// login
-// ---------------------------------------------------------------------------
 export async function login(
   username: string,
   password: string,
@@ -83,9 +80,6 @@ export async function login(
   };
 }
 
-// ---------------------------------------------------------------------------
-// refreshAccessToken
-// ---------------------------------------------------------------------------
 export async function refreshAccessToken(refreshToken: string): Promise<{ accessToken: string }> {
   let payload: { userId: string };
 
@@ -110,17 +104,10 @@ export async function refreshAccessToken(refreshToken: string): Promise<{ access
   return { accessToken };
 }
 
-// ---------------------------------------------------------------------------
-// logout
-// ---------------------------------------------------------------------------
 export async function logout(userId: string): Promise<void> {
-  // Stateless JWT revocation or record logout timestamp
   console.info(`[SUPABASE AUTH] User ${userId} logged out`);
 }
 
-// ---------------------------------------------------------------------------
-// changePassword
-// ---------------------------------------------------------------------------
 export async function changePassword(
   userId: string,
   currentPassword: string,
@@ -144,9 +131,6 @@ export async function changePassword(
   ]);
 }
 
-// ---------------------------------------------------------------------------
-// createAccount
-// ---------------------------------------------------------------------------
 export async function createAccount(
   input: CreateAccountInput,
   societyId: string,

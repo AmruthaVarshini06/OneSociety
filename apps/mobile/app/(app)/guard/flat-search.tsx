@@ -35,7 +35,7 @@ export default function FlatSearchScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Privacy Notice Banner */}
+      {}
       <View style={styles.privacyBanner}>
         <MaterialCommunityIcons name="shield-check" size={20} color="#1E3A8A" />
         <Text style={styles.privacyText}>
@@ -44,7 +44,7 @@ export default function FlatSearchScreen() {
         </Text>
       </View>
 
-      {/* Search Input */}
+      {}
       <View style={styles.searchBox}>
         <TextInput
           style={styles.input}
@@ -62,7 +62,7 @@ export default function FlatSearchScreen() {
         </TouchableOpacity>
       </View>
 
-      {/* Quick Block Filter Pills */}
+      {}
       <View style={styles.blockRow}>
         {['All', 'Block A', 'Block B', 'Block C', 'Block D'].map((b) => (
           <TouchableOpacity

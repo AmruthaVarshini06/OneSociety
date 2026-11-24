@@ -7,7 +7,6 @@ export function errorHandler(
   res: Response,
   _next: NextFunction,
 ): void {
-  // Zod validation errors → 400
   if (err instanceof ZodError) {
     res.status(400).json({
       message: 'Validation error',
@@ -19,7 +18,6 @@ export function errorHandler(
     return;
   }
 
-  // JWT errors → 401
   if (
     err instanceof jwt.JsonWebTokenError ||
     err instanceof jwt.TokenExpiredError ||
@@ -29,7 +27,6 @@ export function errorHandler(
     return;
   }
 
-  // PostgreSQL duplicate key (code 23505) → 409
   if (err && typeof err === 'object' && ('code' in err) && (err as { code: string }).code === '23505') {
     res.status(409).json({
       message: 'Duplicate entry',
@@ -38,7 +35,6 @@ export function errorHandler(
     return;
   }
 
-  // HTTP errors with statusCode / status
   if (err instanceof Error) {
     const httpErr = err as Error & { statusCode?: number; status?: number };
     const statusCode = httpErr.statusCode ?? httpErr.status ?? 500;
@@ -48,7 +44,6 @@ export function errorHandler(
     }
   }
 
-  // Generic fallback → 500
   console.error('[ERROR]', err);
   res.status(500).json({ message: 'Internal server error' });
 }

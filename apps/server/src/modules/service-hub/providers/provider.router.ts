@@ -4,7 +4,6 @@ import * as svc from './provider.service';
 
 const router = Router();
 
-// List providers (all authenticated users, seekers get verified-only by default)
 router.get('/', authenticate, async (req, res) => {
   const { societyId, userId, role } = req.user!;
   const onlyVerified = role !== 'president';
@@ -22,14 +21,12 @@ router.get('/', authenticate, async (req, res) => {
   res.json(providers);
 });
 
-// Get single provider
 router.get('/:id', authenticate, async (req, res) => {
   const provider = await svc.getProviderById(req.params.id);
   if (!provider) return res.status(404).json({ message: 'Provider not found' });
   res.json(provider);
 });
 
-// Register as internal (resident) provider
 router.post('/register-internal', authenticate, async (req, res) => {
   const { userId, societyId, role } = req.user!;
   if (!['resident', 'provider_internal'].includes(role)) {
@@ -43,7 +40,6 @@ router.post('/register-internal', authenticate, async (req, res) => {
   res.status(201).json(profile);
 });
 
-// Create external provider account (president only)
 router.post('/external', authenticate, async (req, res) => {
   if (req.user?.role !== 'president') return res.status(403).json({ message: 'President only' });
   const result = await svc.createExternalProviderAccount({
@@ -54,7 +50,6 @@ router.post('/external', authenticate, async (req, res) => {
   res.status(201).json(result);
 });
 
-// Update provider profile (owner or president)
 router.patch('/:id', authenticate, async (req, res) => {
   const { userId, role } = req.user!;
   const profile = await svc.getProviderById(req.params.id);
@@ -66,14 +61,12 @@ router.patch('/:id', authenticate, async (req, res) => {
   res.json(updated);
 });
 
-// Convert to permanent (president only)
 router.post('/:id/convert-permanent', authenticate, async (req, res) => {
   if (req.user?.role !== 'president') return res.status(403).json({ message: 'President only' });
   const updated = await svc.convertToPermanent(req.params.id, req.user.userId);
   res.json(updated);
 });
 
-// Upload document
 router.post('/:id/documents', authenticate, async (req, res) => {
   const { userId } = req.user!;
   const profile = await svc.getProviderById(req.params.id);
@@ -87,7 +80,6 @@ router.post('/:id/documents', authenticate, async (req, res) => {
   res.status(201).json(doc);
 });
 
-// Get documents (owner or president)
 router.get('/:id/documents', authenticate, async (req, res) => {
   const { userId, role } = req.user!;
   const profile = await svc.getProviderById(req.params.id);
@@ -99,14 +91,12 @@ router.get('/:id/documents', authenticate, async (req, res) => {
   res.json(docs);
 });
 
-// Review provider (approve/reject/suspend)
 router.post('/:id/review', authenticate, async (req, res) => {
   if (req.user?.role !== 'president') return res.status(403).json({ message: 'President only' });
   const updated = await svc.reviewProvider(req.params.id, req.body.decision, req.body.notes ?? '', req.user!.userId);
   res.json(updated);
 });
 
-// Review document (president only)
 router.patch('/documents/:docId/review', authenticate, async (req, res) => {
   if (req.user?.role !== 'president') return res.status(403).json({ message: 'President only' });
   const doc = await svc.reviewDocument(req.params.docId, req.body.status, req.body.reviewerNote ?? '', req.user!.userId);

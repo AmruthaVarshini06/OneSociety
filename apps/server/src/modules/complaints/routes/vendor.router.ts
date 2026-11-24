@@ -14,11 +14,9 @@ const router = Router();
 
 router.use(authenticate);
 
-// Suggested vendors can be viewed by president and residents
 router.get('/suggested', getSuggestedVendorsHandler);
 router.get('/clash-check', checkClashHandler);
 
-// Local Vendor directory management & batching: President only
 router.get('/local', requireRole('president'), getLocalVendorsHandler);
 router.post('/local', requireRole('president'), createLocalVendorHandler);
 router.put('/local/:id', requireRole('president'), updateLocalVendorHandler);

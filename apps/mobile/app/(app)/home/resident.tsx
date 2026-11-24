@@ -34,7 +34,6 @@ export default function ResidentHomeScreen() {
         setIsAtHome(presRes.data.isAtHome);
       }
     } catch {
-      // Fallback
     } finally {
       setLoadingPresence(false);
     }
@@ -45,7 +44,6 @@ export default function ResidentHomeScreen() {
       const unpaid = (duesRes.data || []).filter((d: MaintenanceDueDto) => d.status !== 'PAID');
       setUnpaidDues(unpaid);
     } catch {
-      // ignore
     } finally {
       setLoadingDues(false);
     }
@@ -67,7 +65,7 @@ export default function ResidentHomeScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <ScrollView contentContainerStyle={styles.scroll}>
-        {/* Resident Header Profile Card */}
+        {}
         <Surface style={styles.profileHeader} elevation={2}>
           <View style={styles.profileTopRow}>
             <View style={styles.profileInfo}>
@@ -87,9 +85,9 @@ export default function ResidentHomeScreen() {
             <Avatar.Icon size={52} icon="account" style={styles.avatarIcon} color="#FFFFFF" />
           </View>
 
-          {/* Quick Action Bar: Presence Toggle */}
+          {}
           <View style={styles.quickBar}>
-            {/* Presence Toggle */}
+            {}
             <TouchableOpacity
               onPress={togglePresence}
               disabled={loadingPresence}
@@ -121,7 +119,7 @@ export default function ResidentHomeScreen() {
           </View>
         </Surface>
 
-        {/* Maintenance Alert Strip */}
+        {}
         {unpaidDues.length > 0 && (
           <Surface style={styles.duesAlert} elevation={1}>
             <View style={styles.duesAlertLeft}>
@@ -142,10 +140,10 @@ export default function ResidentHomeScreen() {
           </Surface>
         )}
 
-        {/* 5 Core Pillar Cards */}
+        {}
         <Text style={styles.sectionHeader}>SOCIETY MODULES & SERVICES</Text>
 
-        {/* 1. Society Help Card */}
+        {}
         <Card style={styles.card} mode="elevated">
           <Card.Content>
             <View style={styles.cardHeaderRow}>
@@ -182,7 +180,7 @@ export default function ResidentHomeScreen() {
           </Card.Actions>
         </Card>
 
-        {/* 2. ServiceHub Card */}
+        {}
         <Card style={styles.card} mode="elevated">
           <Card.Content>
             <View style={styles.cardHeaderRow}>
@@ -219,7 +217,7 @@ export default function ResidentHomeScreen() {
           </Card.Actions>
         </Card>
 
-        {/* 3. Smart Complaints Card */}
+        {}
         <Card style={styles.card} mode="elevated">
           <Card.Content>
             <View style={styles.cardHeaderRow}>
@@ -256,7 +254,7 @@ export default function ResidentHomeScreen() {
           </Card.Actions>
         </Card>
 
-        {/* 4. Share & Rent Card */}
+        {}
         <Card style={styles.card} mode="elevated">
           <Card.Content>
             <View style={styles.cardHeaderRow}>
@@ -293,7 +291,7 @@ export default function ResidentHomeScreen() {
           </Card.Actions>
         </Card>
 
-        {/* 5. Group Buying Card */}
+        {}
         <Card style={styles.card} mode="elevated">
           <Card.Content>
             <View style={styles.cardHeaderRow}>

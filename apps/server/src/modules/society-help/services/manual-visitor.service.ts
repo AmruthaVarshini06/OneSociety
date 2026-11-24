@@ -34,7 +34,6 @@ export async function logManualVisitor(
   let status: 'ALLOWED' | 'DENIED' = 'ALLOWED';
   let deniedReason: string | undefined;
 
-  // Nobody at home rule enforcement
   if (!presence.isAtHome) {
     if (dto.visitorType === 'VISITOR') {
       status = 'DENIED';
@@ -73,7 +72,6 @@ export async function logManualVisitor(
 
   const logRecord = insertRes.rows[0];
 
-  // Audit
   auditLog(guardUserId, societyId, 'MANUAL_VISITOR_LOGGED', logRecord.id, 'ManualVisitorLog', {
     flatCode,
     visitorName: dto.visitorName,
@@ -81,7 +79,6 @@ export async function logManualVisitor(
     deniedReason,
   });
 
-  // Notify resident of the flat if present
   const parts = flatCode.split('-');
   let residentRes;
   if (parts.length === 2) {

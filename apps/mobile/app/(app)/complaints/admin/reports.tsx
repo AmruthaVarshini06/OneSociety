@@ -49,7 +49,7 @@ export default function ComplaintsReportsScreen() {
       contentContainerStyle={styles.content}
       refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
     >
-      {/* Key Quality Metrics */}
+      {}
       <View style={styles.kpiRow}>
         <Card style={[styles.kpiCard, { backgroundColor: '#EFF6FF' }]} mode="contained">
           <Card.Content>
@@ -66,7 +66,7 @@ export default function ComplaintsReportsScreen() {
         </Card>
       </View>
 
-      {/* Repeat Problem Areas Card */}
+      {}
       <Card style={styles.sectionCard} mode="elevated">
         <Card.Content>
           <Text style={styles.sectionTitle}>🔁 Repeat Problem Areas</Text>
@@ -90,7 +90,7 @@ export default function ComplaintsReportsScreen() {
         </Card.Content>
       </Card>
 
-      {/* Spending Breakdown by Category */}
+      {}
       <Card style={styles.sectionCard} mode="elevated">
         <Card.Content>
           <Text style={styles.sectionTitle}>💰 Repair Spending by Category</Text>
@@ -107,7 +107,7 @@ export default function ComplaintsReportsScreen() {
         </Card.Content>
       </Card>
 
-      {/* Complaints by Category */}
+      {}
       <Card style={styles.sectionCard} mode="elevated">
         <Card.Content>
           <Text style={styles.sectionTitle}>📊 Issues by Category</Text>
@@ -120,7 +120,7 @@ export default function ComplaintsReportsScreen() {
         </Card.Content>
       </Card>
 
-      {/* Complaints by Block */}
+      {}
       <Card style={styles.sectionCard} mode="elevated">
         <Card.Content>
           <Text style={styles.sectionTitle}>🏢 Issues by Block</Text>
@@ -135,7 +135,7 @@ export default function ComplaintsReportsScreen() {
         </Card.Content>
       </Card>
 
-      {/* Vendor Performance Audit */}
+      {}
       <Card style={styles.sectionCard} mode="elevated">
         <Card.Content>
           <Text style={styles.sectionTitle}>🛠️ Vendor Performance Audit</Text>

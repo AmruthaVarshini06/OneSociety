@@ -1,36 +1,20 @@
-/**
- * Tiered bulk pricing — pure function, no side effects.
- *
- * A tier is { minQuantity, pricePerUnit }.
- * Tiers must be sorted ascending by minQuantity.
- * The applicable tier is the highest tier whose minQuantity <= totalQuantity.
- * If totalQuantity < the first tier's minQuantity, no tier applies (null).
- */
 
 export interface PriceTier {
-  minQuantity: number;   // minimum total units for this tier to apply
-  pricePerUnit: number;  // in paise (integers only)
+  minQuantity: number;
+  pricePerUnit: number;
 }
 
 export interface PricingResult {
-  pricePerUnit: number;    // in paise
-  tierIndex: number;       // 0-based index of the tier that applied
-  totalPrice: number;      // pricePerUnit * quantity
+  pricePerUnit: number;
+  tierIndex: number;
+  totalPrice: number;
   nextTier?: {
     minQuantity: number;
     pricePerUnit: number;
-    unitsNeeded: number;   // how many more units until the next tier
+    unitsNeeded: number;
   };
 }
 
-/**
- * Calculate the per-unit price for a given total quantity against tiered pricing.
- *
- * @param tiers       Array of price tiers sorted ascending by minQuantity
- * @param totalQuantity  Current total demand quantity
- * @param unitQuantity   Quantity to price (usually 1 unit for display, or the resident's quantity)
- * @returns PricingResult or null if no tier applies (minimum not reached)
- */
 export function calculateTieredPrice(
   tiers: PriceTier[],
   totalQuantity: number,
@@ -39,10 +23,8 @@ export function calculateTieredPrice(
   if (!tiers || tiers.length === 0) return null;
   if (totalQuantity <= 0) return null;
 
-  // Sort ascending (defensive – callers should pre-sort, but be safe)
   const sorted = [...tiers].sort((a, b) => a.minQuantity - b.minQuantity);
 
-  // Find highest applicable tier
   let appliedTierIndex = -1;
   for (let i = 0; i < sorted.length; i++) {
     if (totalQuantity >= sorted[i].minQuantity) {
@@ -50,11 +32,10 @@ export function calculateTieredPrice(
     }
   }
 
-  if (appliedTierIndex === -1) return null; // below minimum
+  if (appliedTierIndex === -1) return null;
 
   const tier = sorted[appliedTierIndex];
 
-  // Look up the next tier (if any) so UI can show "X more units → save ₹Y"
   const nextTierRaw = sorted[appliedTierIndex + 1];
   const nextTier = nextTierRaw
     ? {
@@ -72,10 +53,6 @@ export function calculateTieredPrice(
   };
 }
 
-/**
- * Returns what price would apply if one more unit is added.
- * Useful to show the resident what they unlock by joining.
- */
 export function previewPriceWithExtra(
   tiers: PriceTier[],
   currentTotal: number,
@@ -84,10 +61,6 @@ export function previewPriceWithExtra(
   return calculateTieredPrice(tiers, currentTotal + extraUnits, extraUnits);
 }
 
-/**
- * Validate a tiers array: must be non-empty, minQuantity > 0, pricePerUnit > 0,
- * all integers, minQuantities unique and ascending.
- */
 export function validateTiers(tiers: PriceTier[]): { valid: boolean; reason?: string } {
   if (!tiers || tiers.length === 0) {
     return { valid: false, reason: 'At least one price tier is required' };

@@ -45,7 +45,7 @@ export default function ProviderEarningsScreen() {
         </Text>
       </View>
 
-      {/* Summary Cards */}
+      {}
       <View style={styles.statsRow}>
         <Card style={[styles.statCard, { backgroundColor: '#E8F5E9' }]} mode="contained">
           <Card.Content style={{ alignItems: 'center' }}>

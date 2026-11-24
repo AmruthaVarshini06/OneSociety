@@ -5,11 +5,9 @@ import { query } from '../src/config/supabase';
 async function seedSupabase() {
   console.info('[SUPABASE SEED] Starting full society seed into Supabase...');
 
-  // 1. Clean existing data in reverse dependency order
   console.info('[SUPABASE SEED] Cleaning existing tables...');
   await query('TRUNCATE TABLE emergency_alerts, community_events, expense_queries, maintenance_ledgers, maintenance_dues, manual_visitor_logs, gate_events, qr_passes, vendors, complaints, issue_clusters, service_visits, service_agreements, service_providers, rental_bookings, rental_items, delivery_passes, commitments, demand_items, suppliers, group_orders, escrow_entries, notifications, users, flats, blocks, societies CASCADE;');
 
-  // 2. Society
   console.info('[SUPABASE SEED] Creating society: Green Valley Apartments...');
   const socRes = await query(`
     INSERT INTO societies (name, address, city, pincode)
@@ -18,7 +16,6 @@ async function seedSupabase() {
   `);
   const societyId = socRes.rows[0].id;
 
-  // 3. Blocks A, B, C, D
   console.info('[SUPABASE SEED] Creating blocks A, B, C, D...');
   const blockIds: Record<string, string> = {};
   for (const b of ['A', 'B', 'C', 'D']) {
@@ -26,7 +23,6 @@ async function seedSupabase() {
     blockIds[b] = bRes.rows[0].id;
   }
 
-  // 4. Flats (6 flats per block: 101, 102, 201, 202, 301, 302)
   console.info('[SUPABASE SEED] Creating 24 flats across 4 blocks...');
   const flatNumbers = ['101', '102', '201', '202', '301', '302'];
   const nobodyHomeFlats = new Set(['A-102', 'A-302', 'B-201', 'C-101', 'C-302', 'D-202']);
@@ -46,7 +42,6 @@ async function seedSupabase() {
     }
   }
 
-  // 5. Users
   console.info('[SUPABASE SEED] Hashing passwords and creating users...');
   const residentHash = await argon2.hash('Demo@1234');
   const guardHash = await argon2.hash('Guard@1234');
@@ -56,7 +51,6 @@ async function seedSupabase() {
 
   const userIds: Record<string, string> = {};
 
-  // President (Ramesh Naidu - Flat A-101)
   const presRes = await query(`
     INSERT INTO users (username, email, password_hash, role, society_id, flat_id)
     VALUES ('ramesh.naidu', 'ramesh@greenvalley.local', $1, 'president', $2, $3)
@@ -64,7 +58,6 @@ async function seedSupabase() {
   `, [residentHash, societyId, flatIds['A-101']]);
   userIds['ramesh.naidu'] = presRes.rows[0].id;
 
-  // Residents
   const residentsList = [
     { u: 'suresh.kumar', f: 'A-102', e: 'suresh@greenvalley.local' },
     { u: 'vijay.reddy', f: 'A-201', e: 'vijay@greenvalley.local' },
@@ -100,7 +93,6 @@ async function seedSupabase() {
     userIds[r.u] = res.rows[0].id;
   }
 
-  // Guards
   for (const g of ['guard.gate1', 'guard.gate2']) {
     const res = await query(`
       INSERT INTO users (username, password_hash, role, society_id)
@@ -110,7 +102,6 @@ async function seedSupabase() {
     userIds[g] = res.rows[0].id;
   }
 
-  // Delivery
   for (const d of ['delivery.1', 'delivery.2']) {
     const res = await query(`
       INSERT INTO users (username, password_hash, role, society_id)
@@ -120,7 +111,6 @@ async function seedSupabase() {
     userIds[d] = res.rows[0].id;
   }
 
-  // Service Providers
   const providers = [
     { u: 'sunita_maid', role: 'provider_external', cat: 'Domestic Help (Permanent)' },
     { u: 'lakshmi_maid', role: 'provider_external', cat: 'Domestic Help (Temporary)' },
@@ -142,28 +132,38 @@ async function seedSupabase() {
     `, [societyId, userIds[p.u], p.u.replace('_', ' ').toUpperCase(), p.cat]);
   }
 
-  // 6. QR Passes & Gate Events
+  const suppUserRes = await query(`
+    INSERT INTO users (username, password_hash, role, society_id, must_change_password)
+    VALUES ('supplier.fresh', $1, 'supplier', $2, FALSE)
+    ON CONFLICT (username) DO NOTHING
+    RETURNING id;
+  `, [supplierHash, societyId]);
+  if (suppUserRes.rows[0]) {
+    userIds['supplier.fresh'] = suppUserRes.rows[0].id;
+    await query(`
+      INSERT INTO suppliers (user_id, society_id, business_name, contact_name, phone, gst_number, gst_verified, verification_status)
+      VALUES ($1, $2, 'Krishna Fresh Agro & Groceries', 'Krishna Murthy', '9876543210', '36AAAAA0000A1Z5', TRUE, 'APPROVED')
+      ON CONFLICT DO NOTHING;
+    `, [suppUserRes.rows[0].id, societyId]);
+  }
+
   console.info('[SUPABASE SEED] Seeding QR Passes and Gate Logs...');
-  // Family pass for Flat A-102
   const passA102 = await query(`
     INSERT INTO qr_passes (society_id, pass_type, pass_code, owner_name, flat_code, expected_people, people_currently_inside, people_entered_total)
     VALUES ($1, 'FAMILY', 'PASS-FAM-A102', 'Suresh Kumar Family', 'A-102', 4, 2, 4)
     RETURNING id;
   `, [societyId]);
 
-  // Provider pass
   await query(`
     INSERT INTO qr_passes (society_id, pass_type, pass_code, owner_name, service_category, expected_people, people_currently_inside)
     VALUES ($1, 'SERVICE_PROVIDER', 'PASS-PRV-SUNITA', 'Sunita Bai', 'Domestic Help', 1, 1);
   `, [societyId]);
 
-  // Gate Events
   await query(`
     INSERT INTO gate_events (society_id, pass_id, pass_code, pass_type, direction, count, guard_name, flat_code, owner_name)
     VALUES ($1, $2, 'PASS-FAM-A102', 'FAMILY', 'ENTRY', 2, 'Ramu Guard', 'A-102', 'Suresh Kumar Family');
   `, [societyId, passA102.rows[0].id]);
 
-  // Manual Visitor Logs
   await query(`
     INSERT INTO manual_visitor_logs (society_id, visitor_type, visitor_name, flat_code, purpose, guard_name, status, accepted_parcel_at_gate)
     VALUES 
@@ -171,7 +171,6 @@ async function seedSupabase() {
     ($1, 'VISITOR', 'Vikram Malhotra', 'B-101', 'Friend Visit', 'Ramu Guard', 'ALLOWED', FALSE);
   `, [societyId]);
 
-  // 7. Maintenance Dues (6 Months)
   console.info('[SUPABASE SEED] Seeding 6 Months of Maintenance Dues & Ledger...');
   const months = ['2026-06', '2026-07', '2026-08', '2026-09', '2026-10', '2026-11'];
   for (const m of months) {
@@ -190,7 +189,6 @@ async function seedSupabase() {
     }
   }
 
-  // 8. Maintenance Ledger Entries
   await query(`
     INSERT INTO maintenance_ledgers (society_id, entry_number, entry_type, transaction_date, category, amount_paise, payee_or_payer, description, proof_photos, balance_after_paise)
     VALUES
@@ -200,7 +198,6 @@ async function seedSupabase() {
     ($1, 'TXN-202611-004', 'EXPENSE', '2026-11-10', 'LIFT_AMC', 1200000, 'Schindler Elevators AMC', 'Quarterly Preventive Lift Inspection & Lubrication', '["https://res.cloudinary.com/demo/image/upload/sample.jpg"]'::jsonb, 9750000);
   `, [societyId]);
 
-  // 9. Issue Clusters & Complaints
   console.info('[SUPABASE SEED] Seeding Complaints & Issue Clusters...');
   const liftCluster = await query(`
     INSERT INTO issue_clusters (society_id, title, category, location, priority, status)
@@ -213,14 +210,12 @@ async function seedSupabase() {
     VALUES ($1, $2, $3, 'B-202', 'LIFT', 'Block B, Lift 2', 'Lift 2 made grinding noise and stopped with lights flickering.', '["https://res.cloudinary.com/demo/image/upload/sample.jpg"]'::jsonb);
   `, [societyId, liftCluster.rows[0].id, userIds['priya.sharma']]);
 
-  // 10. Community Events
   console.info('[SUPABASE SEED] Seeding Community Events...');
   await query(`
     INSERT INTO community_events (society_id, title, event_type, start_date, end_date, daily_time_from, daily_time_to, host_flat_code, estimated_visitors, has_loud_sound, is_quiet_hours_flagged, guest_pass_code)
     VALUES ($1, 'Aarav 5th Birthday Celebration', 'BIRTHDAY', CURRENT_DATE, CURRENT_DATE, '17:00', '22:30', 'D-101', 35, TRUE, TRUE, 'EVT-D101-BDAY');
   `, [societyId]);
 
-  // 11. Emergency SOS Alert
   console.info('[SUPABASE SEED] Seeding Emergency Alert...');
   await query(`
     INSERT INTO emergency_alerts (society_id, flat_code, resident_user_id, status, notes, acknowledged_by_guard_id, acknowledged_at)

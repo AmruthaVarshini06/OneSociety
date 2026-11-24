@@ -9,7 +9,7 @@ const router = Router();
 const CreateQrSchema = z.object({
   type: z.enum(['delivery_pass', 'visitor_pass', 'resident_pass']),
   issuedTo: z.string().min(1),
-  ttlSeconds: z.number().int().positive().max(86400 * 7), // max 7 days
+  ttlSeconds: z.number().int().positive().max(86400 * 7),
   referenceId: z.string().optional(),
   isSingleUse: z.boolean().optional().default(false),
 });

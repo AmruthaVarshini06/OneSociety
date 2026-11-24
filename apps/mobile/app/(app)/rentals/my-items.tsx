@@ -139,7 +139,7 @@ export default function MyRentalItemsScreen() {
                   </Chip>
                 </View>
 
-                {/* AI Status / Reason */}
+                {}
                 {item.aiPriceVerification && (
                   <View style={styles.aiNote}>
                     <Text variant="bodySmall" style={{ color: '#424242' }}>
@@ -149,7 +149,7 @@ export default function MyRentalItemsScreen() {
                   </View>
                 )}
 
-                {/* Rates */}
+                {}
                 <View style={styles.ratesRow}>
                   {item.chargeHourlyPaise ? (
                     <Text variant="bodySmall" style={styles.rateText}>
@@ -166,7 +166,7 @@ export default function MyRentalItemsScreen() {
                   </Text>
                 </View>
 
-                {/* Availability Toggle */}
+                {}
                 <View style={styles.toggleRow}>
                   <Text variant="bodyMedium" style={{ fontWeight: '500' }}>
                     {item.isAvailable ? 'Available for Rent' : 'Marked Unavailable / Paused'}
@@ -179,7 +179,7 @@ export default function MyRentalItemsScreen() {
                   />
                 </View>
 
-                {/* Draft Actions */}
+                {}
                 {item.status === 'DRAFT' && (
                   <Button
                     mode="contained-tonal"
@@ -242,7 +242,7 @@ export default function MyRentalItemsScreen() {
         }
       />
 
-      {/* Escalate Dialog */}
+      {}
       <Portal>
         <Dialog
           visible={!!escalateItem}

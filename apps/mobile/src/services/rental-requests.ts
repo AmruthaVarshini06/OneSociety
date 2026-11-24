@@ -49,7 +49,7 @@ export interface CreateItemRequestPayload {
   itemName: string;
   category: string;
   purpose?: string;
-  neededFrom: string; // ISO date
+  neededFrom: string;
   durationValue: number;
   durationType: DurationType;
   budgetPaise?: number;
@@ -86,8 +86,6 @@ export interface RequestDetailResponse {
   offers: ItemOffer[];
   isRequester: boolean;
 }
-
-// ── Requests ─────────────────────────────────────────────────────────
 
 export async function createItemRequest(
   payload: CreateItemRequestPayload,
@@ -130,8 +128,6 @@ export async function dismissItemRequest(id: string): Promise<void> {
 export async function cancelItemRequest(id: string): Promise<void> {
   await apiClient.post(`/api/v1/rentals/requests/${id}/cancel`);
 }
-
-// ── Offers ───────────────────────────────────────────────────────────
 
 export async function makeItemOffer(
   requestId: string,

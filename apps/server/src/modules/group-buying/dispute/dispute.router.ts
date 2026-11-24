@@ -6,7 +6,6 @@ import * as ctrl from './dispute.controller';
 const router = Router({ mergeParams: true });
 router.use(authenticate);
 
-// ── Issues & Disputes ──────────────────────────────────────────────────────
 router.post('/issues', requireRole('resident', 'president'), ctrl.reportIssue);
 router.get('/issues', requireRole('resident', 'supplier', 'president'), ctrl.listIssues);
 router.patch('/issues/:issueId/respond', requireRole('supplier', 'president'), ctrl.supplierRespondIssue);
@@ -17,11 +16,9 @@ router.patch(
   ctrl.presidentResolveIssue,
 );
 
-// ── Ratings ────────────────────────────────────────────────────────────────
 router.get('/ratings/mine', requireRole('resident', 'president'), ctrl.getMyRating);
 router.post('/ratings', requireRole('resident', 'president'), ctrl.submitRating);
 
-// ── Escrow Settlement ──────────────────────────────────────────────────────
 router.post('/settle', requireRole('president'), ctrl.settleOrderEscrow);
 
 export default router;

@@ -61,7 +61,6 @@ export async function submitMidServiceReview(
   if (!ag) throw Object.assign(new Error('Agreement not found'), { statusCode: 404 });
   if (ag.seeker_id.toString() !== seekerId) throw Object.assign(new Error('Forbidden'), { statusCode: 403 });
 
-  // Get provider_profile_id
   const provRes = await query('SELECT id FROM service_providers WHERE user_id = $1 LIMIT 1', [ag.provider_user_id]);
   const providerProfileId = provRes.rows[0]?.id || ag.provider_user_id;
 
@@ -140,7 +139,6 @@ export async function submitFinalReview(
   );
   const review = res.rows[0];
 
-  // Recalculate average rating
   const allFinal = await query(
     `SELECT overall_rating FROM service_reviews WHERE provider_profile_id = $1 AND review_type = 'FINAL' AND is_removed_by_president = FALSE`,
     [providerProfileId]

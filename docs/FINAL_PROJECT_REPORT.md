@@ -2,7 +2,7 @@
 
 **Project Title:** OneSociety — A Comprehensive Hyperlocal Community Operating System for Gated Apartment Societies  
 **Architecture:** Monorepo (Node.js/Express/TypeScript + React Native Expo)  
-**Database:** MongoDB with Mongoose (Atomic Transactions & Compound Indexes)  
+**Database:** Supabase PostgreSQL (Relational Integrity, ACID Transactions & Compound Indexes)  
 **Verification:** 100% Automated Test Coverage across all Business Logic & State Machines  
 
 ---
@@ -42,7 +42,7 @@ c:\OneSociety\
 
 ### Architectural Principles
 1. **Modular Monolith:** Domain isolation under `src/modules/*` prevents cross-module schema bleed while maintaining the operational simplicity of a single deployable server.
-2. **Multi-Document ACID Transactions:** All financial operations (escrow holds, refunds, settlements, and maintenance ledger entries) execute inside MongoDB multi-document transactions with atomic rollback capabilities.
+2. **ACID Transactions:** All financial operations (escrow holds, refunds, settlements, and maintenance ledger entries) execute inside PostgreSQL ACID transactions with atomic rollback capabilities.
 3. **Zero Floating-Point Financials:** All currency values are strictly stored as integers in **paise** (`₹1.00 = 100 paise`), eliminating IEEE 754 floating-point rounding errors.
 4. **State Machine Driven:** Every critical entity (Group Orders, Rental Bookings, Service Agreements, Complaint Clusters) follows a formal state transition diagram enforced on the server.
 5. **Cryptographic Non-Repudiation:** Gate QR passes and delivery tokens are digitally signed (HMAC-SHA256) with single-use nonce or periodic time-based expiration.
@@ -107,7 +107,7 @@ c:\OneSociety\
 
 ## 5. Verification & Test Suite Summary
 
-The backend test suite runs against an in-memory MongoDB replica set (`MongoMemoryReplSet`), validating all multi-document transactions and business rules:
+The backend test suite validates all transactions and business rules:
 
 ```
 PASS  tests/auth.test.ts (15 tests)

@@ -7,9 +7,7 @@ export interface AuthPayload {
   societyId: string;
 }
 
-// Augment Express Request so TypeScript knows about req.user
 declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Express {
     interface Request {
       user?: AuthPayload;
@@ -25,7 +23,7 @@ export function authenticate(req: Request, res: Response, next: NextFunction): v
     return;
   }
 
-  const token = authHeader.slice(7); // Remove "Bearer " prefix
+  const token = authHeader.slice(7);
   const secret = process.env.JWT_ACCESS_SECRET;
 
   if (!secret) {

@@ -111,7 +111,7 @@ export default function RateOrderScreen() {
 
             <Divider style={styles.divider} />
 
-            {/* Product Rating */}
+            {}
             <Text variant="labelLarge" style={styles.label}>
               1. Product Quality Rating
             </Text>
@@ -130,7 +130,7 @@ export default function RateOrderScreen() {
 
             <Divider style={styles.divider} />
 
-            {/* Supplier Rating */}
+            {}
             <Text variant="labelLarge" style={styles.label}>
               2. Supplier Delivery & Service Rating
             </Text>

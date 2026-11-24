@@ -19,7 +19,6 @@ export default function LocalVendorsDirectoryScreen() {
   const [refreshing, setRefreshing] = useState(false);
   const [vendors, setVendors] = useState<any[]>([]);
 
-  // Add/Edit Dialog
   const [dialogVisible, setDialogVisible] = useState(false);
   const [editingVendor, setEditingVendor] = useState<any>(null);
   const [name, setName] = useState('');

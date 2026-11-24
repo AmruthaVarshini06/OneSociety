@@ -5,7 +5,6 @@ import { query } from '../../config/supabase';
 const router = Router();
 router.use(authenticate);
 
-// Get current society details
 router.get('/me', async (req: Request, res: Response) => {
   try {
     const societyId = req.user?.societyId;
@@ -29,7 +28,6 @@ router.get('/me', async (req: Request, res: Response) => {
   }
 });
 
-// Get blocks
 router.get('/blocks', async (req: Request, res: Response) => {
   try {
     const societyId = req.user?.societyId;
@@ -46,7 +44,6 @@ router.get('/blocks', async (req: Request, res: Response) => {
   }
 });
 
-// Get flats
 router.get('/flats', async (req: Request, res: Response) => {
   try {
     const societyId = req.user?.societyId;
@@ -76,7 +73,6 @@ router.get('/flats', async (req: Request, res: Response) => {
   }
 });
 
-// Get single flat
 router.get('/flats/:id', async (req: Request, res: Response) => {
   try {
     const fRes = await query(
@@ -109,7 +105,6 @@ router.get('/flats/:id', async (req: Request, res: Response) => {
   }
 });
 
-// Get society members
 router.get('/members', async (req: Request, res: Response) => {
   try {
     const societyId = req.user?.societyId;

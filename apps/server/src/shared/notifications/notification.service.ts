@@ -30,9 +30,6 @@ function mapRow(row: any): NotificationRecord {
   };
 }
 
-/**
- * Send an individual notification to a user via Supabase PostgreSQL.
- */
 export async function sendNotification(
   userId: string | any,
   title: string,
@@ -65,12 +62,10 @@ export async function sendNotification(
 
     const notif = mapRow(insertRes.rows[0]);
 
-    // Real-time socket delivery
     if (io) {
       io.to(`user:${uid}`).emit('notification:new', notif);
     }
 
-    // WhatsApp mock dispatch
     sendWhatsApp(user.username, `[OneSociety] ${title}: ${body}`);
 
     return notif;
@@ -80,9 +75,6 @@ export async function sendNotification(
   }
 }
 
-/**
- * Broadcast notification to all residents/members of a society.
- */
 export async function sendSocietyNotification(
   societyId: string | any,
   title: string,
@@ -108,7 +100,6 @@ export async function sendSocietyNotification(
       );
     }
 
-    // Real-time socket broadcast
     if (io) {
       io.to(`society:${socId}`).emit('notification:society', {
         title,
@@ -119,16 +110,12 @@ export async function sendSocietyNotification(
       });
     }
 
-    // WhatsApp mock society broadcast
     sendWhatsApp(`Society Group (${socId})`, `[OneSociety Broadcast] ${title}: ${body}`);
   } catch (err) {
     console.error('[NOTIFICATION] Failed to broadcast society notification:', err);
   }
 }
 
-/**
- * Query notifications for a user with unread counter.
- */
 export async function getUserNotifications(
   userId: string,
   options?: { isRead?: boolean; page?: number; limit?: number },
@@ -169,9 +156,6 @@ export async function getUserNotifications(
   };
 }
 
-/**
- * Mark a single notification as read.
- */
 export async function markNotificationRead(
   notificationId: string,
   userId: string,
@@ -183,9 +167,6 @@ export async function markNotificationRead(
   return res.rows[0] ? mapRow(res.rows[0]) : null;
 }
 
-/**
- * Mark all notifications as read for a user.
- */
 export async function markAllNotificationsRead(userId: string): Promise<number> {
   const res = await query(
     `UPDATE notifications SET is_read = true WHERE user_id = $1 AND is_read = false`,

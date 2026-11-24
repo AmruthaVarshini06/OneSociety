@@ -75,28 +75,24 @@ export default function GroupOrderDetailScreen() {
   const [quantityInput, setQuantityInput] = useState('1');
   const [quantityError, setQuantityError] = useState('');
 
-  // Order details
   const { data: orderData, isLoading, isError, refetch } = useQuery({
     queryKey: ['group-order', id],
     queryFn: () => getGroupOrder(id),
     enabled: !!id,
   });
 
-  // My demand
   const { data: myDemandData, refetch: refetchMyDemand } = useQuery({
     queryKey: ['my-demand', id],
     queryFn: () => getMyDemand(id),
     enabled: !!id && (role === 'resident' || role === 'president'),
   });
 
-  // Pre-fill quantity if demand already exists
   useEffect(() => {
     if (myDemandData?.item) {
       setQuantityInput(String(myDemandData.item.quantityWanted));
     }
   }, [myDemandData]);
 
-  // Socket.IO: live demand progress
   useEffect(() => {
     const socket = getSocket();
     if (!socket) return;
@@ -197,7 +193,7 @@ export default function GroupOrderDetailScreen() {
     <SafeAreaView style={styles.container} edges={['top']}>
       <ScrollView contentContainerStyle={styles.scroll}>
 
-        {/* Status + timer */}
+        {}
         <View style={styles.headerRow}>
           <Chip style={[styles.statusChip, { backgroundColor: color }]} textStyle={styles.statusChipText}>
             {STATUS_LABELS[order.status] ?? order.status}
@@ -207,7 +203,7 @@ export default function GroupOrderDetailScreen() {
           )}
         </View>
 
-        {/* Product */}
+        {}
         <Card style={styles.card} mode="elevated">
           <Card.Content>
             <Text variant="headlineSmall" style={styles.productName}>{order.productName}</Text>
@@ -217,7 +213,7 @@ export default function GroupOrderDetailScreen() {
           </Card.Content>
         </Card>
 
-        {/* Live demand progress */}
+        {}
         <Card style={styles.card} mode="elevated">
           <Card.Content>
             <Text variant="titleMedium" style={styles.sectionTitle}>Demand Progress</Text>
@@ -240,7 +236,7 @@ export default function GroupOrderDetailScreen() {
               {progress >= 1 ? ' ✅ Minimum met!' : ''}
             </Text>
 
-            {/* Tier preview */}
+            {}
             {order.tiers && order.tiers.length > 0 && (
               <View style={styles.tierSection}>
                 <Text variant="titleSmall" style={styles.tierTitle}>Price Tiers</Text>
@@ -262,7 +258,7 @@ export default function GroupOrderDetailScreen() {
           </Card.Content>
         </Card>
 
-        {/* My demand / express demand */}
+        {}
         {canInteract && (
           <Card style={styles.card} mode="elevated">
             <Card.Content>
@@ -317,7 +313,7 @@ export default function GroupOrderDetailScreen() {
           </Card>
         )}
 
-        {/* President: cancel */}
+        {}
         {role === 'president' && isDemandOpen && (
           <Button
             mode="outlined"
@@ -331,7 +327,7 @@ export default function GroupOrderDetailScreen() {
           </Button>
         )}
 
-        {/* President: view offers (once OFFERS_OPEN or later) */}
+        {}
         {role === 'president' && order.status === 'OFFERS_OPEN' && (
           <Button
             mode="contained"
@@ -345,7 +341,7 @@ export default function GroupOrderDetailScreen() {
           </Button>
         )}
 
-        {/* Supplier: submit / view offer */}
+        {}
         {role === 'supplier' && order.status === 'OFFERS_OPEN' && (
           <Button
             mode="contained"
@@ -370,7 +366,7 @@ export default function GroupOrderDetailScreen() {
             View My Offer
           </Button>
         )}
-        {/* Resident / President: View commitment & payment */}
+        {}
         {(role === 'resident' || role === 'president') &&
           ['GROUP_ORDER_OPEN', 'PAYMENT_WINDOW', 'DELIVERY_PENDING'].includes(order.status) && (
             <Button
@@ -385,7 +381,7 @@ export default function GroupOrderDetailScreen() {
             </Button>
           )}
 
-        {/* President: Manage commitments & escrow */}
+        {}
         {role === 'president' &&
           [
             'SUPPLIER_SELECTED',
@@ -407,7 +403,7 @@ export default function GroupOrderDetailScreen() {
               Manage Commitments & Escrow
             </Button>
           )}
-        {/* Supplier / President: Dispatch order & generate passes */}
+        {}
         {(role === 'supplier' || role === 'president') && order.status === 'DELIVERY_PENDING' && (
           <Button
             mode="contained"
@@ -419,7 +415,7 @@ export default function GroupOrderDetailScreen() {
           </Button>
         )}
 
-        {/* Resident: View delivery pass */}
+        {}
         {(role === 'resident' || role === 'president') &&
           ['DISPATCHED', 'DELIVERING', 'DELIVERED'].includes(order.status) && (
             <Button
@@ -432,7 +428,7 @@ export default function GroupOrderDetailScreen() {
             </Button>
           )}
 
-        {/* Guard: Gate deliveries */}
+        {}
         {role === 'guard' && (
           <Button
             mode="contained"
@@ -443,7 +439,7 @@ export default function GroupOrderDetailScreen() {
             Gate Deliveries & Pickups
           </Button>
         )}
-        {/* Resident: Rate and report issue */}
+        {}
         {(role === 'resident' || role === 'president') &&
           ['DELIVERED', 'COMPLETED'].includes(order.status) && (
             <View style={{ gap: 8 }}>
@@ -466,7 +462,7 @@ export default function GroupOrderDetailScreen() {
             </View>
           )}
 
-        {/* Supplier: Review disputes */}
+        {}
         {role === 'supplier' && ['DELIVERED', 'COMPLETED'].includes(order.status) && (
           <Button
             mode="contained"
@@ -480,7 +476,7 @@ export default function GroupOrderDetailScreen() {
           </Button>
         )}
 
-        {/* President: Settle escrow */}
+        {}
         {role === 'president' && ['DELIVERED', 'COMPLETED'].includes(order.status) && (
           <Button
             mode="contained"

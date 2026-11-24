@@ -9,10 +9,6 @@ export interface TokenPayload {
   nonce: string;
 }
 
-/**
- * Generate a secure, single-use, verifiable delivery QR token.
- * Format: base64(payload).signature
- */
 export function generateQrToken(groupOrderId: string, flatId: string): string {
   const payload: TokenPayload = {
     groupOrderId,
@@ -26,9 +22,6 @@ export function generateQrToken(groupOrderId: string, flatId: string): string {
   return `${dataB64}.${signature}`;
 }
 
-/**
- * Verify a delivery QR token and extract the payload.
- */
 export function verifyQrToken(token: string): {
   valid: boolean;
   groupOrderId?: string;

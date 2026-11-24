@@ -67,7 +67,7 @@ export default function ProviderProfileScreen() {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      {/* Profile Header */}
+      {}
       <Card style={styles.card} mode="elevated">
         <Card.Content style={styles.headerContent}>
           <Avatar.Text
@@ -117,7 +117,7 @@ export default function ProviderProfileScreen() {
         </Card.Content>
       </Card>
 
-      {/* Services & Options */}
+      {}
       <Card style={styles.card} mode="elevated">
         <Card.Title title="Services Offered" />
         <Card.Content>
@@ -131,7 +131,7 @@ export default function ProviderProfileScreen() {
         </Card.Content>
       </Card>
 
-      {/* Bio & Details */}
+      {}
       <Card style={styles.card} mode="elevated">
         <Card.Title title="About & Qualifications" />
         <Card.Content style={{ gap: 8 }}>
@@ -167,7 +167,7 @@ export default function ProviderProfileScreen() {
         </Card.Content>
       </Card>
 
-      {/* Reviews */}
+      {}
       <Card style={styles.card} mode="elevated">
         <Card.Title title={`Reviews (${reviews.length})`} />
         <Card.Content style={{ gap: 10 }}>
@@ -199,7 +199,7 @@ export default function ProviderProfileScreen() {
         </Card.Content>
       </Card>
 
-      {/* Action CTA */}
+      {}
       <View style={styles.ctaWrap}>
         {isSelf ? (
           <Button mode="contained" disabled style={styles.ctaBtn}>

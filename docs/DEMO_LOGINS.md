@@ -48,6 +48,14 @@
 | Manoj Gupta      | manoj_d101       | Provider#123 | provider_internal (Repair)   | D-101 | hi |  |
 | Deepa Iyer       | deepa_c102       | Provider#123 | provider_internal (Music)    | C-102 | en |  |
 
+## Wholesale Suppliers & Vendors
+
+| Name                       | Username            | Password      | Role     | Business Name                 | GSTIN           | Note |
+|----------------------------|---------------------|---------------|----------|-------------------------------|-----------------|------|
+| Rajesh Patel (Fresh Agro)  | supplier.fresh      | Supplier@1234 | supplier | Fresh Farms Agro Wholesale    | 36ABCDE1234F1Z5 | Primary Supplier |
+| Fresh Farms Organic        | freshfarms.supplier | Supplier@1234 | supplier | Fresh Farms Organic & Fruits  | 36ABCDE1234F1Z5 | Approved |
+| Rahul Milk                 | rahul               | Supplier@1234 | supplier | Rahul milk shop               | —               | Approved |
+
 ## Staff
 
 | Name             | Username         | Password     | Role                         | Flat  | Lang | Note |

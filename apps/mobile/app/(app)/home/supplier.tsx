@@ -14,7 +14,7 @@ export default function SupplierHomeScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <ScrollView contentContainerStyle={styles.scroll}>
-        {/* Header Profile */}
+        {}
         <Surface style={styles.headerSurface} elevation={2}>
           <View style={styles.headerRow}>
             <View style={{ flex: 1 }}>
@@ -28,7 +28,7 @@ export default function SupplierHomeScreen() {
           </View>
         </Surface>
 
-        {/* Group Buying Demand Windows */}
+        {}
         <Card style={styles.card} mode="elevated">
           <Card.Content>
             <View style={styles.cardHeaderRow}>
@@ -56,7 +56,7 @@ export default function SupplierHomeScreen() {
           </Card.Actions>
         </Card>
 
-        {/* Business Profile & GST */}
+        {}
         <Card style={styles.card} mode="elevated">
           <Card.Content>
             <View style={styles.cardHeaderRow}>

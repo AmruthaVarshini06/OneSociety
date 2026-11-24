@@ -28,10 +28,8 @@ export default function MaintenanceAccountsScreen() {
   const [refreshing, setRefreshing] = useState(false);
   const [filterType, setFilterType] = useState<'ALL' | 'EXPENSE' | 'INCOME'>('ALL');
 
-  // Proof Photo Modal
   const [proofModalPhoto, setProofModalPhoto] = useState<string | null>(null);
 
-  // Query Modal
   const [queryModalEntry, setQueryModalEntry] = useState<any | null>(null);
   const [questionText, setQuestionText] = useState('');
   const [existingQueries, setExistingQueries] = useState<any[]>([]);
@@ -42,7 +40,6 @@ export default function MaintenanceAccountsScreen() {
       const res = await getMaintenanceAccounts();
       setData(res.data);
     } catch {
-      // ignore
     } finally {
       setLoading(false);
       setRefreshing(false);
@@ -105,7 +102,7 @@ export default function MaintenanceAccountsScreen() {
         />
       }
     >
-      {/* 1. Main Fund Balance Card */}
+      {}
       <View style={styles.balanceCard}>
         <Text style={styles.balanceLabel}>TOTAL SOCIETY FUND BALANCE</Text>
         <Text style={styles.balanceAmount}>₹{balanceRs.toLocaleString('en-IN')}</Text>
@@ -130,7 +127,7 @@ export default function MaintenanceAccountsScreen() {
         </TouchableOpacity>
       </View>
 
-      {/* 2. 4 Efficiency Indicators */}
+      {}
       {data?.efficiencyIndicators ? (
         <View style={styles.indicatorsGrid}>
           <View style={styles.indicatorCard}>
@@ -156,7 +153,7 @@ export default function MaintenanceAccountsScreen() {
         </View>
       ) : null}
 
-      {/* 3. Monthly Income vs Expense Chart / Bars */}
+      {}
       {data?.monthlyChartData && data.monthlyChartData.length > 0 ? (
         <View style={styles.chartCard}>
           <Text style={styles.chartTitle}>Monthly Income vs Expense</Text>
@@ -189,7 +186,7 @@ export default function MaintenanceAccountsScreen() {
         </View>
       ) : null}
 
-      {/* 4. Category-Wise Spending vs Budget */}
+      {}
       {data?.categorySpending && data.categorySpending.length > 0 ? (
         <View style={styles.categoryCard}>
           <Text style={styles.chartTitle}>Category Spending vs Budget</Text>
@@ -218,7 +215,7 @@ export default function MaintenanceAccountsScreen() {
         </View>
       ) : null}
 
-      {/* 5. Transactions Ledger */}
+      {}
       <View style={styles.ledgerHeader}>
         <Text style={styles.chartTitle}>Transparent Transaction Ledger</Text>
         <View style={styles.filterTabs}>
@@ -265,7 +262,7 @@ export default function MaintenanceAccountsScreen() {
                 <Text style={styles.txnPayee}>{entry.payeeOrPayer}</Text>
               </View>
 
-              {/* Linked Complaint Badge */}
+              {}
               {entry.linkedComplaintNumber ? (
                 <View style={styles.complaintLinkedBox}>
                   <MaterialCommunityIcons name="link-variant" size={14} color="#1E40AF" />
@@ -275,7 +272,7 @@ export default function MaintenanceAccountsScreen() {
                 </View>
               ) : null}
 
-              {/* Proof Photos & Query Button */}
+              {}
               <View style={styles.txnActionRow}>
                 {entry.proofPhotos && entry.proofPhotos.length > 0 ? (
                   <TouchableOpacity
@@ -304,7 +301,7 @@ export default function MaintenanceAccountsScreen() {
         })
       )}
 
-      {/* PROOF PHOTO MODAL */}
+      {}
       <Modal visible={!!proofModalPhoto} transparent animationType="fade">
         <View style={styles.modalBg}>
           <View style={styles.photoModalContent}>
@@ -321,7 +318,7 @@ export default function MaintenanceAccountsScreen() {
         </View>
       </Modal>
 
-      {/* EXPENSE QUERY MODAL */}
+      {}
       <Modal visible={!!queryModalEntry} transparent animationType="slide">
         <View style={styles.modalBg}>
           <View style={styles.queryModalContent}>
@@ -339,7 +336,7 @@ export default function MaintenanceAccountsScreen() {
                   {(queryModalEntry.amountPaise / 100).toLocaleString('en-IN')})
                 </Text>
 
-                {/* Existing Q&A list */}
+                {}
                 {existingQueries.map((q) => (
                   <View key={q._id} style={styles.qaCard}>
                     <Text style={styles.qText}>❓ {q.question}</Text>
@@ -353,7 +350,7 @@ export default function MaintenanceAccountsScreen() {
                   </View>
                 ))}
 
-                {/* Ask a question input */}
+                {}
                 <Text style={styles.askLabel}>Ask a question about this expense:</Text>
                 <TextInput
                   style={styles.queryInput}

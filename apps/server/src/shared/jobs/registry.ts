@@ -6,11 +6,6 @@ import { registerServiceHubJobs } from '../../modules/service-hub/scheduler/serv
 import { registerComplaintsJobs } from '../../modules/complaints/scheduler/complaints-jobs';
 import { registerSocietyHelpJobs } from '../../modules/society-help/scheduler/society-help-jobs';
 
-/**
- * Register all Agenda job definitions here.
- * Called once at server startup via startAgenda().
- * To add a new job: define its handler and add agenda.define() below.
- */
 export function registerAllJobs(): void {
   agenda.define('welcome-notification', exampleJob);
   agenda.define('group-buy-demand-close', groupBuyDemandCloseJob);

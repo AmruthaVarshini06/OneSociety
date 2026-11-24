@@ -46,7 +46,7 @@ export default function PresidentAdminDashboardScreen() {
         </Text>
       </View>
 
-      {/* Metric Cards */}
+      {}
       <View style={styles.metricsRow}>
         <Card
           style={[styles.metricCard, { backgroundColor: '#EDE7F6' }]}
@@ -103,7 +103,7 @@ export default function PresidentAdminDashboardScreen() {
         </Card>
       </View>
 
-      {/* Main Admin Actions */}
+      {}
       <Text variant="titleMedium" style={styles.sectionTitle}>Administrative Functions</Text>
 
       <Card style={styles.card} mode="elevated">

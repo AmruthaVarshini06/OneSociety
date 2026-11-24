@@ -1,7 +1,3 @@
-/**
- * Upload service stub.
- * Full implementation in P4 (Cloudinary upload, signed URLs, file type/size checks).
- */
 export async function uploadFile(
   _buffer: Buffer,
   _opts: { isPrivate?: boolean; purpose?: string; mimeType?: string },

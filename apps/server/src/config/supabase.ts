@@ -1,7 +1,6 @@
 import dotenv from 'dotenv';
 import path from 'path';
 
-// Ensure .env is loaded regardless of working directory
 dotenv.config();
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 

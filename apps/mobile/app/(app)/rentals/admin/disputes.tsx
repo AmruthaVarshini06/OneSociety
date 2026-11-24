@@ -206,7 +206,7 @@ export default function PresidentDisputesScreen() {
                   </View>
                 ) : null}
 
-                {/* Evidence Photos */}
+                {}
                 {item.ownerEvidencePhotos && item.ownerEvidencePhotos.length > 0 && (
                   <View style={{ marginTop: 4 }}>
                     <Text variant="labelSmall" style={{ color: '#757575', marginBottom: 4 }}>
@@ -235,7 +235,7 @@ export default function PresidentDisputesScreen() {
         }}
       />
 
-      {/* President Ruling Dialog */}
+      {}
       <Portal>
         <Dialog visible={rulingDialogVisible} onDismiss={() => setRulingDialogVisible(false)}>
           <Dialog.Title>President Binding Ruling</Dialog.Title>

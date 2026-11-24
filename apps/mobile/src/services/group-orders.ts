@@ -2,7 +2,7 @@ import apiClient from '../api/client';
 
 export interface PriceTier {
   minQuantity: number;
-  pricePerUnit: number; // paise
+  pricePerUnit: number;
 }
 
 export interface GroupOrder {
@@ -35,8 +35,6 @@ export interface DemandItem {
   updatedAt: string;
 }
 
-// ── Shared (all roles) ────────────────────────────────────────────────────
-
 export async function listGroupOrders(params?: {
   status?: string;
   page?: number;
@@ -51,8 +49,6 @@ export async function getGroupOrder(id: string): Promise<{ order: GroupOrder }> 
   return res.data;
 }
 
-// ── President only ────────────────────────────────────────────────────────
-
 export interface CreateGroupOrderPayload {
   productName: string;
   productCategory: string;
@@ -60,7 +56,7 @@ export interface CreateGroupOrderPayload {
   productImageUrl?: string;
   unit: string;
   minimumQuantity: number;
-  demandCloseAt: string; // ISO 8601
+  demandCloseAt: string;
 }
 
 export async function createGroupOrder(
@@ -84,8 +80,6 @@ export async function getDemandSummary(
   const res = await apiClient.get(`/api/v1/group-buying/orders/${id}/demand-summary`);
   return res.data;
 }
-
-// ── Resident: demand ──────────────────────────────────────────────────────
 
 export async function getMyDemand(
   orderId: string,

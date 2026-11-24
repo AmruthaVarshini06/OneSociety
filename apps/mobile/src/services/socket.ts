@@ -8,10 +8,6 @@ const SOCKET_URL =
 
 let socket: Socket | null = null;
 
-/**
- * Returns the existing socket or creates a new one connected with the
- * current auth token from the Zustand store.
- */
 export function getSocket(): Socket {
   if (socket && socket.connected) {
     return socket;
@@ -45,9 +41,6 @@ export function getSocket(): Socket {
   return socket;
 }
 
-/**
- * Disconnects and destroys the current socket instance.
- */
 export function disconnectSocket(): void {
   if (socket) {
     socket.disconnect();
@@ -56,18 +49,12 @@ export function disconnectSocket(): void {
   }
 }
 
-/**
- * Join a named room on the server.
- */
 export function joinRoom(room: string): void {
   const s = getSocket();
   s.emit('join_room', { room });
   console.log('[Socket] Joined room:', room);
 }
 
-/**
- * Leave a named room on the server.
- */
 export function leaveRoom(room: string): void {
   if (socket) {
     socket.emit('leave_room', { room });

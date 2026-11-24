@@ -14,7 +14,7 @@ export default function DeliveryHomeScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <ScrollView contentContainerStyle={styles.scroll}>
-        {/* Header Profile */}
+        {}
         <Surface style={styles.headerSurface} elevation={2}>
           <View style={styles.headerRow}>
             <View style={{ flex: 1 }}>
@@ -28,7 +28,7 @@ export default function DeliveryHomeScreen() {
           </View>
         </Surface>
 
-        {/* Gate Protocol Card */}
+        {}
         <Card style={styles.card} mode="elevated">
           <Card.Content>
             <View style={styles.cardHeaderRow}>
@@ -64,7 +64,7 @@ export default function DeliveryHomeScreen() {
           </Card.Content>
         </Card>
 
-        {/* Group Buying Bulk Deliveries */}
+        {}
         <Card style={styles.card} mode="elevated">
           <Card.Content>
             <View style={styles.cardHeaderRow}>

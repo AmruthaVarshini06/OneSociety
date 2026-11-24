@@ -73,7 +73,6 @@ export default function PresidentComplaintsCenter() {
     );
   }
 
-  // Filter issues for priority queue: Needs Action (NEW or REOPENED)
   const priorityQueueIssues = issues
     .filter(i => i.status === 'NEW' || i.status === 'REOPENED')
     .sort((a, b) => b.priorityScore - a.priorityScore);
@@ -92,7 +91,7 @@ export default function PresidentComplaintsCenter() {
       contentContainerStyle={styles.content}
       refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
     >
-      {/* Metric Cards Row */}
+      {}
       {metrics && (
         <View style={styles.metricsGrid}>
           <Card style={[styles.metricCard, { backgroundColor: '#EFF6FF' }]} mode="contained">
@@ -140,7 +139,7 @@ export default function PresidentComplaintsCenter() {
         </View>
       )}
 
-      {/* Directory & Analytics Navigation Shortcuts */}
+      {}
       <View style={styles.navRow}>
         <Button
           mode="outlined"
@@ -160,7 +159,7 @@ export default function PresidentComplaintsCenter() {
         </Button>
       </View>
 
-      {/* View Mode Toggle */}
+      {}
       <SegmentedButtons
         value={viewTab}
         onValueChange={v => setViewTab(v as any)}
@@ -172,7 +171,7 @@ export default function PresidentComplaintsCenter() {
         style={styles.segButtons}
       />
 
-      {/* Tab 1: Priority Queue */}
+      {}
       {viewTab === 'queue' && (
         <View style={styles.tabContent}>
           <Text style={styles.tabHeader}>🚨 Needs Action (Highest Score First)</Text>
@@ -231,7 +230,7 @@ export default function PresidentComplaintsCenter() {
         </View>
       )}
 
-      {/* Tab 2: Kanban Board */}
+      {}
       {viewTab === 'kanban' && (
         <ScrollView horizontal style={styles.kanbanScroll} contentContainerStyle={styles.kanbanContainer}>
           {kanbanColumns.map(col => {
@@ -269,7 +268,7 @@ export default function PresidentComplaintsCenter() {
         </ScrollView>
       )}
 
-      {/* Tab 3: Batching Suggestions */}
+      {}
       {viewTab === 'batching' && (
         <View style={styles.tabContent}>
           <Text style={styles.tabHeader}>💡 Work Order Batching Suggestions</Text>

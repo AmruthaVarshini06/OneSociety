@@ -45,7 +45,7 @@ export default function AdminReportsScreen() {
 
       {isLoading && <ActivityIndicator animating={true} style={{ marginTop: 24 }} />}
 
-      {/* Active Tab */}
+      {}
       {tab === 'ACTIVE' && (
         <View style={{ gap: 10 }}>
           {activeServices.length === 0 && (
@@ -77,7 +77,7 @@ export default function AdminReportsScreen() {
         </View>
       )}
 
-      {/* Overdue Tab */}
+      {}
       {tab === 'OVERDUE' && (
         <View style={{ gap: 10 }}>
           {overduePayments.length === 0 && (
@@ -109,7 +109,7 @@ export default function AdminReportsScreen() {
         </View>
       )}
 
-      {/* Categories Distribution Tab */}
+      {}
       {tab === 'CATEGORIES' && (
         <View style={{ gap: 10 }}>
           {byCategory.map((cat: any) => (

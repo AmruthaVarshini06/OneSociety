@@ -5,7 +5,6 @@ const FCM_ENABLED = process.env.FCM_ENABLED === 'true';
 if (FCM_ENABLED) {
   const projectId = process.env.FIREBASE_PROJECT_ID;
   const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
-  // Replace literal \n in env var with real newlines
   const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n');
 
   if (!projectId || !clientEmail || !privateKey) {

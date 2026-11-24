@@ -10,7 +10,6 @@ function presidentOnly(req: any, res: any, next: any) {
   next();
 }
 
-// Verification queue — pending providers
 router.get('/verification-queue', authenticate, presidentOnly, async (req, res) => {
   const { societyId } = req.user!;
   const result = await query(
@@ -24,7 +23,6 @@ router.get('/verification-queue', authenticate, presidentOnly, async (req, res) 
   res.json(result.rows);
 });
 
-// All providers list with optional filters
 router.get('/providers', authenticate, presidentOnly, async (req, res) => {
   const { societyId } = req.user!;
   const providers = await providerSvc.listProviders({
@@ -36,7 +34,6 @@ router.get('/providers', authenticate, presidentOnly, async (req, res) => {
   res.json(providers);
 });
 
-// Reports
 router.get('/reports', authenticate, presidentOnly, async (req, res) => {
   const { societyId } = req.user!;
 
@@ -73,7 +70,6 @@ router.get('/reports', authenticate, presidentOnly, async (req, res) => {
   });
 });
 
-// Create external provider account
 router.post('/external-accounts', authenticate, presidentOnly, async (req, res) => {
   const result = await providerSvc.createExternalProviderAccount({
     societyId: req.user!.societyId,
@@ -83,7 +79,6 @@ router.post('/external-accounts', authenticate, presidentOnly, async (req, res) 
   res.status(201).json(result);
 });
 
-// Deactivate external account
 router.patch('/external-accounts/:id/deactivate', authenticate, presidentOnly, async (req, res) => {
   const result = await query(
     `UPDATE service_providers SET status = 'DEACTIVATED' WHERE id = $1 RETURNING *`,
@@ -93,13 +88,11 @@ router.patch('/external-accounts/:id/deactivate', authenticate, presidentOnly, a
   res.json(result.rows[0]);
 });
 
-// Convert to permanent
 router.post('/external-accounts/:id/convert-permanent', authenticate, presidentOnly, async (req, res) => {
   const updated = await providerSvc.convertToPermanent(req.params.id, req.user!.userId);
   res.json(updated);
 });
 
-// All complaints
 router.get('/complaints', authenticate, presidentOnly, async (req, res) => {
   const result = await query(
     `SELECT sc.*, u.username as filed_by_username, sp.name as provider_name

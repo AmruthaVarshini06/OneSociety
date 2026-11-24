@@ -26,14 +26,13 @@ export default function GuardHomeScreen() {
         setHeadcount(res.data.totalInside);
       }
     } catch {
-      // ignore
     }
   };
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <ScrollView contentContainerStyle={styles.scroll}>
-        {/* Guard Profile Header */}
+        {}
         <Surface style={styles.headerSurface} elevation={2}>
           <View style={styles.headerRow}>
             <View style={{ flex: 1 }}>
@@ -46,7 +45,7 @@ export default function GuardHomeScreen() {
             <Avatar.Icon size={52} icon="shield-account" style={styles.avatar} color="#FFFFFF" />
           </View>
 
-          {/* Live Headcount Banner */}
+          {}
           <View style={styles.headcountBanner}>
             <View style={styles.liveDot} />
             <Text style={styles.headcountLabel}>SOCIETY HEADCOUNT NOW:</Text>
@@ -54,7 +53,7 @@ export default function GuardHomeScreen() {
           </View>
         </Surface>
 
-        {/* 1. Live Gate Security Card */}
+        {}
         <Card style={styles.card} mode="elevated">
           <Card.Content>
             <View style={styles.cardHeaderRow}>
@@ -87,7 +86,7 @@ export default function GuardHomeScreen() {
           </Card.Actions>
         </Card>
 
-        {/* 2. Fast Actions Grid */}
+        {}
         <Text style={styles.sectionTitle}>QUICK SECURITY ACTIONS</Text>
         <View style={styles.actionGrid}>
           <Button
@@ -124,7 +123,7 @@ export default function GuardHomeScreen() {
           </Button>
         </View>
 
-        {/* 3. Society Events & Salary */}
+        {}
         <Card style={styles.card} mode="elevated">
           <Card.Content>
             <View style={styles.cardHeaderRow}>
@@ -170,7 +169,7 @@ export default function GuardHomeScreen() {
           </Card.Actions>
         </Card>
 
-        {/* 4. Group Buying Deliveries Card */}
+        {}
         <Card style={styles.card} mode="elevated">
           <Card.Content>
             <View style={styles.cardHeaderRow}>

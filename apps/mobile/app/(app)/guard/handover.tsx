@@ -56,7 +56,7 @@ export default function ShiftHandoverScreen() {
         Transfer active gate logs and society custody to incoming shift guard.
       </Text>
 
-      {/* Snapshot Card */}
+      {}
       <View style={styles.card}>
         <View style={styles.snapshotRow}>
           <MaterialCommunityIcons name="transfer" size={24} color="#1E3A8A" />
@@ -67,7 +67,7 @@ export default function ShiftHandoverScreen() {
         </View>
       </View>
 
-      {/* Incoming Guard */}
+      {}
       <View style={styles.formGroup}>
         <Text style={styles.label}>Incoming Guard Name (Optional)</Text>
         <TextInput
@@ -78,7 +78,7 @@ export default function ShiftHandoverScreen() {
         />
       </View>
 
-      {/* Handover Notes */}
+      {}
       <View style={styles.formGroup}>
         <Text style={styles.label}>Handover Shift Notes *</Text>
         <TextInput

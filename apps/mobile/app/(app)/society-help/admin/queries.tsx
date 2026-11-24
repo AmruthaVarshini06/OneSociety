@@ -28,7 +28,6 @@ export default function PresidentQueriesScreen() {
       const accRes = await getMaintenanceAccounts();
       const entries = accRes.data.entries || [];
 
-      // Fetch queries for each entry
       const results: any[] = [];
       for (const entry of entries) {
         try {
@@ -40,12 +39,10 @@ export default function PresidentQueriesScreen() {
             });
           }
         } catch {
-          // ignore
         }
       }
       setEntriesWithQueries(results);
     } catch {
-      // ignore
     } finally {
       setLoading(false);
     }
@@ -97,7 +94,7 @@ export default function PresidentQueriesScreen() {
             </View>
             <Text style={styles.entryDesc}>{entry.description}</Text>
 
-            {/* Queries on this entry */}
+            {}
             {queries.map((q: any) => {
               const isReplying = replyingId === q._id;
               return (

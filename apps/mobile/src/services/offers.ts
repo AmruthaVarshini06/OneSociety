@@ -20,8 +20,6 @@ export interface SupplierOffer {
   updatedAt: string;
 }
 
-// ── Supplier ──────────────────────────────────────────────────────────────
-
 export async function submitOffer(
   orderId: string,
   payload: { tiers: PriceTier[]; deliveryDays: number; note?: string },
@@ -34,8 +32,6 @@ export async function getMyOffer(orderId: string): Promise<{ offer: SupplierOffe
   const res = await apiClient.get(`/api/v1/group-buying/orders/${orderId}/offers/mine`);
   return res.data;
 }
-
-// ── President ─────────────────────────────────────────────────────────────
 
 export async function listOffers(orderId: string): Promise<{ offers: SupplierOffer[] }> {
   const res = await apiClient.get(`/api/v1/group-buying/orders/${orderId}/offers`);

@@ -65,7 +65,7 @@ export default function CreateExternalProviderScreen() {
           subtitle="Issue temporary or permanent access credentials"
         />
         <Card.Content style={{ gap: 12 }}>
-          {/* Rules Banner */}
+          {}
           <View style={styles.ruleBanner}>
             <Text variant="labelSmall" style={{ color: '#E65100', fontWeight: '700' }}>
               ⚠️ SYSTEM RULES:
@@ -164,7 +164,7 @@ export default function CreateExternalProviderScreen() {
         </Card.Content>
       </Card>
 
-      {/* Issued Credentials Modal */}
+      {}
       <Portal>
         <Dialog visible={credentialsDialog} dismissable={false}>
           <Dialog.Title>Credentials Issued Successfully!</Dialog.Title>

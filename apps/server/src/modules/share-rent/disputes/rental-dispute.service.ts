@@ -233,7 +233,6 @@ export async function respondToDispute(
     return mapDispute(updateD.rows[0]);
   }
 
-  // CONTEST
   const updateContest = await query(
     `UPDATE rental_disputes
      SET renter_response = 'CONTESTED', renter_counter_note = $1, status = 'ESCALATED', escalated_at = NOW()

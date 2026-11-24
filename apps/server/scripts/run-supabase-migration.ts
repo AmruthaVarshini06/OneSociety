@@ -26,7 +26,6 @@ async function migrate() {
     await client.query(sql);
     console.info('[SUPABASE] Schema migrations executed successfully!');
 
-    // Verify created tables
     const res = await client.query(`
       SELECT table_name 
       FROM information_schema.tables 

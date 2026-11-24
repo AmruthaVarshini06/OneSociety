@@ -47,7 +47,6 @@ function OfferCard({
   const supplier = typeof offer.supplierId === 'object' ? offer.supplierId : null;
   const statusColor = STATUS_COLORS[offer.status] ?? '#9E9E9E';
 
-  // Which tier applies at current demand?
   const activeTier = [...offer.tiers]
     .sort((a, b) => a.minQuantity - b.minQuantity)
     .filter((t) => totalDemand >= t.minQuantity)
@@ -72,7 +71,7 @@ function OfferCard({
 
         <Divider style={styles.divider} />
 
-        {/* Active price at current demand */}
+        {}
         {activeTier && (
           <View style={styles.highlightRow}>
             <Text variant="bodySmall" style={styles.highlightLabel}>
@@ -84,7 +83,7 @@ function OfferCard({
           </View>
         )}
 
-        {/* All tiers */}
+        {}
         <Text variant="labelSmall" style={styles.tierHeading}>All Tiers</Text>
         {offer.tiers.map((t, i) => {
           const isActive = t === activeTier;
@@ -195,7 +194,6 @@ export default function OffersListScreen() {
 
   const offers = data?.offers ?? [];
 
-  // Sort: PENDING first, then ACCEPTED, then REJECTED; within PENDING sort by lowest price
   const sorted = [...offers].sort((a, b) => {
     if (a.status !== b.status) {
       const order = ['PENDING', 'ACCEPTED', 'REJECTED'];

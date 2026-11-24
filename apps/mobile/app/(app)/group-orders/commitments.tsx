@@ -35,14 +35,12 @@ export default function GroupOrderCommitmentsScreen() {
   const [hoursModalVisible, setHoursModalVisible] = useState(false);
   const [paymentHours, setPaymentHours] = useState('48');
 
-  // Order query
   const { data: orderData, isLoading: isOrderLoading } = useQuery({
     queryKey: ['group-order', id],
     queryFn: () => getGroupOrder(id),
     enabled: !!id,
   });
 
-  // Commitments query
   const {
     data: summary,
     isLoading: isSummaryLoading,
@@ -56,7 +54,6 @@ export default function GroupOrderCommitmentsScreen() {
 
   const order = orderData?.order;
 
-  // Open Order mutation
   const openOrderMutation = useMutation({
     mutationFn: () => openOrder(id),
     onSuccess: (data) => {
@@ -69,7 +66,6 @@ export default function GroupOrderCommitmentsScreen() {
     },
   });
 
-  // Open Payment Window mutation
   const openPaymentMutation = useMutation({
     mutationFn: () => openPaymentWindow(id, parseInt(paymentHours, 10) || 48),
     onSuccess: () => {
@@ -83,7 +79,6 @@ export default function GroupOrderCommitmentsScreen() {
     },
   });
 
-  // Close Payment Window mutation
   const closePaymentMutation = useMutation({
     mutationFn: () => closePaymentWindow(id),
     onSuccess: () => {
@@ -121,7 +116,7 @@ export default function GroupOrderCommitmentsScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scroll}>
-        {/* Order Info & Status */}
+        {}
         <Card style={styles.card}>
           <Card.Content>
             <View style={styles.headerRow}>
@@ -172,7 +167,7 @@ export default function GroupOrderCommitmentsScreen() {
           </Card.Content>
         </Card>
 
-        {/* Phase Action Buttons for President */}
+        {}
         {order.status === 'SUPPLIER_SELECTED' && (
           <Card style={[styles.card, { backgroundColor: '#E8F5E9' }]}>
             <Card.Content>
@@ -246,7 +241,7 @@ export default function GroupOrderCommitmentsScreen() {
           </Card>
         )}
 
-        {/* Commitment Items List */}
+        {}
         <Text variant="titleMedium" style={styles.sectionHeader}>
           Resident Commitments ({commitments.length})
         </Text>
@@ -297,7 +292,7 @@ export default function GroupOrderCommitmentsScreen() {
         )}
       </ScrollView>
 
-      {/* Payment Window Duration Modal */}
+      {}
       <Portal>
         <Modal
           visible={hoursModalVisible}

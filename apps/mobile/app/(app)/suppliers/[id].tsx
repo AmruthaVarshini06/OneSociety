@@ -134,7 +134,7 @@ export default function SupplierDetailScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <ScrollView contentContainerStyle={styles.scroll}>
-        {/* Status badge */}
+        {}
         <View style={styles.statusRow}>
           <Chip
             style={[styles.statusChip, { backgroundColor: statusColor }]}
@@ -144,7 +144,7 @@ export default function SupplierDetailScreen() {
           </Chip>
         </View>
 
-        {/* Business info */}
+        {}
         <Card style={styles.card} mode="elevated">
           <Card.Content>
             <Text variant="titleLarge" style={styles.sectionTitle}>
@@ -165,7 +165,7 @@ export default function SupplierDetailScreen() {
           </Card.Content>
         </Card>
 
-        {/* Document */}
+        {}
         {supplier.idDocumentUrl && (
           <Card style={styles.card} mode="elevated">
             <Card.Content>
@@ -176,7 +176,7 @@ export default function SupplierDetailScreen() {
               <Text variant="bodySmall" style={styles.docNote}>
                 Document on file. Access is audit-logged.
               </Text>
-              {/* In a full build: open signed URL in WebBrowser */}
+              {}
               <Button
                 mode="outlined"
                 style={{ marginTop: 8 }}
@@ -190,7 +190,7 @@ export default function SupplierDetailScreen() {
           </Card>
         )}
 
-        {/* Rejection note (if rejected) */}
+        {}
         {supplier.verificationStatus === 'REJECTED' && supplier.verificationNote && (
           <Card style={[styles.card, styles.rejectedCard]} mode="elevated">
             <Card.Content>
@@ -204,7 +204,7 @@ export default function SupplierDetailScreen() {
           </Card>
         )}
 
-        {/* Actions */}
+        {}
         <View style={styles.actions}>
           {canApprove && (
             <Button
@@ -231,7 +231,7 @@ export default function SupplierDetailScreen() {
         </View>
       </ScrollView>
 
-      {/* Reject modal */}
+      {}
       <Portal>
         <Modal
           visible={rejectModalVisible}

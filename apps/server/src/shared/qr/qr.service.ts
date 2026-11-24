@@ -20,9 +20,6 @@ export interface QrRecord {
   usedAt?: string | null;
 }
 
-/**
- * Create a signed QR token stored in Supabase PostgreSQL.
- */
 export async function createToken(
   type: QrTokenType,
   issuedTo: string,
@@ -53,18 +50,13 @@ export async function createToken(
   return token;
 }
 
-/**
- * Verify a QR token: check JWT signature, check DB record (not expired, not used if single-use).
- */
 export async function verifyToken(token: string): Promise<QrRecord> {
-  // 1. Verify JWT signature and expiry
   try {
     jwt.verify(token, getSecret());
   } catch {
     throw Object.assign(new Error('Invalid or expired QR token'), { statusCode: 401 });
   }
 
-  // 2. Look up in DB
   const res = await query(
     `SELECT * FROM qr_passes WHERE qr_token = $1`,
     [token]
@@ -84,7 +76,6 @@ export async function verifyToken(token: string): Promise<QrRecord> {
     throw Object.assign(new Error('QR token already used'), { statusCode: 409 });
   }
 
-  // Mark used
   await query(
     `UPDATE qr_passes SET is_used = true, used_at = NOW(), status = 'used' WHERE id = $1`,
     [record.id]

@@ -27,7 +27,6 @@ export default function PayMaintenanceScreen() {
       const res = await getMaintenanceDues();
       setDues(res.data || []);
     } catch {
-      // ignore
     } finally {
       setLoading(false);
     }

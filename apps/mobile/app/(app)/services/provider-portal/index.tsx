@@ -58,7 +58,7 @@ export default function ProviderPortalHomeScreen() {
       contentContainerStyle={styles.content}
       refreshControl={<RefreshControl refreshing={visitsLoading} onRefresh={refetchVisits} />}
     >
-      {/* Top Banner */}
+      {}
       <View style={styles.header}>
         <Text variant="headlineSmall" style={styles.title}>Provider Portal</Text>
         <Text variant="bodySmall" style={styles.subtitle}>
@@ -66,7 +66,7 @@ export default function ProviderPortalHomeScreen() {
         </Text>
       </View>
 
-      {/* Quick Summary Cards */}
+      {}
       <View style={styles.summaryRow}>
         <Card
           style={[styles.summaryCard, { backgroundColor: '#E3F2FD' }]}
@@ -95,7 +95,7 @@ export default function ProviderPortalHomeScreen() {
         </Card>
       </View>
 
-      {/* Today's Schedule (Section 6 Requirement: default home screen) */}
+      {}
       <Card style={styles.card} mode="elevated">
         <Card.Title
           title="Today's Schedule (Where & When to Go)"
@@ -148,7 +148,7 @@ export default function ProviderPortalHomeScreen() {
         </Card.Content>
       </Card>
 
-      {/* Navigation Shortcuts */}
+      {}
       <Text variant="titleMedium" style={styles.sectionTitle}>Manage Your Business</Text>
 
       <View style={styles.grid}>

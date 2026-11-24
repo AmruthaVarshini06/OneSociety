@@ -1,13 +1,12 @@
 import { calculateTieredPrice, previewPriceWithExtra, validateTiers, type PriceTier } from './pricing';
 
 const TIERS: PriceTier[] = [
-  { minQuantity: 10,  pricePerUnit: 50000 }, // ₹500
-  { minQuantity: 25,  pricePerUnit: 44000 }, // ₹440
-  { minQuantity: 50,  pricePerUnit: 38000 }, // ₹380
+  { minQuantity: 10,  pricePerUnit: 50000 },
+  { minQuantity: 25,  pricePerUnit: 44000 },
+  { minQuantity: 50,  pricePerUnit: 38000 },
 ];
 
 describe('Tiered Pricing', () => {
-  // ── calculateTieredPrice ────────────────────────────────────────────────
   describe('calculateTieredPrice', () => {
     it('returns null when below minimum tier', () => {
       expect(calculateTieredPrice(TIERS, 5)).toBeNull();
@@ -57,7 +56,7 @@ describe('Tiered Pricing', () => {
       const result = calculateTieredPrice(TIERS, 15, 1);
       expect(result!.nextTier).toBeDefined();
       expect(result!.nextTier!.minQuantity).toBe(25);
-      expect(result!.nextTier!.unitsNeeded).toBe(10); // 25 - 15
+      expect(result!.nextTier!.unitsNeeded).toBe(10);
     });
 
     it('shows no nextTier when already at highest tier', () => {
@@ -84,10 +83,8 @@ describe('Tiered Pricing', () => {
     });
   });
 
-  // ── previewPriceWithExtra ───────────────────────────────────────────────
   describe('previewPriceWithExtra', () => {
     it('shows price that would apply if more units joined', () => {
-      // 15 existing + 10 extra = 25 → tier 2
       const result = previewPriceWithExtra(TIERS, 15, 10);
       expect(result!.pricePerUnit).toBe(44000);
     });
@@ -98,7 +95,6 @@ describe('Tiered Pricing', () => {
     });
   });
 
-  // ── validateTiers ───────────────────────────────────────────────────────
   describe('validateTiers', () => {
     it('accepts valid tiers', () => {
       expect(validateTiers(TIERS).valid).toBe(true);
@@ -132,7 +128,7 @@ describe('Tiered Pricing', () => {
     it('rejects tiers where higher tier has higher price (not a discount)', () => {
       const r = validateTiers([
         { minQuantity: 10, pricePerUnit: 44000 },
-        { minQuantity: 25, pricePerUnit: 50000 }, // price went UP
+        { minQuantity: 25, pricePerUnit: 50000 },
       ]);
       expect(r.valid).toBe(false);
       expect(r.reason).toMatch(/lower pricePerUnit/i);

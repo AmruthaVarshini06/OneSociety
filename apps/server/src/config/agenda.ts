@@ -64,7 +64,6 @@ export function defineJob(
   agenda.define(name, handler);
 }
 
-
 export async function scheduleJob(
   name: string,
   when: string | Date,

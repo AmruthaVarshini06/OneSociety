@@ -21,7 +21,6 @@ import {
 export default function MaintenanceControlScreen() {
   const [activeTab, setActiveTab] = useState<'EXPENSE' | 'OFFLINE' | 'SALARY' | 'COMPLAINT'>('EXPENSE');
 
-  // Expense form
   const [expenseCategory, setExpenseCategory] = useState('Electricity for common areas');
   const [expenseAmount, setExpenseAmount] = useState('8500');
   const [expensePayee, setExpensePayee] = useState('TSSPDCL Electricity Board');
@@ -29,14 +28,12 @@ export default function MaintenanceControlScreen() {
   const [expenseProof, setExpenseProof] = useState('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=400');
   const [savingExpense, setSavingExpense] = useState(false);
 
-  // Watchman Salary
   const [salaryMonth, setSalaryMonth] = useState('2026-11');
   const [salaryAmount, setSalaryAmount] = useState('26000');
   const [guardUserId, setGuardUserId] = useState('');
   const [salaryRef, setSalaryRef] = useState('NEFT-202611-WATCHMAN');
   const [payingSalary, setPayingSalary] = useState(false);
 
-  // Complaint Linking
   const [complaintClusterId, setComplaintClusterId] = useState('');
   const [linkingComplaint, setLinkingComplaint] = useState(false);
 
@@ -78,7 +75,7 @@ export default function MaintenanceControlScreen() {
     try {
       setPayingSalary(true);
       await recordWatchmanSalary({
-        guardUserId: guardUserId || '664000000000000000000003', // default guard ID
+        guardUserId: guardUserId || '664000000000000000000003',
         month: salaryMonth,
         amountPaise: Math.round(Number(salaryAmount) * 100),
         reference: salaryRef,
@@ -119,7 +116,7 @@ export default function MaintenanceControlScreen() {
         Every transaction must be accounted for with mandatory proof photos.
       </Text>
 
-      {/* Tabs */}
+      {}
       <View style={styles.tabRow}>
         {(['EXPENSE', 'SALARY', 'COMPLAINT'] as const).map((tab) => (
           <TouchableOpacity
@@ -138,7 +135,7 @@ export default function MaintenanceControlScreen() {
         ))}
       </View>
 
-      {/* 1. RECORD SOCIETY EXPENSE */}
+      {}
       {activeTab === 'EXPENSE' ? (
         <View style={styles.card}>
           <Text style={styles.cardTitle}>Record Society Expense</Text>
@@ -216,7 +213,7 @@ export default function MaintenanceControlScreen() {
         </View>
       ) : null}
 
-      {/* 2. WATCHMAN SALARY */}
+      {}
       {activeTab === 'SALARY' ? (
         <View style={styles.card}>
           <Text style={styles.cardTitle}>Disburse Security Guard Salary</Text>
@@ -263,7 +260,7 @@ export default function MaintenanceControlScreen() {
         </View>
       ) : null}
 
-      {/* 3. LINK MODULE 4 COMPLAINT */}
+      {}
       {activeTab === 'COMPLAINT' ? (
         <View style={styles.card}>
           <Text style={styles.cardTitle}>Link Module 4 Solved Complaint</Text>

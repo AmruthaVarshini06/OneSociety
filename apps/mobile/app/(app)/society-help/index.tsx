@@ -43,7 +43,6 @@ export default function SocietyHelpIndexScreen() {
       const accRes = await getMaintenanceAccounts();
       setBalanceRs(Math.round((accRes.data.currentBalancePaise || 0) / 100));
     } catch {
-      // ignore
     } finally {
       setLoadingPresence(false);
     }
@@ -75,7 +74,7 @@ export default function SocietyHelpIndexScreen() {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      {/* 1. Someone at Home Toggle (Residents) */}
+      {}
       {user?.role === 'resident' && presence ? (
         <View
           style={[
@@ -109,7 +108,7 @@ export default function SocietyHelpIndexScreen() {
         </View>
       ) : null}
 
-      {/* 2. Dues Alert Banner */}
+      {}
       {pendingDue ? (
         <TouchableOpacity
           style={styles.dueBanner}
@@ -128,10 +127,10 @@ export default function SocietyHelpIndexScreen() {
         </TouchableOpacity>
       ) : null}
 
-      {/* 3. Three Core Pillars Grid */}
+      {}
       <Text style={styles.sectionHeader}>Society Help Services</Text>
 
-      {/* Pillar 1: Gate Security & QR Passes */}
+      {}
       <TouchableOpacity
         style={styles.pillarCard}
         onPress={() => router.push('/(app)/society-help/passes')}
@@ -148,7 +147,7 @@ export default function SocietyHelpIndexScreen() {
         <MaterialCommunityIcons name="chevron-right" size={24} color="#94A3B8" />
       </TouchableOpacity>
 
-      {/* Pillar 2: Maintenance Accounts */}
+      {}
       <TouchableOpacity
         style={styles.pillarCard}
         onPress={() => router.push('/(app)/society-help/maintenance')}
@@ -166,7 +165,7 @@ export default function SocietyHelpIndexScreen() {
         <MaterialCommunityIcons name="chevron-right" size={24} color="#94A3B8" />
       </TouchableOpacity>
 
-      {/* Pillar 3: Community Events */}
+      {}
       <TouchableOpacity
         style={styles.pillarCard}
         onPress={() => router.push('/(app)/society-help/events')}
@@ -183,7 +182,7 @@ export default function SocietyHelpIndexScreen() {
         <MaterialCommunityIcons name="chevron-right" size={24} color="#94A3B8" />
       </TouchableOpacity>
 
-      {/* President Management Shortcuts */}
+      {}
       {user?.role === 'president' ? (
         <View style={styles.presidentBox}>
           <Text style={styles.presidentBoxTitle}>President Controls</Text>

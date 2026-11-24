@@ -173,7 +173,7 @@ export default function LoginScreen() {
         contentContainerStyle={styles.container}
         keyboardShouldPersistTaps="handled"
       >
-        {/* Brand Header */}
+        {}
         <View style={styles.brandContainer}>
           <View style={styles.logoBadge}>
             <MaterialCommunityIcons name="office-building" size={40} color="#FFFFFF" />
@@ -186,7 +186,7 @@ export default function LoginScreen() {
           </Text>
         </View>
 
-        {/* Quick Demo Personas Selector */}
+        {}
         <Surface style={styles.personaSurface} elevation={1}>
           <Text style={styles.personaHeader}>
             <MaterialCommunityIcons name="account-switch" size={16} color="#475569" /> QUICK PERSONA SELECTOR
@@ -222,7 +222,7 @@ export default function LoginScreen() {
           </ScrollView>
         </Surface>
 
-        {/* Login Form Card */}
+        {}
         <Surface style={styles.card} elevation={2}>
           <Text variant="titleLarge" style={styles.cardHeader}>
             Sign In

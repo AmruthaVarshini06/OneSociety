@@ -6,7 +6,6 @@ interface CachedResponse {
   expiresAt: number;
 }
 
-// In-memory cache; replace with Redis in production for multi-instance deployments
 const cache = new Map<string, CachedResponse>();
 
 function getTtlMs(): number {
@@ -14,7 +13,6 @@ function getTtlMs(): number {
   return ttlSeconds * 1000;
 }
 
-// Periodic cleanup to avoid memory leaks
 setInterval(() => {
   const now = Date.now();
   for (const [key, entry] of cache.entries()) {
@@ -22,25 +20,22 @@ setInterval(() => {
       cache.delete(key);
     }
   }
-}, 60_000); // Every minute
+}, 60_000);
 
 export function idempotencyCheck(req: Request, res: Response, next: NextFunction): void {
   const idempotencyKey = req.headers['idempotency-key'] as string | undefined;
 
   if (!idempotencyKey) {
-    // No key — proceed normally
     next();
     return;
   }
 
   const cacheEntry = cache.get(idempotencyKey);
   if (cacheEntry && cacheEntry.expiresAt > Date.now()) {
-    // Return the cached response
     res.status(cacheEntry.statusCode).json(cacheEntry.body);
     return;
   }
 
-  // Intercept res.json to cache the result
   const originalJson = res.json.bind(res);
   res.json = (body: unknown): Response => {
     cache.set(idempotencyKey, {

@@ -102,7 +102,7 @@ export default function SuppliersListScreen() {
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
-      {/* Filter chips */}
+      {}
       <View style={styles.filterRow}>
         <FlatList
           horizontal
@@ -125,7 +125,7 @@ export default function SuppliersListScreen() {
 
       <Divider />
 
-      {/* Add button in header area */}
+      {}
       <View style={styles.headerRow}>
         <Text variant="titleSmall" style={styles.countText}>
           {data?.total !== undefined ? `${data.total} supplier${data.total !== 1 ? 's' : ''}` : ''}
@@ -139,7 +139,7 @@ export default function SuppliersListScreen() {
         </Text>
       </View>
 
-      {/* Loading */}
+      {}
       {isLoading && (
         <View style={styles.center}>
           <ActivityIndicator size="large" />
@@ -147,10 +147,10 @@ export default function SuppliersListScreen() {
         </View>
       )}
 
-      {/* Error */}
+      {}
       {isError && !isLoading && renderError()}
 
-      {/* List */}
+      {}
       {!isLoading && !isError && (
         <FlatList
           data={data?.suppliers ?? []}

@@ -85,13 +85,11 @@ export interface RentalBooking {
   expiresAt: string;
   escrowHoldKey?: string;
 
-  // Phase 4 fields
   pickupPhotos?: PickupPhoto[];
   handoverConfirmedAt?: string;
   handoverConfirmedByOwner?: boolean;
   extension?: BookingExtension;
 
-  // Phase 5 fields
   returnPhotos?: ReturnPhoto[];
   actualTimeUsedMs?: number;
   billedUnits?: number;
@@ -131,7 +129,7 @@ export interface CreateBookingPayload {
   itemId: string;
   billingUnit: BillingUnit;
   bookedUnits: number;
-  startAt: string; // ISO
+  startAt: string;
 }
 
 export interface ListBookingsParams {
@@ -148,8 +146,6 @@ export interface ListBookingsResponse {
   limit: number;
   totalPages: number;
 }
-
-// ── Booking API ───────────────────────────────────────────────────────
 
 export async function previewBookingCharge(
   itemId: string,

@@ -22,7 +22,6 @@ export default function GuardSalaryScreen() {
       const res = await getGuardSalaryRecords();
       setRecords(res.data || []);
     } catch {
-      // ignore
     } finally {
       setLoading(false);
       setRefreshing(false);

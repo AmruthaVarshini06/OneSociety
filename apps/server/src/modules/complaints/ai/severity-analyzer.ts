@@ -1,5 +1,5 @@
 export interface SeverityResult {
-  severity: number; // 1 - 5
+  severity: number;
   isSafetyOverride: boolean;
   reason: string;
 }
@@ -32,14 +32,9 @@ const SEVERITY_2_PATTERNS = [
   /\b(gym treadmill|gym equipment|clubhouse ac|pool filter)\b/i,
 ];
 
-/**
- * Analyzes the severity of a complaint on a 1-5 scale.
- * Detects safety override (severity 5: life/safety danger).
- */
 export function analyzeSeverity(category: string, description: string, specificArea: string): SeverityResult {
   const text = `${category} ${specificArea} ${description}`.toLowerCase();
 
-  // Severity 5 check: Danger to life or safety
   for (const pattern of SEVERITY_5_PATTERNS) {
     if (pattern.test(text)) {
       return {
@@ -50,7 +45,6 @@ export function analyzeSeverity(category: string, description: string, specificA
     }
   }
 
-  // Category specific safety check
   if (category === 'Fire safety') {
     return {
       severity: 5,
@@ -59,7 +53,6 @@ export function analyzeSeverity(category: string, description: string, specificA
     };
   }
 
-  // Severity 4 check: Essential society service down
   for (const pattern of SEVERITY_4_PATTERNS) {
     if (pattern.test(text)) {
       return {
@@ -84,7 +77,6 @@ export function analyzeSeverity(category: string, description: string, specificA
     };
   }
 
-  // Severity 3 check: Major inconvenience
   for (const pattern of SEVERITY_3_PATTERNS) {
     if (pattern.test(text)) {
       return {
@@ -102,7 +94,6 @@ export function analyzeSeverity(category: string, description: string, specificA
     };
   }
 
-  // Severity 2 check: Moderate
   for (const pattern of SEVERITY_2_PATTERNS) {
     if (pattern.test(text)) {
       return {
@@ -113,7 +104,6 @@ export function analyzeSeverity(category: string, description: string, specificA
     }
   }
 
-  // Severity 1: Minor / Cosmetic
   return {
     severity: 1,
     isSafetyOverride: false,

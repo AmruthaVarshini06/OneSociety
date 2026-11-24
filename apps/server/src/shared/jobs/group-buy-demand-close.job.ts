@@ -1,10 +1,6 @@
 import type { Job } from '../../config/agenda';
 import { closeDemandWindow } from '../../modules/group-buying/group-order/group-order.service';
 
-/**
- * Closes the demand window for a group order when the deadline arrives.
- * Transitions status: DEMAND_OPEN → OFFERS_OPEN.
- */
 export async function groupBuyDemandCloseJob(job: Job): Promise<void> {
   const { groupOrderId } = job.attrs.data as { groupOrderId: string };
   if (!groupOrderId) {

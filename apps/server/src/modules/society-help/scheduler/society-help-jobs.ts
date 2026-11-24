@@ -3,7 +3,6 @@ import { query } from '../../../config/supabase';
 import { sendNotification } from '../../../shared/notifications/notification.service';
 
 export function registerSocietyHelpJobs(): void {
-  // 1. Maintenance Dues Reminders
   agenda.define('society-help-maintenance-reminders', async () => {
     try {
       const now = new Date();
@@ -40,7 +39,6 @@ export function registerSocietyHelpJobs(): void {
     }
   });
 
-  // 2. Expired Visitor Pass Alert
   agenda.define('society-help-expired-pass-alert', async () => {
     try {
       const expiredWithInside = await query(
@@ -72,7 +70,6 @@ export function registerSocietyHelpJobs(): void {
     }
   });
 
-  // 3. Presence Staleness & Away-Until Auto-Switch
   agenda.define('society-help-presence-sync', async () => {
     try {
       await query(

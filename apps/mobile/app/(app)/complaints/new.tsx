@@ -37,10 +37,10 @@ const CATEGORIES = [
 ];
 
 const SAMPLE_PHOTO_PRESETS = [
-  'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=500', // repair/machinery
-  'https://images.unsplash.com/photo-1541888946425-d0fbb186c5f8?w=500', // construction/cracks
-  'https://images.unsplash.com/photo-1584467735871-8e85353a8413?w=500', // pipes/leak
-  'https://images.unsplash.com/photo-1509783236416-c9ad59bae472?w=500', // lift / hallway
+  'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=500',
+  'https://images.unsplash.com/photo-1541888946425-d0fbb186c5f8?w=500',
+  'https://images.unsplash.com/photo-1584467735871-8e85353a8413?w=500',
+  'https://images.unsplash.com/photo-1509783236416-c9ad59bae472?w=500',
 ];
 
 export default function NewComplaintScreen() {
@@ -56,16 +56,13 @@ export default function NewComplaintScreen() {
   const [photos, setPhotos] = useState<string[]>([SAMPLE_PHOTO_PRESETS[0]]);
   const [linkToClusterId, setLinkToClusterId] = useState<string | undefined>(prelinkedClusterId);
 
-  // AI Scope dialog state
   const [scopeModalVisible, setScopeModalVisible] = useState(false);
   const [scopeResult, setScopeResult] = useState<ScopeCheckResponse | null>(null);
 
-  // Similar complaints state
   const [similarMatches, setSimilarMatches] = useState<any[]>([]);
   const [checkingSimilar, setCheckingSimilar] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
-  // Trigger similarity check when description or area changes
   const checkSimilarIssues = async () => {
     if (!description.trim() || !specificArea.trim()) return;
     setCheckingSimilar(true);
@@ -100,7 +97,6 @@ export default function NewComplaintScreen() {
 
     setSubmitting(true);
     try {
-      // 1. Run Scope Check
       const scopeRes = await checkComplaintScope({
         description,
         specificArea,
@@ -114,7 +110,6 @@ export default function NewComplaintScreen() {
         return;
       }
 
-      // 2. Submit complaint
       const res = await submitComplaint({
         category,
         location: {
@@ -164,14 +159,14 @@ export default function NewComplaintScreen() {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      {/* Emergency Notice */}
+      {}
       <Banner visible icon="alert-octagon" style={styles.emergencyBanner}>
         <Text style={styles.emergencyText}>
           🚨 EMERGENCY: For fire, gas leaks, or people trapped in lifts, immediately call security or use Emergency Gate Alert!
         </Text>
       </Banner>
 
-      {/* Scope Info Card */}
+      {}
       <Card style={styles.infoCard} mode="contained">
         <Card.Content>
           <Text style={styles.infoTitle}>🏢 Common Areas & Facilities Only</Text>
@@ -181,7 +176,7 @@ export default function NewComplaintScreen() {
         </Card.Content>
       </Card>
 
-      {/* Category Selection */}
+      {}
       <Text style={styles.sectionLabel}>Select Category *</Text>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.chipRow}>
         {CATEGORIES.map(c => (
@@ -196,7 +191,7 @@ export default function NewComplaintScreen() {
         ))}
       </ScrollView>
 
-      {/* Location */}
+      {}
       <Text style={styles.sectionLabel}>Location in Society *</Text>
       <Text style={styles.subLabel}>Block / Tower</Text>
       <View style={styles.blockRow}>
@@ -229,7 +224,7 @@ export default function NewComplaintScreen() {
         style={styles.input}
       />
 
-      {/* Description */}
+      {}
       <Text style={styles.sectionLabel}>Problem Description *</Text>
       <TextInput
         label="Describe the issue clearly"
@@ -245,7 +240,7 @@ export default function NewComplaintScreen() {
         Our AI automatically checks for scope, life/safety danger, and similarity with existing reports.
       </HelperText>
 
-      {/* Similar Open Complaints Warning / Suggestion */}
+      {}
       {similarMatches.length > 0 && (
         <Card style={styles.similarCard} mode="elevated">
           <Card.Content>
@@ -277,7 +272,7 @@ export default function NewComplaintScreen() {
         </Card>
       )}
 
-      {/* Photo Upload Section */}
+      {}
       <Text style={styles.sectionLabel}>Photos (1 to 5) *</Text>
       <View style={styles.photosContainer}>
         {photos.map((uri, idx) => (
@@ -299,7 +294,7 @@ export default function NewComplaintScreen() {
 
       <Divider style={styles.divider} />
 
-      {/* Submit Button */}
+      {}
       <Button
         mode="contained"
         onPress={handleScopeCheckAndSubmit}
@@ -311,7 +306,7 @@ export default function NewComplaintScreen() {
         Submit Complaint
       </Button>
 
-      {/* AI Scope Dialog */}
+      {}
       <Portal>
         <Dialog visible={scopeModalVisible} onDismiss={() => setScopeModalVisible(false)}>
           <Dialog.Title>🏠 Flat-Internal Issue Detected</Dialog.Title>

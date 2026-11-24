@@ -33,7 +33,6 @@ export default function RentalsHomeScreen() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  // Queries
   const {
     data: catalog = [],
     isLoading: isCatalogLoading,
@@ -66,7 +65,7 @@ export default function RentalsHomeScreen() {
 
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      {/* Search and Navigation Bar */}
+      {}
       <View style={styles.header}>
         <Searchbar
           placeholder="Search tools, gear, vessels..."
@@ -143,7 +142,7 @@ export default function RentalsHomeScreen() {
         refreshControl={<RefreshControl refreshing={isRefetching} onRefresh={onRefresh} />}
         ListHeaderComponent={
           <View>
-            {/* Neighbours Wanted Banner */}
+            {}
             <TouchableOpacity
               style={styles.wantedBanner}
               onPress={() => router.push('/(app)/rentals/requests' as never)}
@@ -160,7 +159,7 @@ export default function RentalsHomeScreen() {
               <IconButton icon="chevron-right" size={20} iconColor="#1565C0" style={{ margin: 0 }} />
             </TouchableOpacity>
 
-            {/* Catalog Categories Section */}
+            {}
             <View style={styles.catalogSection}>
               <Text variant="titleMedium" style={styles.sectionTitle}>
                 Popular Shareable Items
@@ -238,7 +237,7 @@ export default function RentalsHomeScreen() {
               )}
             </View>
 
-            {/* Listings Header */}
+            {}
             <View style={styles.listHeader}>
               <Text variant="titleMedium" style={styles.sectionTitle}>
                 {selectedCategory

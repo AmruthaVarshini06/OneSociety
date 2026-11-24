@@ -47,7 +47,7 @@ export default function CategoryProvidersScreen() {
         </Text>
       </View>
 
-      {/* Filter: Internal vs External */}
+      {}
       <Text variant="labelMedium" style={styles.filterTitle}>Provider Source</Text>
       <SegmentedButtons
         value={providerTypeFilter}
@@ -60,7 +60,7 @@ export default function CategoryProvidersScreen() {
         style={styles.segButtons}
       />
 
-      {/* Filter: Work Type */}
+      {}
       <View style={styles.chipRow}>
         <Chip
           selected={workTypeFilter === 'ALL'}

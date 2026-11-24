@@ -287,10 +287,8 @@ export async function closePaymentWindow(
     return order;
   }
 
-  // Cancel unpaid
   await query(`UPDATE commitments SET status = 'CANCELLED' WHERE group_order_id = $1 AND status = 'PENDING'`, [orderId]);
 
-  // Tally paid
   const paidRes = await query(`SELECT * FROM commitments WHERE group_order_id = $1 AND status = 'PAID'`, [orderId]);
   const paid = paidRes.rows;
   const totalPaidUnits = paid.reduce((sum: number, c: any) => sum + Number(c.quantity), 0);

@@ -48,20 +48,14 @@ export default function GroupOrderPaymentScreen() {
   const order = orderData?.order;
   const commitment = commitmentData?.commitment;
 
-  // Pay mutation (demo simulates Razorpay test checkout & confirm)
   const payMutation = useMutation({
     mutationFn: async () => {
       setIsProcessing(true);
-      // 1. Initiate Razorpay order on server
       const initResult = await initiatePayment(id);
 
-      // 2. In production, open Razorpay Checkout SDK here:
-      // RazorpayCheckout.open({ key: initResult.keyId, order_id: initResult.razorpayOrderId, ... })
-      // For demo, submit mock payment ID and valid mock signature:
       const mockPaymentId = `pay_mock_${Date.now()}`;
       const mockSignature = `MOCK_SIG_${initResult.razorpayOrderId}`;
 
-      // 3. Confirm payment with server (which verifies signature & creates escrow HOLD)
       return confirmPayment(id, {
         razorpayOrderId: initResult.razorpayOrderId,
         razorpayPaymentId: mockPaymentId,

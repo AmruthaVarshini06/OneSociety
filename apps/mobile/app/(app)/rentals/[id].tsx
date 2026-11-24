@@ -95,7 +95,7 @@ export default function RentalItemDetailScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
       <ScrollView contentContainerStyle={styles.scroll}>
-        {/* Photos */}
+        {}
         {item.photos && item.photos.length > 0 ? (
           <Image
             source={{ uri: item.photos[0] }}
@@ -110,7 +110,7 @@ export default function RentalItemDetailScreen() {
           </View>
         )}
 
-        {/* Header Details */}
+        {}
         <Card style={styles.card} mode="outlined">
           <Card.Content>
             <View style={styles.titleRow}>
@@ -155,7 +155,7 @@ export default function RentalItemDetailScreen() {
 
             <Divider style={{ marginVertical: 12 }} />
 
-            {/* Rates */}
+            {}
             <Text variant="titleSmall" style={styles.sectionHeading}>
               Rental Rates & Escrow Deposit
             </Text>
@@ -194,7 +194,7 @@ export default function RentalItemDetailScreen() {
           </Card.Content>
         </Card>
 
-        {/* Specifications & Condition */}
+        {}
         <Card style={styles.card} mode="outlined">
           <Card.Content style={{ gap: 8 }}>
             <Text variant="titleSmall" style={styles.sectionHeading}>
@@ -246,7 +246,7 @@ export default function RentalItemDetailScreen() {
           </Card.Content>
         </Card>
 
-        {/* Reviews & Ratings Card (Phase 6) */}
+        {}
         {reviews.length > 0 && (
           <Card style={styles.card} mode="outlined">
             <Card.Content style={{ gap: 8 }}>
@@ -281,7 +281,7 @@ export default function RentalItemDetailScreen() {
           </Card>
         )}
 
-        {/* Owner Controls */}
+        {}
         {isOwner ? (
           <Card style={[styles.card, styles.ownerCard]} mode="elevated">
             <Card.Content style={{ gap: 10 }}>
@@ -358,7 +358,7 @@ export default function RentalItemDetailScreen() {
         )}
       </ScrollView>
 
-      {/* Escalate Dialog */}
+      {}
       <Portal>
         <Dialog
           visible={escalateDialogVisible}

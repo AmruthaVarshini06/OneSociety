@@ -133,7 +133,7 @@ export default function AdminComplaintsScreen() {
         );
       })}
 
-      {/* Resolution Dialog */}
+      {}
       <Portal>
         <Dialog visible={dialogVisible} onDismiss={() => setDialogVisible(false)}>
           <Dialog.Title>

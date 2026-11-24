@@ -12,13 +12,10 @@ export interface ClusterSummary {
 
 export interface SimilarityMatch {
   cluster: ClusterSummary;
-  similarityScore: number; // 0 - 1
+  similarityScore: number;
   matchReason: string;
 }
 
-/**
- * Normalizes text for matching by removing punctuation and extra whitespace.
- */
 function tokenize(text: string): Set<string> {
   const words = text
     .toLowerCase()
@@ -28,9 +25,6 @@ function tokenize(text: string): Set<string> {
   return new Set(words);
 }
 
-/**
- * Calculates Jaccard similarity between two sets of tokens.
- */
 function jaccardSimilarity(setA: Set<string>, setB: Set<string>): number {
   if (setA.size === 0 || setB.size === 0) return 0;
   let intersectionCount = 0;
@@ -41,9 +35,6 @@ function jaccardSimilarity(setA: Set<string>, setB: Set<string>): number {
   return unionCount === 0 ? 0 : intersectionCount / unionCount;
 }
 
-/**
- * Finds similar open issue clusters in the same society.
- */
 export function findSimilarClusters(
   category: string,
   block: string | undefined,
@@ -55,7 +46,6 @@ export function findSimilarClusters(
   const matches: SimilarityMatch[] = [];
 
   for (const cluster of existingClusters) {
-    // Only match against open/active clusters
     if (cluster.status === 'SOLVED' || cluster.status === 'CLOSED' || cluster.status === 'OUT_OF_SCOPE') {
       continue;
     }
@@ -63,19 +53,16 @@ export function findSimilarClusters(
     let matchScore = 0;
     const reasons: string[] = [];
 
-    // Exact category match gives strong baseline
     if (cluster.category.toLowerCase() === category.toLowerCase()) {
       matchScore += 0.4;
       reasons.push('Same category');
     }
 
-    // Block match
     if (block && cluster.block && cluster.block.toLowerCase() === block.toLowerCase()) {
       matchScore += 0.25;
       reasons.push(`Same block (${block})`);
     }
 
-    // Specific area text match
     const clusterTokens = tokenize(`${cluster.category} ${cluster.block || ''} ${cluster.specificArea} ${cluster.title}`);
     const textSim = jaccardSimilarity(inputTokens, clusterTokens);
     matchScore += textSim * 0.45;
@@ -93,6 +80,5 @@ export function findSimilarClusters(
     }
   }
 
-  // Sort descending by similarity score
   return matches.sort((a, b) => b.similarityScore - a.similarityScore);
 }

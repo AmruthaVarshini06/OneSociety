@@ -5,13 +5,10 @@ export interface GuardFlatPresenceResult {
   flatCode: string;
   status: 'PRESENT' | 'NOT_PRESENT';
   lastUpdated: Date | null;
-  isStale: boolean; // older than 24 hours
-  activeEventTitle?: string; // if an event is currently running at the flat
+  isStale: boolean;
+  activeEventTitle?: string;
 }
 
-/**
- * Resident sets "someone is at home" status with optional away-until.
- */
 export async function updateFlatPresence(
   societyId: string,
   flatId: string,
@@ -52,10 +49,6 @@ export async function updateFlatPresence(
   };
 }
 
-/**
- * Guard flat search: returns ONLY PRESENT / NOT PRESENT and last-updated time.
- * Strictly NO resident names, phone numbers, or family details!
- */
 export async function searchFlatPresence(
   societyId: string,
   flatQuery: string
@@ -79,7 +72,6 @@ export async function searchFlatPresence(
     const flatCode = `${f.block_name}-${f.flat_number}`;
     let isPresent = f.is_at_home;
 
-    // Check if an event is currently running at this flat
     const eventRes = await query(
       `SELECT * FROM community_events 
        WHERE society_id = $1 
@@ -92,11 +84,11 @@ export async function searchFlatPresence(
 
     const activeEvent = eventRes.rows[0];
     if (activeEvent) {
-      isPresent = true; // Event running counts as someone at home
+      isPresent = true;
     }
 
     const lastUpdated = f.away_until || null;
-    const isStale = false; // standard active status
+    const isStale = false;
 
     results.push({
       flatCode,
@@ -110,9 +102,6 @@ export async function searchFlatPresence(
   return results;
 }
 
-/**
- * Checks whether a single flat has someone at home right now.
- */
 export async function isFlatOccupiedNow(
   societyId: string,
   flatCode: string
@@ -134,9 +123,8 @@ export async function isFlatOccupiedNow(
     );
   }
 
-  if (fRes.rows.length === 0) return { isAtHome: true }; // Default open if flat not found
+  if (fRes.rows.length === 0) return { isAtHome: true };
 
-  // Check running events
   const eventRes = await query(
     `SELECT * FROM community_events 
      WHERE society_id = $1 

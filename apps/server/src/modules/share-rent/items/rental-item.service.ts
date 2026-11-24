@@ -154,7 +154,6 @@ function mapItem(row: any): RentalItemDocument {
 }
 
 export async function seedCatalogCategories(): Promise<void> {
-  // Static in-memory catalog
 }
 
 export async function getCatalogWithCounts(

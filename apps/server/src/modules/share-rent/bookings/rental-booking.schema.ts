@@ -17,13 +17,10 @@ export const respondBookingSchema = z.object({
 export type RespondBookingInput = z.infer<typeof respondBookingSchema>;
 
 export const payBookingSchema = z.object({
-  // In a real app this carries a Razorpay payment ID; we mock it
   paymentId: z.string().optional().default('mock_payment'),
 });
 
 export type PayBookingInput = z.infer<typeof payBookingSchema>;
-
-// Phase 4 Schemas
 
 export const uploadPickupPhotosSchema = z.object({
   photos: z
@@ -70,8 +67,6 @@ export const payExtensionSchema = z.object({
 });
 
 export type PayExtensionInput = z.infer<typeof payExtensionSchema>;
-
-// Phase 5 Schemas
 
 export const uploadReturnPhotosSchema = z.object({
   photos: z

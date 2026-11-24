@@ -50,7 +50,6 @@ export default function ReportIssueScreen() {
   const pass = passData?.pass;
   const issues = issuesData?.issues ?? [];
 
-  // Report issue mutation
   const reportMutation = useMutation({
     mutationFn: () =>
       reportIssue(id, {
@@ -69,7 +68,6 @@ export default function ReportIssueScreen() {
     },
   });
 
-  // Escalate mutation
   const escalateMutation = useMutation({
     mutationFn: (issueId: string) => escalateIssue(id, issueId),
     onSuccess: () => {
@@ -106,7 +104,6 @@ export default function ReportIssueScreen() {
     );
   }
 
-  // Calculate 24h countdown
   const deliveredAt = pass.deliveredAt ? new Date(pass.deliveredAt).getTime() : Date.now();
   const windowEnd = deliveredAt + 24 * 3600_000;
   const msRemaining = Math.max(0, windowEnd - Date.now());
@@ -117,7 +114,7 @@ export default function ReportIssueScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scroll}>
-        {/* Countdown Card */}
+        {}
         <Card style={[styles.card, { backgroundColor: isWindowClosed ? '#FFEBEE' : '#FFF9C4' }]}>
           <Card.Content>
             <Text
@@ -136,7 +133,7 @@ export default function ReportIssueScreen() {
           </Card.Content>
         </Card>
 
-        {/* Report Form */}
+        {}
         {!isWindowClosed && (
           <Card style={styles.card}>
             <Card.Content>
@@ -199,7 +196,7 @@ export default function ReportIssueScreen() {
           </Card>
         )}
 
-        {/* Past Issues List */}
+        {}
         <Text variant="titleMedium" style={styles.sectionHeader}>
           Reported Issues ({issues.length})
         </Text>

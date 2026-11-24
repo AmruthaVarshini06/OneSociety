@@ -100,7 +100,7 @@ export default function NotificationsScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scroll}>
-        {/* Header Controls */}
+        {}
         <View style={styles.topBar}>
           <View style={styles.filterRow}>
             <Chip
@@ -142,7 +142,7 @@ export default function NotificationsScreen() {
           </Card>
         )}
 
-        {/* Notifications List */}
+        {}
         {notifications.length === 0 ? (
           <Card style={styles.card}>
             <Card.Content style={styles.emptyContent}>

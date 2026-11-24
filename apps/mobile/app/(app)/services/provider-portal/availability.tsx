@@ -71,7 +71,7 @@ export default function ProviderAvailabilityScreen() {
           subtitle="Residents cannot book time slots outside your availability"
         />
         <Card.Content style={{ gap: 14 }}>
-          {/* Days */}
+          {}
           <Text variant="labelMedium" style={styles.label}>Working Days of Week</Text>
           <View style={styles.daysRow}>
             {DAYS.map((d) => {
@@ -89,7 +89,7 @@ export default function ProviderAvailabilityScreen() {
             })}
           </View>
 
-          {/* Working Hours */}
+          {}
           <Text variant="labelMedium" style={styles.label}>Daily Working Hours</Text>
           <View style={styles.row}>
             <TextInput
@@ -108,7 +108,7 @@ export default function ProviderAvailabilityScreen() {
             />
           </View>
 
-          {/* Blocked Dates */}
+          {}
           <Text variant="labelMedium" style={styles.label}>Blocked Dates (Holidays / Leave)</Text>
           <View style={styles.row}>
             <TextInput

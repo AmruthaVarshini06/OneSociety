@@ -78,7 +78,6 @@ export async function createCommunityEvent(
 
   const event = insertRes.rows[0];
 
-  // Auto-generate guest pass
   const guestPass = await createVisitorPass(
     societyId,
     { userId: hostUserId, role: 'resident' },

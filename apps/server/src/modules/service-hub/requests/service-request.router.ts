@@ -33,7 +33,6 @@ router.get('/:id', authenticate, async (req, res) => {
 
 router.patch('/:id/respond', authenticate, async (req, res) => {
   const { userId, role } = req.user!;
-  // Only providers (profile owner or provider_external) can respond
   const updated = await svc.respondToRequest(req.params.id, userId, req.body);
   res.json(updated);
 });

@@ -1,6 +1,3 @@
-/**
- * Pure calculation functions for Group Buying settlement and ratings.
- */
 
 export interface CommitmentSettlementInput {
   commitmentId: string;
@@ -10,7 +7,7 @@ export interface CommitmentSettlementInput {
 export interface IssueRefundInput {
   commitmentId: string;
   refundAmountPaise: number;
-  status: string; // 'RESOLVED_REFUND', etc.
+  status: string;
 }
 
 export interface SettlementCalculationResult {
@@ -25,10 +22,6 @@ export interface SettlementCalculationResult {
   }>;
 }
 
-/**
- * Calculates net supplier payout and resident refunds for an order.
- * All amounts are non-negative integers in paise.
- */
 export function calculateOrderSettlement(
   commitments: CommitmentSettlementInput[],
   issues: IssueRefundInput[],
@@ -65,10 +58,6 @@ export function calculateOrderSettlement(
   };
 }
 
-/**
- * Computes updated average rating and total review count.
- * Returns rating rounded to 1 decimal place.
- */
 export function computeAverageRating(ratings: number[]): { average: number; count: number } {
   if (!ratings || ratings.length === 0) return { average: 0, count: 0 };
   const sum = ratings.reduce((acc, r) => acc + r, 0);

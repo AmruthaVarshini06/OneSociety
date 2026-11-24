@@ -131,7 +131,7 @@ export default function BookItemScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
       <ScrollView contentContainerStyle={styles.scroll}>
-        {/* Item Summary */}
+        {}
         <Card style={styles.card} mode="elevated">
           <Card.Content>
             <Text variant="titleLarge" style={styles.itemTitle}>
@@ -170,7 +170,7 @@ export default function BookItemScreen() {
           </Card.Content>
         </Card>
 
-        {/* Booking Form */}
+        {}
         <Card style={styles.card} mode="outlined">
           <Card.Content style={styles.cardContent}>
             <Text variant="titleMedium" style={styles.sectionHeader}>
@@ -226,7 +226,7 @@ export default function BookItemScreen() {
               Calculate Charge
             </Button>
 
-            {/* Charge Preview */}
+            {}
             {preview && (
               <View style={styles.previewBox}>
                 <Text variant="titleSmall" style={styles.previewTitle}>
@@ -267,7 +267,7 @@ export default function BookItemScreen() {
           </Card.Content>
         </Card>
 
-        {/* Escrow Trust Info */}
+        {}
         <Card style={styles.infoCard} mode="outlined">
           <Card.Content style={{ gap: 6 }}>
             <View style={styles.infoRow}>

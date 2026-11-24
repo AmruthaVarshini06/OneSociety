@@ -8,7 +8,7 @@ import {
   FcmTokenSchema,
 } from './auth.schema';
 
-const REFRESH_COOKIE_MAX_AGE = 7 * 24 * 60 * 60 * 1000; // 7 days in ms
+const REFRESH_COOKIE_MAX_AGE = 7 * 24 * 60 * 60 * 1000;
 
 export async function loginHandler(req: Request, res: Response): Promise<void> {
   const body = LoginSchema.parse(req.body);
@@ -22,7 +22,7 @@ export async function loginHandler(req: Request, res: Response): Promise<void> {
 
   res.json({
     accessToken: result.accessToken,
-    refreshToken: result.refreshToken, // also in body for mobile clients
+    refreshToken: result.refreshToken,
     mustChangePassword: result.mustChangePassword,
     role: result.role,
     user: {
@@ -37,7 +37,6 @@ export async function loginHandler(req: Request, res: Response): Promise<void> {
 }
 
 export async function refreshHandler(req: Request, res: Response): Promise<void> {
-  // Accept token from body OR cookie
   const tokenFromBody = req.body?.refreshToken as string | undefined;
   const tokenFromCookie = req.cookies?.refreshToken as string | undefined;
 

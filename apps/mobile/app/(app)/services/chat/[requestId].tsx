@@ -139,7 +139,7 @@ export default function ServiceChatScreen() {
                 Notice period: {offer.noticePeriodDays || 7} days
               </Text>
 
-              {/* Responder buttons */}
+              {}
               {!isMe && isPending && (
                 <View style={styles.offerActions}>
                   <Button
@@ -182,7 +182,7 @@ export default function ServiceChatScreen() {
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 0}
     >
-      {/* Top Banner if Locked */}
+      {}
       {isAgreementLocked && (
         <Card style={styles.lockedBanner} mode="contained">
           <Card.Content style={styles.lockedContent}>
@@ -205,7 +205,7 @@ export default function ServiceChatScreen() {
         </Card>
       )}
 
-      {/* Phone numbers reveal card */}
+      {}
       <View style={styles.topInfo}>
         <Text variant="labelSmall" style={{ color: '#546E7A' }}>
           📞 Phone numbers unlocked for negotiation. Be polite and agree on scope & payment timing.
@@ -221,9 +221,9 @@ export default function ServiceChatScreen() {
         onContentSizeChange={() => flatListRef.current?.scrollToEnd({ animated: true })}
       />
 
-      {/* Input row */}
+      {}
       <View style={styles.inputContainer}>
-        {/* Offer Button for Provider or Seeker */}
+        {}
         <Button
           mode="outlined"
           compact
@@ -253,7 +253,7 @@ export default function ServiceChatScreen() {
         />
       </View>
 
-      {/* Price Offer Modal */}
+      {}
       <Portal>
         <Dialog visible={offerDialogVisible} onDismiss={() => setOfferDialogVisible(false)}>
           <Dialog.Title>Send Price & Terms Offer</Dialog.Title>

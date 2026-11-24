@@ -26,7 +26,6 @@ export default function GateDashboardScreen() {
       const res = await getLiveGateDashboard();
       setData(res.data);
     } catch {
-      // ignore
     } finally {
       setLoading(false);
       setRefreshing(false);
@@ -53,7 +52,7 @@ export default function GateDashboardScreen() {
         />
       }
     >
-      {/* Quick Action Navigation Grid */}
+      {}
       <View style={styles.actionGrid}>
         <TouchableOpacity
           style={[styles.actionCard, { backgroundColor: '#1E3A8A' }]}
@@ -92,7 +91,7 @@ export default function GateDashboardScreen() {
         </TouchableOpacity>
       </View>
 
-      {/* Headcount Stat Card */}
+      {}
       <View style={styles.headcountCard}>
         <View style={styles.headcountHeader}>
           <Text style={styles.headcountTitle}>Live Society Head-Count</Text>
@@ -105,7 +104,7 @@ export default function GateDashboardScreen() {
         <Text style={styles.headcountNumber}>{data?.totalInside ?? 0}</Text>
         <Text style={styles.headcountSub}>Total Valid Persons Currently Inside</Text>
 
-        {/* 4 Category Breakdown Pills */}
+        {}
         <View style={styles.pillsRow}>
           <View style={styles.pillBox}>
             <MaterialCommunityIcons name="home-account" size={18} color="#1E3A8A" />
@@ -130,7 +129,7 @@ export default function GateDashboardScreen() {
         </View>
       </View>
 
-      {/* Alerts Box */}
+      {}
       {data?.alerts && data.alerts.length > 0 ? (
         <View style={styles.alertCard}>
           <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 6 }}>
@@ -145,7 +144,7 @@ export default function GateDashboardScreen() {
         </View>
       ) : null}
 
-      {/* Live Stream: Recent Events */}
+      {}
       <View style={styles.streamSection}>
         <View style={styles.streamHeader}>
           <Text style={styles.streamTitle}>Recent Gate Entries & Exits</Text>

@@ -11,9 +11,6 @@ export class GuardPassCreationForbiddenError extends Error {
   }
 }
 
-/**
- * Generates unique pass code: PASS-XXXX
- */
 async function generatePassCode(societyId: string): Promise<string> {
   const countRes = await query('SELECT COUNT(*) as count FROM qr_passes WHERE society_id = $1', [societyId]);
   const count = parseInt(countRes.rows[0].count, 10);
@@ -46,9 +43,6 @@ function mapPass(row: any): any {
   };
 }
 
-/**
- * Creates or retrieves a resident family QR pass for a flat.
- */
 export async function getOrCreateFamilyPass(
   societyId: string,
   residentUserId: string,
@@ -78,9 +72,6 @@ export async function getOrCreateFamilyPass(
   return mapPass(res.rows[0]);
 }
 
-/**
- * Creates or retrieves president pass.
- */
 export async function getOrCreatePresidentPass(
   societyId: string,
   presidentUserId: string,
@@ -108,9 +99,6 @@ export async function getOrCreatePresidentPass(
   return mapPass(res.rows[0]);
 }
 
-/**
- * Creates or retrieves service provider pass.
- */
 export async function getOrCreateProviderPass(
   societyId: string,
   providerUserId: string
@@ -142,9 +130,6 @@ export async function getOrCreateProviderPass(
   return mapPass(res.rows[0]);
 }
 
-/**
- * Creates visitor pass. Only residents can create.
- */
 export async function createVisitorPass(
   societyId: string,
   requesterUser: { userId: string; role: string },
@@ -201,9 +186,6 @@ export async function createVisitorPass(
   return pass;
 }
 
-/**
- * Revokes an existing pass.
- */
 export async function revokePass(passId: string, userId: string, societyId: string, reason?: string) {
   const res = await query(
     `UPDATE qr_passes SET status = 'REVOKED' WHERE id = $1 AND society_id = $2 RETURNING *`,
@@ -216,9 +198,6 @@ export async function revokePass(passId: string, userId: string, societyId: stri
   return pass;
 }
 
-/**
- * Scan pass by guard:
- */
 export async function scanPassByGuard(
   passCode: string,
   guardUserId: string,
@@ -272,9 +251,6 @@ export async function scanPassByGuard(
   };
 }
 
-/**
- * Guard confirms entry or exit count for a pass after the pop-up counter.
- */
 export async function confirmPassScan(
   passId: string,
   guardUserId: string,
@@ -300,7 +276,6 @@ export async function confirmPassScan(
     throw new Error('This pass has expired. Entry cannot be confirmed.');
   }
 
-  // Nobody at home block for visitors
   if (pass.flatCode && direction === 'ENTRY' && pass.passType === 'VISITOR') {
     const presence = await isFlatOccupiedNow(societyId, pass.flatCode);
     if (!presence.isAtHome) {
@@ -313,7 +288,6 @@ export async function confirmPassScan(
     }
   }
 
-  // Exit count validation
   if (direction === 'EXIT' && count > pass.peopleCurrentlyInside) {
     throw new Error(
       `Exit count (${count}) cannot be more than the number of people currently inside on this pass (${pass.peopleCurrentlyInside}).`
@@ -343,7 +317,6 @@ export async function confirmPassScan(
   const guard = guardRes.rows[0];
   const guardName = guard?.full_name || guard?.username || 'Security Guard';
 
-  // Record Gate Event
   const eventRes = await query(
     `INSERT INTO gate_events (
       society_id, pass_id, pass_code, pass_type, direction, count, guard_name, flat_code, owner_name, scanned_at
@@ -372,9 +345,6 @@ export async function confirmPassScan(
   };
 }
 
-/**
- * Live Gate Dashboard:
- */
 export async function getLiveGateDashboard(societyId: string) {
   const activePassesRes = await query(
     `SELECT * FROM qr_passes WHERE society_id = $1 AND people_currently_inside > 0`,

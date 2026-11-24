@@ -157,7 +157,6 @@ export async function selectOffer(
     throw httpError(409, `Offer is already ${winningOffer.status}`);
   }
 
-  // Update order
   await query(
     `UPDATE group_orders
      SET status = 'SUPPLIER_SELECTED', selected_supplier_id = $1, pricing_tiers = $2
@@ -165,10 +164,8 @@ export async function selectOffer(
     [winningOffer.supplier_id, winningOffer.tiers, orderId]
   );
 
-  // Accept winner
   await query(`UPDATE supplier_offers SET status = 'ACCEPTED' WHERE id = $1`, [offerId]);
 
-  // Reject others
   await query(`UPDATE supplier_offers SET status = 'REJECTED' WHERE group_order_id = $1 AND id != $2`, [orderId, offerId]);
 
   log(presidentId, societyId, 'offer.select', offerId, 'SupplierOffer', {

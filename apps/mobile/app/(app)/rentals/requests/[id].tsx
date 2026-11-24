@@ -280,7 +280,7 @@ export default function RequestDetailScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
       <ScrollView contentContainerStyle={styles.scroll}>
-        {/* Request Details */}
+        {}
         <Card style={styles.card} mode="elevated">
           <Card.Content>
             <View style={styles.reqHeader}>
@@ -366,7 +366,7 @@ export default function RequestDetailScreen() {
           )}
         </Card>
 
-        {/* Offers Section */}
+        {}
         <View style={styles.offersSection}>
           <Text variant="titleMedium" style={styles.offersTitle}>
             {isRequester
@@ -378,7 +378,7 @@ export default function RequestDetailScreen() {
               : 'Request Closed'}
           </Text>
 
-          {/* CTA for neighbours who haven't offered yet */}
+          {}
           {!isRequester && !myExistingOffer && request.status === 'OPEN' && (
             <Card style={[styles.card, { backgroundColor: '#E3F2FD' }]} mode="outlined">
               <Card.Content>
@@ -401,7 +401,7 @@ export default function RequestDetailScreen() {
             </Card>
           )}
 
-          {/* Offer cards */}
+          {}
           {offers.map((offer) => (
             <OfferCard
               key={offer._id}
@@ -435,7 +435,7 @@ export default function RequestDetailScreen() {
         </View>
       </ScrollView>
 
-      {/* Make Offer Modal */}
+      {}
       <Modal
         visible={offerModalVisible}
         animationType="slide"
@@ -454,7 +454,7 @@ export default function RequestDetailScreen() {
               Offering to lend for "{request.itemName}" request · {request.durationValue} {request.durationType.toLowerCase()}
             </Text>
 
-            {/* Quick pick from existing items */}
+            {}
             {myItems.length > 0 && (
               <View style={{ marginBottom: 12 }}>
                 <Text variant="bodySmall" style={styles.fieldLabel}>
@@ -582,7 +582,6 @@ const styles = StyleSheet.create({
   offerMessage: { color: '#616161', fontStyle: 'italic', marginTop: 6 },
   offerRates: { flexDirection: 'row', gap: 6, flexWrap: 'wrap', marginTop: 8 },
   aiNote: { backgroundColor: '#F9FBE7', padding: 8, borderRadius: 6, marginTop: 8 },
-  // Modal
   modalContainer: { flex: 1, backgroundColor: '#FFFFFF' },
   modalHeader: {
     flexDirection: 'row',

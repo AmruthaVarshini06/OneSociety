@@ -17,7 +17,7 @@ interface FormState {
   description: string;
   unit: string;
   minimumQuantity: string;
-  demandCloseDays: string; // number of days from now
+  demandCloseDays: string;
 }
 
 interface FormErrors {

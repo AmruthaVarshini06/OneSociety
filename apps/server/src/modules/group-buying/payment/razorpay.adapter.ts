@@ -1,15 +1,6 @@
 import Razorpay from 'razorpay';
 import crypto from 'crypto';
 
-/**
- * Razorpay adapter — TEST MODE only.
- *
- * Without RAZORPAY_KEY_ID / RAZORPAY_KEY_SECRET set, falls back to a
- * deterministic mock so the demo works end-to-end without real credentials.
- * Mock orders have id `mock_order_<receipt>`.
- * Mock signatures must start with `MOCK_SIG_`.
- */
-
 function isMockMode(): boolean {
   return !process.env.RAZORPAY_KEY_ID || !process.env.RAZORPAY_KEY_SECRET;
 }
@@ -27,9 +18,6 @@ export interface RazorpayOrderResult {
   receipt: string;
 }
 
-/**
- * Create a Razorpay order for the given amount (in paise).
- */
 export async function createRazorpayOrder(
   amountPaise: number,
   receipt: string,
@@ -49,10 +37,6 @@ export async function createRazorpayOrder(
   };
 }
 
-/**
- * Verify Razorpay payment signature.
- * In mock mode: any signature starting with MOCK_SIG_ is accepted.
- */
 export function verifyRazorpaySignature(
   razorpayOrderId: string,
   razorpayPaymentId: string,

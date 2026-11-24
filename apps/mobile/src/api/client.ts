@@ -14,7 +14,6 @@ const apiClient = axios.create({
   },
 });
 
-// Request interceptor: attach access token
 apiClient.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     const { accessToken } = useAuthStore.getState();
@@ -26,7 +25,6 @@ apiClient.interceptors.request.use(
   (error: AxiosError) => Promise.reject(error)
 );
 
-// Track refresh attempts to avoid infinite loops
 let isRefreshing = false;
 let failedQueue: Array<{
   resolve: (value: unknown) => void;
@@ -44,7 +42,6 @@ function processQueue(error: AxiosError | null, token: string | null = null) {
   failedQueue = [];
 }
 
-// Response interceptor: handle 401 and refresh token
 apiClient.interceptors.response.use(
   (response) => response,
   async (error: AxiosError) => {

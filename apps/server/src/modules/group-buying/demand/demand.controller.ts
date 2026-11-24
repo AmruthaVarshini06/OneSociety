@@ -9,7 +9,6 @@ function httpError(status: number, msg: string): Error & { statusCode: number } 
   return e;
 }
 
-/** Resolve the caller's flatId from their user record */
 async function resolveFlatId(userId: string, societyId: string): Promise<string> {
   const userRes = await query('SELECT flat_id FROM users WHERE id = $1', [userId]);
   if (userRes.rows[0]?.flat_id) return userRes.rows[0].flat_id.toString();

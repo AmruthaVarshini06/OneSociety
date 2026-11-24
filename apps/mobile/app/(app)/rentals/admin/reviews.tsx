@@ -103,7 +103,7 @@ export default function PresidentRentalReviewsScreen() {
                   </Chip>
                 </View>
 
-                {/* Owner Dispute Reason */}
+                {}
                 <View style={styles.reasonBox}>
                   <Text variant="labelSmall" style={{ fontWeight: '700', color: '#E65100' }}>
                     Owner Appeal Reason:
@@ -115,7 +115,7 @@ export default function PresidentRentalReviewsScreen() {
 
                 <Divider style={{ marginVertical: 8 }} />
 
-                {/* Owner Rates vs Suggested */}
+                {}
                 <View style={styles.ratesComparison}>
                   <View style={styles.compBox}>
                     <Text variant="labelSmall" style={styles.compLabel}>
@@ -208,7 +208,7 @@ export default function PresidentRentalReviewsScreen() {
         }
       />
 
-      {/* Decision Dialog */}
+      {}
       <Portal>
         <Dialog
           visible={!!selectedItem && !!decision}

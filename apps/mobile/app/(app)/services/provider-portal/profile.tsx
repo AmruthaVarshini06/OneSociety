@@ -16,7 +16,6 @@ export default function ProviderProfileEditScreen() {
   const [experienceYears, setExperienceYears] = useState('2');
   const [isPermanent, setIsPermanent] = useState(true);
 
-  // Document upload form
   const [docType, setDocType] = useState('GOVERNMENT_ID');
   const [docTitle, setDocTitle] = useState('Aadhaar / National ID');
   const [docFileUrl, setDocFileUrl] = useState('https://storage.onesociety.in/docs/sample_gov_id.pdf');
@@ -58,7 +57,6 @@ export default function ProviderProfileEditScreen() {
   const uploadDocMutation = useMutation({
     mutationFn: async () => {
       if (!user) return;
-      // In web/mobile we send json payload or formData
       return uploadDocument(user.userId, {
         docType,
         title: docTitle,
@@ -113,7 +111,7 @@ export default function ProviderProfileEditScreen() {
             placeholder="Describe your skills, punctuality, and specialties..."
           />
 
-          {/* Permanent account special ability: update username */}
+          {}
           <Divider style={{ marginVertical: 4 }} />
           <Text variant="labelMedium" style={{ color: '#1565C0', fontWeight: '700' }}>
             Permanent Account Settings
@@ -140,7 +138,7 @@ export default function ProviderProfileEditScreen() {
         </Card.Content>
       </Card>
 
-      {/* Verification Documents */}
+      {}
       <Card style={styles.card} mode="elevated">
         <Card.Title
           title="Verification Documents"
@@ -153,7 +151,7 @@ export default function ProviderProfileEditScreen() {
             </Text>
           </View>
 
-          {/* Uploaded Documents List */}
+          {}
           {documents.map((d: any) => (
             <View key={d._id} style={styles.docItem}>
               <View style={{ flex: 1 }}>

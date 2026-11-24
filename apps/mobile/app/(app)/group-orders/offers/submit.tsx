@@ -23,7 +23,7 @@ function formatPaise(p: number): string {
 
 interface TierRow {
   minQuantity: string;
-  pricePerUnit: string; // in rupees for input, converted to paise on submit
+  pricePerUnit: string;
 }
 
 function emptyTier(): TierRow {
@@ -58,14 +58,12 @@ export default function SubmitOfferScreen() {
   const [tierErrors, setTierErrors] = useState<string[]>([]);
   const [deliveryError, setDeliveryError] = useState('');
 
-  // Load order for unit label
   const { data: orderData } = useQuery({
     queryKey: ['group-order', orderId],
     queryFn: () => getGroupOrder(orderId),
     enabled: !!orderId,
   });
 
-  // Pre-fill if offer already exists
   const { data: myOfferData, isLoading: loadingMyOffer } = useQuery({
     queryKey: ['my-offer', orderId],
     queryFn: () => getMyOffer(orderId),
@@ -88,7 +86,7 @@ export default function SubmitOfferScreen() {
     mutationFn: () => {
       const tierPayload: PriceTier[] = tiers.map((t) => ({
         minQuantity: parseInt(t.minQuantity, 10),
-        pricePerUnit: Math.round(parseFloat(t.pricePerUnit) * 100), // rupees → paise
+        pricePerUnit: Math.round(parseFloat(t.pricePerUnit) * 100),
       }));
       return submitOffer(orderId, {
         tiers: tierPayload,
@@ -146,7 +144,7 @@ export default function SubmitOfferScreen() {
           </Text>
         )}
 
-        {/* Tier builder */}
+        {}
         <Text variant="titleSmall" style={styles.section}>Price Tiers</Text>
         <Text variant="bodySmall" style={styles.hint}>
           More units = lower price. Each tier applies when total demand reaches the minimum.
@@ -200,7 +198,7 @@ export default function SubmitOfferScreen() {
           Add Tier
         </Button>
 
-        {/* Delivery */}
+        {}
         <Text variant="titleSmall" style={styles.section}>Delivery</Text>
         <TextInput
           label="Estimated delivery (days after confirmation)"
@@ -213,7 +211,7 @@ export default function SubmitOfferScreen() {
         />
         <HelperText type="error" visible={!!deliveryError}>{deliveryError}</HelperText>
 
-        {/* Note */}
+        {}
         <Text variant="titleSmall" style={styles.section}>Note (optional)</Text>
         <TextInput
           label="Additional note for the society"

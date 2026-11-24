@@ -38,13 +38,12 @@ export default function NewServiceRequestScreen() {
   );
   const [timeFrom, setTimeFrom] = useState('10:00');
   const [timeTo, setTimeTo] = useState('14:00');
-  const [selectedDays, setSelectedDays] = useState<number[]>([1, 2, 3, 4, 5]); // Mon-Fri
+  const [selectedDays, setSelectedDays] = useState<number[]>([1, 2, 3, 4, 5]);
   const [flatNumber, setFlatNumber] = useState('A-101');
   const [requirementsText, setRequirementsText] = useState('');
   const [proposedBudgetRs, setProposedBudgetRs] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
 
-  // Category specific fields
   const [peopleCount, setPeopleCount] = useState('4');
   const [dietPreference, setDietPreference] = useState<'VEG' | 'NON_VEG'>('VEG');
   const [subjectOrClass, setSubjectOrClass] = useState('Class 8 Maths');
@@ -96,7 +95,7 @@ export default function NewServiceRequestScreen() {
 
   const toggleDay = (day: number) => {
     if (selectedDays.includes(day)) {
-      if (selectedDays.length === 1) return; // Keep at least one
+      if (selectedDays.length === 1) return;
       setSelectedDays(selectedDays.filter((d) => d !== day));
     } else {
       setSelectedDays([...selectedDays, day].sort());
@@ -111,7 +110,7 @@ export default function NewServiceRequestScreen() {
           subtitle="Fill in your schedule and service requirements"
         />
         <Card.Content style={{ gap: 14 }}>
-          {/* Service Option selection */}
+          {}
           <Text variant="labelMedium" style={styles.sectionLabel}>Select Service Option</Text>
           <View style={styles.chipRow}>
             {parsedOptions.map((opt: string) => (
@@ -126,7 +125,7 @@ export default function NewServiceRequestScreen() {
             ))}
           </View>
 
-          {/* Work Duration Type */}
+          {}
           <Text variant="labelMedium" style={styles.sectionLabel}>Duration Type</Text>
           <SegmentedButtons
             value={workType}
@@ -140,7 +139,7 @@ export default function NewServiceRequestScreen() {
             ]}
           />
 
-          {/* Dates */}
+          {}
           <View style={styles.row}>
             <TextInput
               label="Start Date (YYYY-MM-DD)"
@@ -172,7 +171,7 @@ export default function NewServiceRequestScreen() {
             </View>
           )}
 
-          {/* Daily Time Slot */}
+          {}
           <Text variant="labelMedium" style={styles.sectionLabel}>Daily Time Slot</Text>
           <View style={styles.row}>
             <TextInput
@@ -193,7 +192,7 @@ export default function NewServiceRequestScreen() {
             />
           </View>
 
-          {/* Days of Week */}
+          {}
           <Text variant="labelMedium" style={styles.sectionLabel}>Working Days</Text>
           <View style={styles.daysRow}>
             {DAYS.map((d, i) => {
@@ -211,7 +210,7 @@ export default function NewServiceRequestScreen() {
             })}
           </View>
 
-          {/* Flat Number */}
+          {}
           <TextInput
             label="Flat / Unit Number"
             value={flatNumber}
@@ -219,7 +218,7 @@ export default function NewServiceRequestScreen() {
             mode="outlined"
           />
 
-          {/* Category specific fields */}
+          {}
           {(categorySlug?.includes('domestic') || categorySlug?.includes('maid')) && (
             <View style={{ gap: 10 }}>
               <Text variant="labelMedium" style={styles.sectionLabel}>Domestic Details</Text>
@@ -251,7 +250,7 @@ export default function NewServiceRequestScreen() {
             />
           )}
 
-          {/* Requirements text */}
+          {}
           <TextInput
             label="Specific Requirements / Scope of Work"
             value={requirementsText}
@@ -262,7 +261,7 @@ export default function NewServiceRequestScreen() {
             placeholder="e.g. Deep clean 3BHK, wash utensils twice daily, prefer morning slot..."
           />
 
-          {/* Proposed Budget */}
+          {}
           <TextInput
             label="Proposed Budget (₹, optional)"
             value={proposedBudgetRs}

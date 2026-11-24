@@ -39,7 +39,6 @@ export async function getSuggestedVendors(societyId: string, category: string): 
   const suggested: SuggestedVendor[] = [];
   const trades = CATEGORY_TO_TRADE_MAP[category] || ['General repair', 'Electrician', 'Plumber'];
 
-  // 1. Fetch verified ServiceHub providers
   try {
     const spRes = await query(
       `SELECT * FROM service_providers WHERE society_id = $1 AND status = 'VERIFIED'`,
@@ -63,7 +62,6 @@ export async function getSuggestedVendors(societyId: string, category: string): 
     console.warn('[VENDORS] ServiceHub query fallback:', err);
   }
 
-  // 2. Fetch registered Local Vendors
   try {
     const vRes = await query(
       `SELECT * FROM vendors WHERE society_id = $1`,

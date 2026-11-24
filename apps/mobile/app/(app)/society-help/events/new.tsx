@@ -31,7 +31,6 @@ export default function NewEventScreen() {
   const [notes, setNotes] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
-  // Live Quiet Hours Check: Quiet hours start at 22:00
   const isQuietHoursWarning =
     hasLoudSound &&
     (loudSoundEndTime >= '22:00' || loudSoundEndTime < '06:00' || dailyTimeTo > '22:00');
@@ -86,7 +85,7 @@ export default function NewEventScreen() {
         pass will be auto-generated.
       </Text>
 
-      {/* Event Title */}
+      {}
       <View style={styles.formGroup}>
         <Text style={styles.label}>Event Title *</Text>
         <TextInput
@@ -97,7 +96,7 @@ export default function NewEventScreen() {
         />
       </View>
 
-      {/* Event Type */}
+      {}
       <View style={styles.formGroup}>
         <Text style={styles.label}>Event Category</Text>
         <View style={styles.chipRow}>
@@ -115,7 +114,7 @@ export default function NewEventScreen() {
         </View>
       </View>
 
-      {/* Date & Time */}
+      {}
       <View style={styles.row}>
         <View style={[styles.formGroup, { flex: 1 }]}>
           <Text style={styles.label}>Date (YYYY-MM-DD)</Text>
@@ -147,7 +146,7 @@ export default function NewEventScreen() {
         </View>
       </View>
 
-      {/* Estimated Headcount & Vehicles */}
+      {}
       <View style={styles.row}>
         <View style={[styles.formGroup, { flex: 1 }]}>
           <Text style={styles.label}>Estimated Visitors</Text>
@@ -171,7 +170,7 @@ export default function NewEventScreen() {
         </View>
       </View>
 
-      {/* Loud Sound Toggle */}
+      {}
       <View style={styles.toggleCard}>
         <View style={styles.toggleRow}>
           <View style={{ flex: 1 }}>
@@ -199,7 +198,7 @@ export default function NewEventScreen() {
         ) : null}
       </View>
 
-      {/* LIVE Quiet Hours Alert */}
+      {}
       {isQuietHoursWarning ? (
         <View style={styles.warningBox}>
           <MaterialCommunityIcons name="alert-octagon" size={24} color="#DC2626" />
@@ -213,7 +212,7 @@ export default function NewEventScreen() {
         </View>
       ) : null}
 
-      {/* Common Areas Check */}
+      {}
       <View style={styles.toggleCard}>
         <View style={styles.toggleRow}>
           <View style={{ flex: 1 }}>
@@ -229,7 +228,7 @@ export default function NewEventScreen() {
         </View>
       </View>
 
-      {/* Submit Button */}
+      {}
       <TouchableOpacity style={styles.submitBtn} onPress={handleSubmit} disabled={submitting}>
         {submitting ? (
           <ActivityIndicator color="#FFFFFF" />

@@ -7,7 +7,6 @@ export interface ScopeCheckResponse {
   serviceHubCategorySlug?: string;
 }
 
-// Resident & Public Complaint Endpoints
 export const checkComplaintScope = (data: { description: string; specificArea: string; category?: string }) =>
   apiClient.post<ScopeCheckResponse>('/api/v1/complaints/scope-check', data);
 
@@ -39,7 +38,6 @@ export const reopenIssue = (clusterId: string, data: { reason: string; photos: s
 export const confirmIssueFixed = (clusterId: string) =>
   apiClient.post(`/api/v1/complaints/cluster/${clusterId}/confirm-fixed`);
 
-// President Actions
 export const getPresidentDashboard = () =>
   apiClient.get('/api/v1/complaints/admin/dashboard');
 
@@ -83,7 +81,6 @@ export const splitCluster = (data: {
 export const hideSpamComplaint = (complaintId: string, reason: string) =>
   apiClient.post(`/api/v1/complaints/admin/complaint/${complaintId}/spam`, { reason });
 
-// Vendors
 export const getSuggestedVendors = (category?: string) =>
   apiClient.get('/api/v1/complaints/vendors/suggested', { params: { category } });
 

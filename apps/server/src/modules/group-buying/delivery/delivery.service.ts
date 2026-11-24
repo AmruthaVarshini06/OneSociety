@@ -317,7 +317,6 @@ export async function verifyDeliveryQr(
   );
   const updatedPass = mapPass({ ...pass, ...updateRes.rows[0] });
 
-  // Check if all passes delivered
   const remainingRes = await query(
     `SELECT COUNT(*)::int as remaining FROM delivery_passes WHERE group_order_id = $1 AND status != 'DELIVERED'`,
     [orderId]

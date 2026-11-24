@@ -81,7 +81,6 @@ export default function SupplierProfileScreen() {
     queryFn: getMyProfile,
   });
 
-  // Populate form when data loads
   useEffect(() => {
     if (data?.supplier) {
       setForm({
@@ -148,7 +147,6 @@ export default function SupplierProfileScreen() {
     setEditing(false);
   };
 
-  // ── Loading ──
   if (isLoading) {
     return (
       <View style={styles.center}>
@@ -158,7 +156,6 @@ export default function SupplierProfileScreen() {
     );
   }
 
-  // ── Error ──
   if (isError || !data) {
     return (
       <View style={styles.center}>
@@ -177,7 +174,7 @@ export default function SupplierProfileScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
-        {/* Header: verification badge */}
+        {}
         <View style={styles.headerRow}>
           <Text variant="headlineSmall" style={styles.heading}>
             My Profile
@@ -190,7 +187,7 @@ export default function SupplierProfileScreen() {
           </Chip>
         </View>
 
-        {/* Rejection note */}
+        {}
         {supplier.verificationStatus === 'REJECTED' && supplier.verificationNote && (
           <Card style={[styles.card, styles.rejectedCard]} mode="elevated">
             <Card.Content>
@@ -204,7 +201,7 @@ export default function SupplierProfileScreen() {
           </Card>
         )}
 
-        {/* Approval note */}
+        {}
         {supplier.verificationStatus === 'APPROVED' && (
           <Card style={[styles.card, styles.approvedCard]} mode="elevated">
             <Card.Content>
@@ -215,7 +212,7 @@ export default function SupplierProfileScreen() {
           </Card>
         )}
 
-        {/* Pending note */}
+        {}
         {(supplier.verificationStatus === 'PENDING_REVIEW' ||
           supplier.verificationStatus === 'GST_VERIFIED') && (
           <Card style={[styles.card, styles.pendingCard]} mode="elevated">
@@ -227,7 +224,7 @@ export default function SupplierProfileScreen() {
           </Card>
         )}
 
-        {/* Business details card */}
+        {}
         <Card style={styles.card} mode="elevated">
           <Card.Content>
             <View style={styles.sectionHeader}>

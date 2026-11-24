@@ -2,10 +2,9 @@ import { z } from 'zod';
 
 const priceTierSchema = z.object({
   minQuantity: z.number().int().positive(),
-  pricePerUnit: z.number().int().positive(), // paise
+  pricePerUnit: z.number().int().positive(),
 });
 
-// ── President creates a demand window ─────────────────────────────────────
 export const createGroupOrderSchema = z.object({
   productName: z.string().min(2).max(100),
   productCategory: z.string().min(2).max(60),
@@ -23,7 +22,6 @@ export const createGroupOrderSchema = z.object({
 
 export type CreateGroupOrderInput = z.infer<typeof createGroupOrderSchema>;
 
-// ── List query ────────────────────────────────────────────────────────────
 export const listGroupOrdersQuerySchema = z.object({
   status: z
     .enum([
@@ -45,16 +43,14 @@ export const listGroupOrdersQuerySchema = z.object({
 
 export type ListGroupOrdersQuery = z.infer<typeof listGroupOrdersQuerySchema>;
 
-// ── Cancel a demand window (president) ───────────────────────────────────
 export const cancelGroupOrderSchema = z.object({
   reason: z.string().min(5).max(200),
 });
 
 export type CancelGroupOrderInput = z.infer<typeof cancelGroupOrderSchema>;
 
-// ── Open payment window (president) ───────────────────────────────────────
 export const openPaymentWindowSchema = z.object({
-  paymentDeadlineHours: z.number().int().min(1).max(168).default(48), // default 48h, max 7 days
+  paymentDeadlineHours: z.number().int().min(1).max(168).default(48),
 });
 
 export type OpenPaymentWindowInput = z.infer<typeof openPaymentWindowSchema>;

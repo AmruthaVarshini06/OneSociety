@@ -163,8 +163,6 @@ export interface EmergencyAlertDto {
   notes?: string;
 }
 
-// ================= GATE SECURITY & PASSES =================
-
 export const getMyFamilyPass = () =>
   apiClient.get<QrPassDto>('/api/v1/society-help/gate/passes/family');
 
@@ -245,8 +243,6 @@ export const searchFlatPresence = (flatCode: string) =>
     params: { flatCode },
   });
 
-// ================= MAINTENANCE MONEY =================
-
 export const getMaintenancePlan = () =>
   apiClient.get<any>('/api/v1/society-help/maintenance/plan');
 
@@ -321,8 +317,6 @@ export const replyExpenseQuery = (queryId: string, answer: string) =>
     answer,
   });
 
-// ================= COMMUNITY EVENTS =================
-
 export const createCommunityEvent = (data: {
   title: string;
   eventType: string;
@@ -348,8 +342,6 @@ export const getEventsDashboard = () =>
 
 export const addPresidentEventNote = (eventId: string, note: string) =>
   apiClient.post(`/api/v1/society-help/events/${eventId}/note`, { note });
-
-// ================= EMERGENCY SOS =================
 
 export const triggerEmergencyAlert = (notes?: string) =>
   apiClient.post<EmergencyAlertDto>('/api/v1/society-help/emergency/trigger', { notes });

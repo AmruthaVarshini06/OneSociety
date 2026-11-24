@@ -83,7 +83,7 @@ export default function MyOfferScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <ScrollView contentContainerStyle={styles.scroll}>
-        {/* Status */}
+        {}
         <View style={styles.statusRow}>
           <Chip
             style={[styles.statusChip, { backgroundColor: statusColor }]}
@@ -104,7 +104,7 @@ export default function MyOfferScreen() {
           )}
         </View>
 
-        {/* Tiers */}
+        {}
         <Card style={styles.card} mode="elevated">
           <Card.Content>
             <Text variant="titleMedium" style={styles.sectionTitle}>Price Tiers</Text>
@@ -122,7 +122,7 @@ export default function MyOfferScreen() {
           </Card.Content>
         </Card>
 
-        {/* Details */}
+        {}
         <Card style={styles.card} mode="elevated">
           <Card.Content>
             <Text variant="titleMedium" style={styles.sectionTitle}>Details</Text>

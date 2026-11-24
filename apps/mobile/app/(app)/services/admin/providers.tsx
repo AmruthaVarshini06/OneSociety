@@ -118,7 +118,7 @@ export default function AdminAllProvidersScreen() {
               )}
 
               <View style={styles.btnRow}>
-                {/* One-way conversion button for temporary accounts */}
+                {}
                 {isTemporary && (
                   <Button
                     mode="contained"
@@ -130,7 +130,7 @@ export default function AdminAllProvidersScreen() {
                   </Button>
                 )}
 
-                {/* Suspend / Reactivate */}
+                {}
                 {!isSuspended ? (
                   <Button
                     mode="outlined"

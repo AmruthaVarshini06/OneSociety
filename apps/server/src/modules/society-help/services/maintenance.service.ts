@@ -2,23 +2,16 @@ import { query } from '../../../config/supabase';
 import { sendNotification } from '../../../shared/notifications/notification.service';
 import { log as auditLog } from '../../../shared/audit/audit.service';
 
-/**
- * Gets or creates maintenance financial plan.
- */
 export async function getOrCreateMaintenancePlan(societyId: string) {
   return {
     societyId,
-    monthlyAmountPaise: 250000, // Rs. 2,500
+    monthlyAmountPaise: 250000,
     dueDayOfMonth: 5,
-    openingBalancePaise: 15000000, // Rs. 1,50,000 on June 1
+    openingBalancePaise: 15000000,
     openingDate: new Date('2026-06-01T00:00:00.000Z'),
   };
 }
 
-/**
- * Retrieves dues for user:
- * Privacy rule: Flat-wise dues are visible ONLY to that flat and the president!
- */
 export async function getMaintenanceDues(
   societyId: string,
   user: { userId: string; role: string; flatId?: string },
@@ -73,9 +66,6 @@ export async function getMaintenanceDues(
   };
 }
 
-/**
- * Resident pays maintenance in-app with mock payment gateway.
- */
 export async function payMaintenanceInApp(
   dueId: string,
   residentUserId: string,
@@ -103,12 +93,10 @@ export async function payMaintenanceInApp(
     [paidPaise, receiptNumber, dueId]
   );
 
-  // Get current balance
   const balRes = await query('SELECT balance_after_paise FROM maintenance_ledgers WHERE society_id = $1 ORDER BY transaction_date DESC, created_at DESC LIMIT 1', [societyId]);
   const currentBal = balRes.rows[0] ? Number(balRes.rows[0].balance_after_paise) : 15000000;
   const newBal = currentBal + paidPaise;
 
-  // Insert ledger entry
   const countRes = await query('SELECT COUNT(*) as count FROM maintenance_ledgers WHERE society_id = $1', [societyId]);
   const entryNumber = `TXN-${String(parseInt(countRes.rows[0].count, 10) + 1).padStart(4, '0')}`;
 
@@ -144,9 +132,6 @@ export async function payMaintenanceInApp(
   };
 }
 
-/**
- * President records offline maintenance payment.
- */
 export async function recordOfflineMaintenancePayment(
   dueId: string,
   presidentUserId: string,
@@ -201,9 +186,6 @@ export async function recordOfflineMaintenancePayment(
   };
 }
 
-/**
- * Records an expense with MANDATORY proof (work photo or receipt photo).
- */
 export async function recordExpense(
   societyId: string,
   presidentUserId: string,
@@ -274,9 +256,6 @@ export async function recordExpense(
   };
 }
 
-/**
- * Records other society income.
- */
 export async function recordOtherIncome(
   societyId: string,
   presidentUserId: string,
@@ -327,9 +306,6 @@ export async function recordOtherIncome(
   };
 }
 
-/**
- * Records Watchman salary payment.
- */
 export async function recordWatchmanSalaryPayment(
   societyId: string,
   presidentUserId: string,
@@ -350,9 +326,6 @@ export async function recordWatchmanSalaryPayment(
   });
 }
 
-/**
- * Security guard sees his own salary records.
- */
 export async function getGuardSalaryRecords(societyId: string, guardUserId: string) {
   const res = await query(
     `SELECT * FROM maintenance_ledgers 
@@ -372,9 +345,6 @@ export async function getGuardSalaryRecords(societyId: string, guardUserId: stri
   }));
 }
 
-/**
- * Links a solved complaint from Smart Complaint Handling to maintenance ledger.
- */
 export async function linkComplaintExpense(
   societyId: string,
   presidentUserId: string,
@@ -384,7 +354,7 @@ export async function linkComplaintExpense(
   if (clusterRes.rows.length === 0) throw new Error('Complaint cluster not found');
   const cluster = clusterRes.rows[0];
 
-  const totalCostPaise = 500000; // Rs 5,000 default if not specified
+  const totalCostPaise = 500000;
   return recordExpense(societyId, presidentUserId, {
     category: 'Repairs',
     amountPaise: totalCostPaise,
@@ -396,9 +366,6 @@ export async function linkComplaintExpense(
   });
 }
 
-/**
- * Full Maintenance Accounts Page data:
- */
 export async function getMaintenanceAccounts(societyId: string) {
   const plan = await getOrCreateMaintenancePlan(societyId);
 
@@ -492,9 +459,6 @@ export async function getMaintenanceAccounts(societyId: string) {
   };
 }
 
-/**
- * Resident raises query on an expense.
- */
 export async function raiseExpenseQuery(
   societyId: string,
   residentUserId: string,
@@ -511,9 +475,6 @@ export async function raiseExpenseQuery(
   return res.rows[0];
 }
 
-/**
- * President replies to expense query.
- */
 export async function replyExpenseQuery(
   queryId: string,
   presidentUserId: string,

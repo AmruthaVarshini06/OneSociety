@@ -26,7 +26,6 @@ export default function PresidentHomeScreen() {
         setHeadcount(gateRes.data.totalInside);
       }
     } catch {
-      // ignore
     }
 
     try {
@@ -35,7 +34,6 @@ export default function PresidentHomeScreen() {
         setBalanceRupees(Math.round(finRes.data.currentBalancePaise / 100));
       }
     } catch {
-      // ignore
     }
   };
 
@@ -130,7 +128,7 @@ export default function PresidentHomeScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <ScrollView contentContainerStyle={styles.scroll}>
-        {/* President Header */}
+        {}
         <Surface style={styles.headerSurface} elevation={2}>
           <View style={styles.headerTop}>
             <View style={{ flex: 1 }}>
@@ -143,7 +141,7 @@ export default function PresidentHomeScreen() {
             <Avatar.Icon size={52} icon="crown" style={styles.crownAvatar} color="#FFFFFF" />
           </View>
 
-          {/* KPI Stat Chips */}
+          {}
           <View style={styles.kpiRow}>
             <View style={styles.kpiCard}>
               <MaterialCommunityIcons name="account-group" size={20} color="#4F46E5" />
@@ -165,7 +163,7 @@ export default function PresidentHomeScreen() {
 
         <Text style={styles.sectionTitle}>ADMINISTRATION COMMAND MODULES</Text>
 
-        {/* Administration Cards */}
+        {}
         {adminModules.map((m) => (
           <Card key={m.title} style={styles.card} mode="elevated">
             <Card.Content>

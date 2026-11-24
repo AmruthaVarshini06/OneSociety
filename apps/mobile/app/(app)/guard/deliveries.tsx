@@ -27,18 +27,15 @@ export default function GuardDeliveriesScreen() {
   const queryClient = useQueryClient();
   const [selectedOrderId, setSelectedOrderId] = useState<string | null>(null);
 
-  // OTP modal state
   const [otpModalVisible, setOtpModalVisible] = useState(false);
   const [otpFlatId, setOtpFlatId] = useState('');
   const [otpFlatLabel, setOtpFlatLabel] = useState('');
   const [otpCode, setOtpCode] = useState('');
   const [otpReason, setOtpReason] = useState('Camera scan failed');
 
-  // Gate accept modal
   const [acceptModalVisible, setAcceptModalVisible] = useState(false);
   const [receivedPackages, setReceivedPackages] = useState('10');
 
-  // 1. Fetch active group orders that are DISPATCHED or DELIVERING or COMPLETED
   const { data: ordersData, isLoading: isOrdersLoading } = useQuery({
     queryKey: ['group-orders-deliveries'],
     queryFn: () => listGroupOrders({ limit: 50 }),
@@ -50,7 +47,6 @@ export default function GuardDeliveriesScreen() {
 
   const activeOrderId = selectedOrderId ?? activeOrders[0]?._id;
 
-  // 2. Fetch manifest & pickups for selected order
   const { data: manifestData, isLoading: isManifestLoading } = useQuery({
     queryKey: ['delivery-manifest', activeOrderId],
     queryFn: () => getDeliveryManifest(activeOrderId!),
@@ -63,7 +59,6 @@ export default function GuardDeliveriesScreen() {
     enabled: !!activeOrderId,
   });
 
-  // Accept Manifest mutation
   const acceptMutation = useMutation({
     mutationFn: () =>
       acceptGateManifest(activeOrderId!, {
@@ -81,7 +76,6 @@ export default function GuardDeliveriesScreen() {
     },
   });
 
-  // Verify QR mutation
   const verifyQrMutation = useMutation({
     mutationFn: (qrToken: string) => verifyDeliveryQr(activeOrderId!, qrToken),
     onSuccess: () => {
@@ -94,7 +88,6 @@ export default function GuardDeliveriesScreen() {
     },
   });
 
-  // Request OTP mutation
   const requestOtpMutation = useMutation({
     mutationFn: (flatId: string) => requestOtpFallback(activeOrderId!, flatId),
     onSuccess: (res) => {
@@ -106,7 +99,6 @@ export default function GuardDeliveriesScreen() {
     },
   });
 
-  // Verify OTP mutation
   const verifyOtpMutation = useMutation({
     mutationFn: () =>
       verifyOtpFallback(activeOrderId!, {
@@ -154,7 +146,7 @@ export default function GuardDeliveriesScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scroll}>
-        {/* Order Selector Chips */}
+        {}
         <Text variant="labelLarge" style={styles.sectionLabel}>
           Active Orders:
         </Text>
@@ -171,7 +163,7 @@ export default function GuardDeliveriesScreen() {
           ))}
         </ScrollView>
 
-        {/* Manifest Status Card */}
+        {}
         {manifest && (
           <Card style={styles.card}>
             <Card.Content>
@@ -228,7 +220,7 @@ export default function GuardDeliveriesScreen() {
           </Card>
         )}
 
-        {/* Flat Pickups Checklist */}
+        {}
         <Text variant="titleMedium" style={styles.sectionHeader}>
           Resident Pickups ({pickups.length})
         </Text>
@@ -305,7 +297,7 @@ export default function GuardDeliveriesScreen() {
         )}
       </ScrollView>
 
-      {/* Accept Gate Manifest Modal */}
+      {}
       <Portal>
         <Modal
           visible={acceptModalVisible}
@@ -341,7 +333,7 @@ export default function GuardDeliveriesScreen() {
         </Modal>
       </Portal>
 
-      {/* OTP Fallback Override Modal */}
+      {}
       <Portal>
         <Modal
           visible={otpModalVisible}
