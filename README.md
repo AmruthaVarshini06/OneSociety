@@ -14,7 +14,15 @@
 
 ## 💡 Problem Statement
 
-Apartment societies still run on paper registers, WhatsApp groups, and the memory of the president. As a result, families pay higher prices because they buy alone, spend money on items their neighbours already own, and have no trusted way to hire local help or earn from their own skills. Common-area complaints get lost or repeated without priority, visitor entry has no verification or head-count, and maintenance money is not transparent. There is no single, verified platform where residents, the president, suppliers, service providers, and security work together.
+Modern apartment societies operate on fragmented, informal systems that create daily operational and economic inefficiencies:
+
+• **No Collective Purchasing Power**: Households purchase daily groceries and produce individually at high retail prices instead of pooling bulk community demand directly from verified wholesale suppliers.  
+• **Idle Assets & Duplicate Purchases**: Expensive tools and equipment sit idle in private homes, while neighbours buy redundant items due to the lack of an escrow-secured, zero-fee peer lending system.  
+• **Unvetted Domestic Help & Scheduling Clashes**: Hiring domestic staff (maids, cooks, tutors) relies on unverified word-of-mouth without schedule conflict prevention or formal grievance escalation.  
+• **Redundant Maintenance Complaints**: Common facility failures (elevators, water pumps) trigger chaotic duplicate tickets without intelligent issue clustering or vendor expense tracking.  
+• **Insecure Gatekeeping & Financial Opacity**: Security desks lack real-time resident presence verification ("Nobody at Home" alerts), while society maintenance accounting lacks transparent digital receipt audits.  
+
+OneSociety resolves these silos by uniting residents, management committees, security guards, suppliers, and service providers into a single, role-based ecosystem.
 
 ---
 
