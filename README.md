@@ -8,7 +8,7 @@ A mobile app for apartment societies — built with React Native (Expo) and Node
 
 - Node.js >= 20
 - npm >= 10
-- MongoDB Atlas free cluster (connection string in `apps/server/.env`)
+- Supabase PostgreSQL database (connection string and keys in `apps/server/.env`)
 - Expo Go app on your phone (for mobile development)
 
 ---
@@ -37,7 +37,7 @@ cd apps/mobile && npm install
 
 ```bash
 cp apps/server/.env.example apps/server/.env
-# Edit apps/server/.env with your MongoDB URI, JWT secrets, etc.
+# Edit apps/server/.env with your Supabase URL, keys, DATABASE_URL, JWT secrets, etc.
 ```
 
 ### 3. Run the backend
@@ -80,7 +80,9 @@ See `apps/server/.env.example` for the full list. Required variables:
 
 | Variable | Description |
 |---|---|
-| `MONGO_URI` | MongoDB Atlas connection string (dev database) |
+| `DATABASE_URL` | PostgreSQL connection string |
+| `SUPABASE_URL` | Supabase project URL |
+| `SUPABASE_KEY` | Supabase service role key |
 | `JWT_ACCESS_SECRET` | Secret for signing access tokens |
 | `JWT_REFRESH_SECRET` | Secret for signing refresh tokens |
 | `CLOUDINARY_*` | Cloudinary credentials |
