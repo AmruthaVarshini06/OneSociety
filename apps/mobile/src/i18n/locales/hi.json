@@ -1,0 +1,141 @@
+{
+  "login": {
+    "title": "OneSociety में आपका स्वागत है",
+    "username": "उपयोगकर्ता नाम",
+    "password": "पासवर्ड",
+    "button": "साइन इन करें",
+    "error": {
+      "invalidCredentials": "गलत उपयोगकर्ता नाम या पासवर्ड",
+      "required": "यह फ़ील्ड आवश्यक है"
+    }
+  },
+  "changePassword": {
+    "title": "अपना पासवर्ड बदलें",
+    "current": "वर्तमान पासवर्ड",
+    "new": "नया पासवर्ड",
+    "confirm": "नया पासवर्ड दोबारा दर्ज करें",
+    "button": "पासवर्ड अपडेट करें",
+    "mismatch": "पासवर्ड मेल नहीं खाते",
+    "firstLogin": "कृपया जारी रखने से पहले अपना पासवर्ड बदलें"
+  },
+  "home": {
+    "resident": "निवासी होम",
+    "president": "अध्यक्ष डैशबोर्ड",
+    "guard": "गार्ड डैशबोर्ड",
+    "supplier": "आपूर्तिकर्ता होम",
+    "provider": "सेवा प्रदाता होम",
+    "delivery": "डिलीवरी पार्टनर होम",
+    "comingSoon": "और सुविधाएं जल्द आ रही हैं!"
+  },
+  "notifications": {
+    "title": "सूचनाएं",
+    "empty": "अभी तक कोई सूचना नहीं",
+    "markAllRead": "सभी पढ़े गए के रूप में चिह्नित करें"
+  },
+  "settings": {
+    "title": "सेटिंग्स",
+    "language": "भाषा",
+    "logout": "साइन आउट",
+    "english": "अंग्रेज़ी",
+    "hindi": "हिंदी",
+    "telugu": "तेलुगु"
+  },
+  "common": {
+    "loading": "लोड हो रहा है...",
+    "error": "कुछ गलत हुआ। कृपया पुनः प्रयास करें।",
+    "retry": "पुनः प्रयास करें",
+    "cancel": "रद्द करें",
+    "save": "सहेजें"
+  },
+  "rentals": {
+    "title": "शेयर और किराया",
+    "browse": "सामान ब्राउज़ करें",
+    "myListings": "मेरी लिस्टिंग",
+    "myBookings": "मेरी बुकिंग",
+    "requests": "सामान अनुरोध",
+    "searchPlaceholder": "टूल, सीढ़ी, प्रोजेक्टर खोजें...",
+    "allCategories": "सभी श्रेणियां",
+    "requestItem": "सामान का अनुरोध करें",
+    "listItem": "सामान लिस्ट करें",
+    "aiPriceVerified": "AI मूल्य सत्यापित",
+    "hourlyRate": "/घंटा",
+    "dailyRate": "/दिन",
+    "deposit": "सुरक्षा जमा राशि",
+    "bookNow": "अभी बुक करें",
+    "startRental": "किराया शुरू करें",
+    "pickupPhotos": "पिकअप तस्वीरें",
+    "returnPhotos": "वापसी तस्वीरें",
+    "overtime": "अतिरिक्त समय",
+    "settlement": "निपटान और एस्क्रो",
+    "dispute": "विवाद समाधान",
+    "ratingsReviews": "रेटिंग और समीक्षाएं",
+    "rateExperience": "अनुभव को रेट करें",
+    "status": {
+      "REQUESTED": "अनुरोधित",
+      "ACCEPTED": "स्वीकृत",
+      "PAID_IN_ESCROW": "एस्क्रो में भुगतान किया गया",
+      "PICKUP_PENDING": "पिकअप लंबित",
+      "IN_USE": "उपयोग में",
+      "RETURN_PENDING": "वापसी लंबित",
+      "RETURNED": "वापस किया गया",
+      "IN_DISPUTE": "विवाद में",
+      "SETTLED": "निपटारा पूर्ण",
+      "CANCELLED": "रद्द"
+    }
+  },
+  "serviceHub": {
+    "title": "सर्विसहब",
+    "subtitle": "कौशल बाज़ार: सत्यापित पड़ोसी और विश्वसनीय सेवा पेशेवर",
+    "browseCategories": "श्रेणियां ब्राउज़ करें",
+    "myServices": "मेरी सेवाएं",
+    "providerPortal": "सेवा प्रदाता पोर्टल",
+    "todaySchedule": "आज की अनुसूची",
+    "verifiedByPresident": "अध्यक्ष द्वारा सत्यापित",
+    "neighbour": "पड़ोसी",
+    "external": "बाहरी पेशेवर",
+    "requestService": "सेवा का अनुरोध करें",
+    "agreementLocked": "समझौता तय हुआ",
+    "paymentWindow": "भुगतान खिड़की",
+    "markDone": "संपन्न चिह्नित करें",
+    "confirmReceipt": "रसीद की पुष्टि करें",
+    "reportAbuse": "दुरुपयोग की रिपोर्ट करें"
+  },
+  "complaints": {
+    "title": "स्मार्ट शिकायत प्रबंधन",
+    "feed": "शिकायत फ़ीड",
+    "reportIssue": "समस्या दर्ज करें",
+    "emergencyNotice": "आपातकालीन: आग, गैस रिसाव, या लिफ्ट में फंसे व्यक्ति के लिए सुरक्षा को तुरंत सूचित करें!",
+    "scopeAlert": "यह आपके फ्लैट के अंदर की समस्या लगती है। आप सर्विसहब के माध्यम से सत्यापित प्रदाता को नियुक्त कर सकते हैं।",
+    "priorityQueue": "प्राथमिकता कतार",
+    "kanbanBoard": "कनबन बोर्ड",
+    "workOrderBatching": "कार्य आदेश समूहीकरण",
+    "localVendors": "स्थानीय विक्रेता निर्देशिका",
+    "reportsAnalytics": "रिपोर्ट और विश्लेषण",
+    "contacted": "संपर्क किया गया",
+    "inProgress": "प्रगति में",
+    "solved": "हल किया गया",
+    "closed": "बंद",
+    "reopened": "पुनः खोला गया",
+    "outOfScope": "दायरे से बाहर",
+    "confirmFixed": "ठीक होने की पुष्टि करें",
+    "reopenIssue": "समस्या पुनः खोलें",
+    "costBreakdown": "लागत विवरण",
+    "paymentRecord": "भुगतान रिकॉर्ड"
+  },
+  "societyHelp": {
+    "title": "सोसायटी हेल्प",
+    "gateSecurity": "गेट सुरक्षा और पास",
+    "familyPass": "पारिवारिक क्यूआर पास",
+    "visitorPass": "आगंतुक पास",
+    "createVisitorPass": "आगंतुक पास बनाएं",
+    "maintenanceMoney": "रखरखाव निधि",
+    "payDues": "रखरखाव शुल्क का भुगतान करें",
+    "accountsOverview": "खाता और खाता बही",
+    "communityEvents": "सामुदायिक कार्यक्रम",
+    "announceEvent": "कार्यक्रम की घोषणा करें",
+    "someoneAtHome": "घर पर कोई है",
+    "nobodyAtHome": "घर पर कोई नहीं है",
+    "emergencySos": "आपातकालीन एसओएस",
+    "guardOnTheWay": "सुरक्षा गार्ड आ रहे हैं"
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "login": {
+    "title": "Welcome to OneSociety",
+    "username": "Username",
+    "password": "Password",
+    "button": "Sign In",
+    "error": {
+      "invalidCredentials": "Invalid username or password",
+      "required": "This field is required"
+    }
+  },
+  "changePassword": {
+    "title": "Change Your Password",
+    "current": "Current Password",
+    "new": "New Password",
+    "confirm": "Confirm New Password",
+    "button": "Update Password",
+    "mismatch": "Passwords do not match",
+    "firstLogin": "Please change your password before continuing"
+  },
+  "home": {
+    "resident": "Resident Home",
+    "president": "President Dashboard",
+    "guard": "Guard Dashboard",
+    "supplier": "Supplier Home",
+    "provider": "Service Provider Home",
+    "delivery": "Delivery Partner Home",
+    "comingSoon": "More features coming soon!"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "empty": "No notifications yet",
+    "markAllRead": "Mark all as read"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "logout": "Sign Out",
+    "english": "English",
+    "hindi": "Hindi",
+    "telugu": "Telugu"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong. Please try again.",
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "save": "Save"
+  },
+  "rentals": {
+    "title": "Share & Rent",
+    "browse": "Browse Items",
+    "myListings": "My Listings",
+    "myBookings": "My Bookings",
+    "requests": "Item Requests",
+    "searchPlaceholder": "Search tools, ladders, projectors...",
+    "allCategories": "All Categories",
+    "requestItem": "Request an Item",
+    "listItem": "List an Item",
+    "aiPriceVerified": "AI Price Verified",
+    "hourlyRate": "/hour",
+    "dailyRate": "/day",
+    "deposit": "Safe Deposit",
+    "bookNow": "Book Now",
+    "startRental": "Start Rental",
+    "pickupPhotos": "Pickup Photos",
+    "returnPhotos": "Return Photos",
+    "overtime": "Overtime",
+    "settlement": "Settlement & Escrow",
+    "dispute": "Dispute Resolution",
+    "ratingsReviews": "Ratings & Reviews",
+    "rateExperience": "Rate Rental Experience",
+    "status": {
+      "REQUESTED": "Requested",
+      "ACCEPTED": "Accepted",
+      "PAID_IN_ESCROW": "Paid in Escrow",
+      "PICKUP_PENDING": "Pickup Pending",
+      "IN_USE": "In Use",
+      "RETURN_PENDING": "Return Pending",
+      "RETURNED": "Returned",
+      "IN_DISPUTE": "In Dispute",
+      "SETTLED": "Settled",
+      "CANCELLED": "Cancelled"
+    }
+  },
+  "serviceHub": {
+    "title": "ServiceHub",
+    "subtitle": "Skills Marketplace: Verified neighbours & trusted service professionals",
+    "browseCategories": "Browse Categories",
+    "myServices": "My Services",
+    "providerPortal": "Provider Portal",
+    "todaySchedule": "Today's Schedule",
+    "verifiedByPresident": "Verified by President",
+    "neighbour": "Neighbour",
+    "external": "External Professional",
+    "requestService": "Request Service",
+    "agreementLocked": "Agreement Locked",
+    "paymentWindow": "Payment Window",
+    "markDone": "Mark Done",
+    "confirmReceipt": "Confirm Receipt",
+    "reportAbuse": "Report Abuse"
+  },
+  "complaints": {
+    "title": "Smart Complaints",
+    "feed": "Complaints Feed",
+    "reportIssue": "Report Issue",
+    "emergencyNotice": "Emergency: For fire, gas leak, or person stuck in lift, call security immediately!",
+    "scopeAlert": "This looks like a problem inside your flat. You can hire a verified provider through ServiceHub.",
+    "priorityQueue": "Priority Queue",
+    "kanbanBoard": "Kanban Board",
+    "workOrderBatching": "Work Order Batching",
+    "localVendors": "Local Vendors Directory",
+    "reportsAnalytics": "Reports & Analytics",
+    "contacted": "Contacted",
+    "inProgress": "Work In Progress",
+    "solved": "Solved",
+    "closed": "Closed",
+    "reopened": "Reopened",
+    "outOfScope": "Out of Scope",
+    "confirmFixed": "Confirm Fixed",
+    "reopenIssue": "Reopen Issue",
+    "costBreakdown": "Cost Breakdown",
+    "paymentRecord": "Payment Record"
+  },
+  "societyHelp": {
+    "title": "Society Help",
+    "gateSecurity": "Gate Security & Passes",
+    "familyPass": "Family QR Pass",
+    "visitorPass": "Visitor Pass",
+    "createVisitorPass": "Create Visitor Pass",
+    "maintenanceMoney": "Maintenance Money",
+    "payDues": "Pay Maintenance",
+    "accountsOverview": "Accounts & Ledger",
+    "communityEvents": "Community Events",
+    "announceEvent": "Announce Event",
+    "someoneAtHome": "Someone is at home",
+    "nobodyAtHome": "Nobody is at home",
+    "emergencySos": "Emergency SOS",
+    "guardOnTheWay": "Guard is on the way"
+  }
+}

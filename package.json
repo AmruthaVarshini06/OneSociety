@@ -1,0 +1,25 @@
+{
+  "name": "onesociety",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/server",
+    "apps/mobile"
+  ],
+  "scripts": {
+    "server": "npm run dev --workspace=apps/server",
+    "mobile": "npm run start --workspace=apps/mobile",
+    "test": "npm run test --workspace=apps/server",
+    "lint": "eslint apps/server/src apps/mobile/src --ext .ts,.tsx",
+    "format": "prettier --write \"apps/**/*.{ts,tsx,js,json}\""
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.34.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^3.2.5"
+  }
+}
